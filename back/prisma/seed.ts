@@ -210,7 +210,79 @@ async function seedBook(entry: { title: string; author: string; publisher: strin
   console.log(`✔ ${book.title}`);
 }
 
+const BISAC_CATEGORIES = [
+  'Antiques & Collectibles',
+  'Architecture',
+  'Art',
+  'Bibles',
+  'Biography & Autobiography',
+  'Body, Mind & Spirit',
+  'Business & Economics',
+  'Comics & Graphic Novels',
+  'Computers',
+  'Cooking',
+  'Crafts & Hobbies',
+  'Design',
+  'Drama',
+  'Education',
+  'Family & Relationships',
+  'Fiction',
+  'Foreign Language Study',
+  'Games & Activities',
+  'Gardening',
+  'Health & Fitness',
+  'History',
+  'House & Home',
+  'Humor',
+  'Juvenile Fiction',
+  'Juvenile Nonfiction',
+  'Language Arts & Disciplines',
+  'Law',
+  'Literary Collections',
+  'Literary Criticism',
+  'Mathematics',
+  'Medical',
+  'Music',
+  'Nature',
+  'Performing Arts',
+  'Pets',
+  'Philosophy',
+  'Photography',
+  'Poetry',
+  'Political Science',
+  'Psychology',
+  'Reference',
+  'Religion',
+  'Science',
+  'Self-Help',
+  'Social Science',
+  'Sports & Recreation',
+  'Study Aids',
+  'Technology & Engineering',
+  'Transportation',
+  'Travel',
+  'True Crime',
+  'Young Adult Fiction',
+  'Young Adult Nonfiction',
+];
+
+async function seedCategories() {
+  console.log(`Seeding ${BISAC_CATEGORIES.length} catégories BISAC...`);
+
+  for (const name of BISAC_CATEGORIES) {
+    await prisma.category.upsert({
+      where: { name },
+      update: {},
+      create: { name },
+    });
+  }
+
+  console.log('✔ Catégories seedées');
+}
+
 async function main() {
+  await seedCategories();
+
   console.log(`Seeding ${booksToSeed.length} books...`);
 
   for (const entry of booksToSeed) {
