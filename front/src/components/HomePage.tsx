@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Stack } from '@chakra-ui/react';
+import axios from 'axios';
 
 import { PageLayout } from '../components/layouts/PageLayout';
 import Header from '../components/Header';
@@ -10,12 +11,20 @@ import CategoriesList from './CategoriesList';
 import BookCardList from './BookCardList';
 
 import homeImage from '../assets/homePageImage.jpg';
-import { genresMock, booksMock } from '../mocks/mockData';
+import { booksMock } from '../mocks/mockData';
 import { slugify } from '@/utils/stringUtils';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
+  const [categories, setCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    axios
+      .get<string[]>('/api/categories')
+      .then((res) => setCategories(res.data))
+      .catch(() => setCategories([]));
+  }, []);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
@@ -26,15 +35,7 @@ const HomePage = () => {
   };
 
   const handleSubmit = async () => {
-    // En attende de l'API Back
-    // try {
-    // const response = await axios.get('/api/books/search', {
-    //   params: { q: searchValue },
-    // });
-    // setSearchResults(response.data);
-    // } catch (error) {
-    //   console.error('Erreur lors de la recherche :', error);
-    // }
+    // En attente de l'API Back
   };
 
   const handleSelectCategory = (categoryName: string) => {
@@ -53,7 +54,7 @@ const HomePage = () => {
             onClear={handleClear}
           />
 
-          <CategoriesList categories={genresMock.map((g) => g.name)} onSelectCategory={handleSelectCategory} />
+          <CategoriesList categories={categories} onSelectCategory={handleSelectCategory} />
 
           <BookCardList title="List Title" books={booksMock} />
           <BookCardList title="Second List Title" books={booksMock} />
@@ -64,5 +65,8 @@ const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;
+
 
 export default HomePage;
