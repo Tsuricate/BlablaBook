@@ -53,7 +53,7 @@ const HomePage = () => {
             onClear={handleClear}
           />
 
-          <CategoriesList categories={genresMock} onSelectCategory={handleSelectCategory} />
+          <CategoriesList categories={genresMock.map((g) => g.name)} onSelectCategory={handleSelectCategory} />
 
           <BookCardList title="List Title" books={booksMock} />
           <BookCardList title="Second List Title" books={booksMock} />

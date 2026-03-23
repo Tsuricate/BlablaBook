@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import type { Category } from '@/types/category';
 import { Button, Text, Box, HStack, Wrap, WrapItem } from '@chakra-ui/react';
 
 export interface CategoriesListProps {
-  categories: Category[];
+  categories: string[];
   onSelectCategory: (categoryName: string) => void;
 }
 
@@ -23,15 +22,15 @@ const CategoriesList = ({ categories, onSelectCategory }: CategoriesListProps) =
       <Container {...(!showAll && { overflowX: 'auto', paddingInline: 2 })} gap={3}>
         {visibleCategories.map((category) => {
           const button = (
-            <Button size="sm" variant="outline" onClick={() => onSelectCategory(category.name)}>
-              {category.name}
+            <Button size="sm" variant="outline" onClick={() => onSelectCategory(category)}>
+              {category}
             </Button>
           );
 
           return showAll ? (
-            <WrapItem key={category.id}>{button}</WrapItem>
+            <WrapItem key={category}>{button}</WrapItem>
           ) : (
-            <Box key={category.id}>{button}</Box>
+            <Box key={category}>{button}</Box>
           );
         })}
 
