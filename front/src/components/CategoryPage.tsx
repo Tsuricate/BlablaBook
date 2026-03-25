@@ -99,19 +99,19 @@ const CategoryPage = () => {
 
         {!loading && notFound && (
           <Center py={10}>
-            <Text color="gray.500">Catégorie introuvable.</Text>
+            <Text color="brown.600">Catégorie introuvable.</Text>
           </Center>
         )}
 
         {!loading && !notFound && books.length === 0 && (
           <Center py={10}>
-            <Text color="gray.500">Aucun livre trouvé pour cette catégorie.</Text>
+            <Text color="brown.600">Aucun livre trouvé pour cette catégorie.</Text>
           </Center>
         )}
 
         {!loading && books.length > 0 && (
           <>
-            <Text fontSize="sm" color="gray.500">
+            <Text fontSize="sm" color="brown.600">
               {total} livre{total > 1 ? 's' : ''}
             </Text>
 
@@ -124,7 +124,7 @@ const CategoryPage = () => {
                       h={{ base: '210px', md: '230px' }}
                       borderRadius="md"
                       overflow="hidden"
-                      bg="gray.100"
+                      bg="brown.200"
                     >
                       <Image
                         src={book.imageLinks ?? undefined}
@@ -138,7 +138,7 @@ const CategoryPage = () => {
                       {book.title}
                     </Text>
                     {book.authors.length > 0 && (
-                      <Text fontSize="xs" color="gray.500" lineClamp={1}>
+                      <Text fontSize="xs" color="brown.600" lineClamp={1}>
                         {book.authors.join(', ')}
                       </Text>
                     )}
@@ -154,8 +154,8 @@ const CategoryPage = () => {
               <HStack justify="center" gap={2}>
                 <Button
                   size="sm"
-                  variant="outline"
-                  isDisabled={page === 1}
+                  variant="category"
+                  disabled={page === 1}
                   onClick={() => setPage((p) => p - 1)}
                 >
                   Précédent
@@ -165,8 +165,8 @@ const CategoryPage = () => {
                 </Text>
                 <Button
                   size="sm"
-                  variant="outline"
-                  isDisabled={page === totalPages}
+                  variant="category"
+                  disabled={page === totalPages}
                   onClick={() => setPage((p) => p + 1)}
                 >
                   Suivant
