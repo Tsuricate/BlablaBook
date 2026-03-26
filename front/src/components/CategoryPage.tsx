@@ -76,7 +76,7 @@ const CategoryPage = () => {
   };
 
   return (
-    <PageLayout imageSrc={homeImage} header={<Header />} imagePosition="top" imageSize="25%">
+    <PageLayout imageSrc={homeImage} imageSize={25}>
       <Stack gap={6} pb={{ base: 20, md: 2 }}>
         {categoryName && (
           <Text fontSize="2xl" fontWeight="bold">

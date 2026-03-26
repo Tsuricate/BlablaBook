@@ -14,18 +14,17 @@ import { slugify } from '../utils/stringUtils';
 import { getThemeLabel } from '../utils/themeUtils';
 import { useBookSearch } from '../hooks/useBookSearch';
 import { useTranslation } from 'react-i18next';
-import type { Category } from '../types/category';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('common');
 
   const isInitialRender = useRef(true);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     axios
-      .get<Category[]>(`${import.meta.env.VITE_API_URL}/api/categories`)
+      .get<string[]>(`${import.meta.env.VITE_API_URL}/api/categories`)
       .then((res) => setCategories(res.data))
       .catch(() => setCategories([]));
   }, []);

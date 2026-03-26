@@ -33,8 +33,8 @@ const colors = defineTokens.colors({
 
 const config = defineConfig({
   globalCss: {
-    html: { minHeight: '100%' },
-    '#root': { minHeight: '100%' },
+    html: { height: '100%' },
+    '#root': { height: '100%' },
     body: {
       minHeight: '100%',
       margin: 0,
