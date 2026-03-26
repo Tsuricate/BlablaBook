@@ -1,16 +1,36 @@
-import z, { string } from 'zod';
-import { Box, Field, Input, Button, Heading, FieldErrorIcon, Flex, VStack } from '@chakra-ui/react';
-import { PasswordInput } from '../components/ui/password-input.tsx';
-import RegisterSchema from '../schema/register.schema.ts';
-import axios, { AxiosError } from 'axios';
+import z from 'zod';
+import {
+  Box,
+  Field,
+  Input,
+  Button,
+  Heading,
+  FieldErrorIcon,
+  Flex,
+  VStack,
+  Checkbox,
+} from '@chakra-ui/react';
+import { PasswordInput } from './ui/password-input';
+import RegisterSchema from '../schema/register.schema';
+import axios from 'axios';
 import { useState } from 'react';
 import { RiArrowRightLine } from 'react-icons/ri';
+import type { RegisterErrorResponse, RegisterResponse } from '@/types/api.type';
+import { Toaster, toaster } from './ui/toaster';
+import { PageLayout } from './layouts/PageLayout';
+import homeImage from '../assets/homePageImage.jpg';
+import { Link as RouterLink, useNavigate } from 'react-router';
+import { Trans, useTranslation } from 'react-i18next';
+import MobileMenu from './MobileMenu';
 
 //Typage Typescript
 type RegisterFormValues = z.infer<typeof RegisterSchema>;
+type RegisterFormErrors = Partial<Record<keyof RegisterFormValues, string>>;
 
 //Formulaire
 const Register = () => {
+  const { t } = useTranslation('auth');
+
   const [userInfos, setUserInfos] = useState<RegisterFormValues>({
     username: '',
     email: '',
@@ -18,36 +38,103 @@ const Register = () => {
     confirmPassword: '',
   });
 
-  const [errors, setErrors] = useState<RegisterFormValues>({
+  const [errors, setErrors] = useState<RegisterFormErrors>({
     username: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
-  const isFormInvalid =
-    Object.values(errors).some((error) => error.length > 0) ||
-    Object.values(userInfos).some((value) => !value);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
+  const isFormValid =
+    Object.values(errors).every((error) => error.length === 0) &&
+    Object.values(userInfos).every((value) => !!value.trim()) &&
+    termsAccepted;
 
   // fonction de soumission du formulaire
-  // en attente du back pour les responses de axios
-  const handleSubmit = async (event: React.SubmitEvent) => {
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     setIsSubmitting(true);
+
     try {
-      const response = await axios.post('/api/register', userInfos);
+      const response = await axios.post<RegisterResponse>(
+        `${import.meta.env.VITE_API_URL}/api/auth/register`,
+        userInfos,
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
+      // Traitement de la résponse
+      if (response.data.success && response.data.data) {
+        toaster.create({
+          title: t('register.successTitle'),
+          description: t('register.successDescription', {
+            username: response.data.data.username,
+          }),
+          type: 'success',
+          duration: 3000,
+          closable: true,
+        });
+
+        // Vider le formulaire
+        setUserInfos({
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        });
+
+        // Redirection vers la page de connexion
+        setTimeout(() => {
+          navigate('/login');
+        }, 2000);
+      } else {
+        console.error('User creation failed', response.data.message);
+      }
     } catch (error) {
-      // if (axios.isAxiosError(error)) {
-      //   const axiosError = error as AxiosError<{message?:string, errors?: Record<string, string[]}>
-      // }
-      // if (AxiosError.response){
-      // }else if (AxiosError.request){
-      // }
+      console.log('error', error);
+      // Traitement des erreurs
+      if (axios.isAxiosError<RegisterErrorResponse>(error)) {
+        // const registerError = error.response?.data.message || error.message;
+        const backEndMessage = error.response?.data.message || 'GENERIC';
+        const messageKey =
+          {
+            USERNAME_TAKEN: 'auth:register.errorUsername',
+            GENERIC: 'auth:register.defaultError',
+          }[backEndMessage] ?? 'auth:register.defaultError';
+
+        const translatedMessage = t(messageKey);
+
+        // if (registerError) {
+        toaster.create({
+          title: t('register.errorTitle'),
+          description: translatedMessage,
+          type: 'error',
+          duration: 6000,
+          closable: true,
+        });
+      } else {
+        toaster.create({
+          title: t('register.serverErrorTitle'),
+          description: t('register.serverErrorDescription'),
+          type: 'error',
+          duration: 6000,
+          closable: true,
+        });
+      }
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const getPasswordError = (password: string, confirmPassword: string) => {
+    if (!confirmPassword) return '';
+    if (password != confirmPassword) return t('register.passwordMismatch');
+    return '';
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,105 +143,187 @@ const Register = () => {
       [event.target.name]: event.target.value,
     };
 
-    // Utiliser ton schemaZod (avec parse) en lui donnait les données du state
-    const result = RegisterSchema.safeParse(newUserInfos);
-
     setUserInfos(newUserInfos);
 
-    if (!result.success) {
-      const flattenedErrors = z.flattenError(result.error);
-      const newErrors = {
-        username: flattenedErrors.fieldErrors.username?.[0] || '',
-        email: flattenedErrors.fieldErrors.email?.[0] || '',
-        password: flattenedErrors.fieldErrors.password?.[0] || '',
-        confirmPassword: flattenedErrors.fieldErrors.confirmPassword?.[0] || '',
-      };
+    setErrors((prev) => ({
+      ...prev,
+      confirmPassword: getPasswordError(newUserInfos.password, newUserInfos.confirmPassword),
+    }));
+  };
 
-      setErrors(newErrors);
-    } else {
-      setErrors({
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-      });
-    }
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    // Sert à créer une validation pour un champ individuel
+    const miniSchema = z.object({
+      [name]: RegisterSchema.shape[name as keyof RegisterFormValues],
+    });
+
+    const result = miniSchema.safeParse({ [name]: value });
+
+    setErrors((prev) => {
+      if (!result.success) {
+        const flattened = z.flattenError(result.error);
+        return {
+          ...prev,
+          [name]: flattened.fieldErrors[name as keyof RegisterFormValues]?.[0] ?? '',
+        };
+      }
+      // Vérification en temps réel pour confirmPassword
+      if (name === 'confirmPassword') {
+        return {
+          ...prev,
+          confirmPassword: getPasswordError(userInfos.password, value),
+        };
+      }
+      return { ...prev, [name]: '' };
+    });
   };
 
   return (
-    <Flex justify="center">
-      <Box as="form" onSubmit={handleSubmit}>
-        <VStack gap={4}>
-          <Heading size="3xl">Register</Heading>
-          <Field.Root invalid={!!errors.username}>
-            <Field.Label>Username</Field.Label>
-            <Input
-              name="username"
-              placeholder="Username"
-              value={userInfos.username}
-              onChange={handleChange}
-            />
-            <Field.ErrorText>
-              <FieldErrorIcon />
-              {errors.username}
-            </Field.ErrorText>
-          </Field.Root>
+    <PageLayout imageSrc={homeImage} imagePosition="left" imageSize={20}>
+      <Flex justify="center" align="center" mt={{ md: '15%' }}>
+        <Box
+          as="form"
+          onSubmit={handleSubmit}
+          borderWidth={{ base: 0, md: 4 }}
+          borderRadius={{ base: 0, md: 4 }}
+          width={{ base: '40vh', md: '50vh' }}
+          height={{ base: '100vh', md: 'auto' }}
+        >
+          <VStack p={{ base: 4, md: 8 }} align="start" width="100%">
+            <Heading
+              size={{ base: 'xl', md: '3xl' }}
+              fontWeight={{ base: 'sm', md: 'md' }}
+              alignSelf="center"
+            >
+              {t('register.title')}
+            </Heading>
+            <Field.Root invalid={!!errors.username} required>
+              <Field.Label>
+                {t('register.username')}
+                <Field.RequiredIndicator />
+              </Field.Label>
+              <Input
+                name="username"
+                placeholder={t('register.usernamePlaceholder')}
+                value={userInfos.username}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Box minH={6}>
+                <Field.ErrorText>
+                  <FieldErrorIcon />
+                  {errors.username}
+                </Field.ErrorText>
+              </Box>
+            </Field.Root>
 
-          <Field.Root invalid={!!errors.email}>
-            <Field.Label>Email</Field.Label>
-            <Input
-              name="email"
-              placeholder="Email"
-              value={userInfos.email}
-              onChange={handleChange}
-            />
-            <Field.ErrorText>
-              <FieldErrorIcon />
-              {errors.email}
-            </Field.ErrorText>
-          </Field.Root>
+            <Field.Root invalid={!!errors.email} required>
+              <Field.Label>
+                {t('register.email')}
+                <Field.RequiredIndicator />
+              </Field.Label>
+              <Input
+                name="email"
+                placeholder={t('register.emailPlaceholder')}
+                value={userInfos.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Box minH={6}>
+                <Field.ErrorText>
+                  <FieldErrorIcon />
+                  {errors.email}
+                </Field.ErrorText>
+              </Box>
+            </Field.Root>
 
-          <Field.Root invalid={!!errors.password}>
-            <Field.Label>Password</Field.Label>
-            <PasswordInput
-              name="password"
-              type="password"
-              placeholder="Password"
-              value={userInfos.password}
-              onChange={handleChange}
-            />
-            <Field.ErrorText>
-              <FieldErrorIcon /> {errors.password}
-            </Field.ErrorText>
-          </Field.Root>
+            <Field.Root invalid={!!errors.password} required>
+              <Field.Label>
+                {t('register.password')}
+                <Field.RequiredIndicator />
+              </Field.Label>
+              <PasswordInput
+                name="password"
+                type="password"
+                placeholder={t('register.passwordPlaceholder')}
+                value={userInfos.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Box minH={6}>
+                <Field.ErrorText>
+                  <FieldErrorIcon />
+                  {errors.password}
+                </Field.ErrorText>
+              </Box>
+            </Field.Root>
 
-          <Field.Root invalid={!!errors.confirmPassword}>
-            <Field.Label>Confirm your Password</Field.Label>
-            <PasswordInput
-              name="confirmPassword"
-              type="password"
-              placeholder="Confirm your Password"
-              value={userInfos.confirmPassword}
-              onChange={handleChange}
-            />
-            <Field.ErrorText>
-              <FieldErrorIcon />
-              {errors.confirmPassword}
-            </Field.ErrorText>
-          </Field.Root>
-          <Button
-            disabled={isFormInvalid}
-            loading={isSubmitting}
-            onClick={() => setIsSubmitting(!isSubmitting)}
-            loadingText="Submitting ..."
-            type="submit"
-          >
-            Submit
-            <RiArrowRightLine />
-          </Button>
-        </VStack>
-      </Box>
-    </Flex>
+            <Field.Root invalid={!!errors.confirmPassword} required>
+              <Field.Label>
+                {t('register.confirmPassword')}
+                <Field.RequiredIndicator />
+              </Field.Label>
+              <PasswordInput
+                name="confirmPassword"
+                type="password"
+                placeholder={t('register.confirmPasswordPlaceholder')}
+                value={userInfos.confirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Box minH={6}>
+                <Field.ErrorText>
+                  <FieldErrorIcon />
+                  {errors.confirmPassword}
+                </Field.ErrorText>
+              </Box>
+            </Field.Root>
+            <VStack align="start" width="100%" gap={6}>
+              <Checkbox.Root
+                checked={termsAccepted}
+                onCheckedChange={(event) => setTermsAccepted(!!event.checked)}
+                required
+              >
+                <Checkbox.HiddenInput />
+                <Checkbox.Control />
+                <Checkbox.Label>
+                  <Trans
+                    i18nKey="register.acceptTerms"
+                    ns="auth"
+                    components={{
+                      termsLink: (
+                        <RouterLink
+                          to="/terms"
+                          style={{ color: ' #00BCD4', textDecoration: 'underline' }}
+                        ></RouterLink>
+                      ),
+                    }}
+                  />
+                </Checkbox.Label>
+              </Checkbox.Root>
+              <Button
+                disabled={!isFormValid}
+                loading={isSubmitting}
+                loadingText={t('register.submitting')}
+                width="100%"
+                type="submit"
+                variant="solid"
+              >
+                {t('register.submit')}
+                <RiArrowRightLine />
+              </Button>
+              <Box textDecoration="underline" alignSelf="center">
+                <RouterLink to="/login">{t('register.alreadyHaveAccount')}</RouterLink>
+              </Box>
+            </VStack>
+          </VStack>
+        </Box>
+        <Toaster />
+      </Flex>
+      <MobileMenu />
+    </PageLayout>
   );
 };
 

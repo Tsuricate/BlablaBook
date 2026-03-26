@@ -62,5 +62,3 @@ const config = defineConfig({
 });
 
 export const system = createSystem(defaultConfig, config);
-export { inputRecipe } from './recipes/input';
-export { buttonRecipe } from './recipes/button';

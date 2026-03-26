@@ -1,36 +1,41 @@
 import React, { type ReactNode } from 'react';
 import { Box, Flex, Image } from '@chakra-ui/react';
+import Header from '../Header';
 
 type PageLayoutProps = {
   imageSrc: string;
   children: ReactNode;
   header?: ReactNode;
   imagePosition?: 'top' | 'left';
-  imageSize?: string;
+  imageSize?: number;
 };
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
   imageSrc,
-  header,
   imagePosition = 'top',
-  imageSize = '20%',
+  imageSize = 20,
   children,
 }) => {
-  const isRow = imagePosition === 'left';
+  const flexDirection = { base: 'column', md: imagePosition === 'left' ? 'row' : 'column' };
+  const imageHeight = `${imageSize}vh`;
+  const imageWidth = `${imageSize}vw`;
 
   return (
-    <Flex direction={{ base: 'column', md: isRow ? 'row' : 'column' }} width="100%" height="100vh">
+    <Flex direction={flexDirection} width="100%" position="relative">
+      <Box position="absolute" top={0} right={0} width="100%" padding={4} zIndex={9999}>
+        <Header />
+      </Box>
+
       <Box
         flexShrink={0}
-        width={isRow ? imageSize : '100%'}
-        height={isRow ? '100%' : imageSize}
+        width={{ base: '100%', md: imagePosition === 'left' ? imageWidth : '100%' }}
+        height={{
+          base: imageHeight,
+          md: imagePosition === 'left' ? '100vh' : imageHeight,
+        }}
         position="relative"
       >
         <Image src={imageSrc} alt="Page image" objectFit="cover" width="100%" height="100%" />
-
-        <Box position="absolute" inset={0}>
-          {header}
-        </Box>
       </Box>
 
       <Box flex="1" padding={{ base: 4, md: 8 }}>

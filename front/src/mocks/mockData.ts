@@ -48,80 +48,80 @@ export const booksMock = [
     id: '1',
     volumeInfo: {
       title: 'The Hobbit',
+      authors: ['J.R.R. Tolkien'],
       averageRating: 4.8,
-      imageLinks: {
-        thumbnail: bookCover,
-      },
+      imageLinks: { thumbnail: bookCover },
+      categories: ['Fantasy', 'Adventure'],
     },
   },
   {
     id: '2',
     volumeInfo: {
       title: 'Dune',
+      authors: ['Frank Herbert'],
       averageRating: 4.6,
-      imageLinks: {
-        thumbnail: bookCover,
-      },
+      imageLinks: { thumbnail: bookCover },
+      categories: ['Science Fiction', 'Adventure'],
     },
   },
   {
     id: '3',
     volumeInfo: {
       title: 'The Name of the Wind',
+      authors: ['Patrick Rothfuss'],
       averageRating: 4.7,
-      imageLinks: {
-        thumbnail: bookCover,
-      },
+      imageLinks: { thumbnail: bookCover },
+      categories: ['Fantasy', 'Epic'],
     },
   },
   {
     id: '4',
     volumeInfo: {
       title: 'Gone Girl',
+      authors: ['Gillian Flynn'],
       averageRating: 4.1,
-      imageLinks: {
-        thumbnail: bookCover,
-      },
+      imageLinks: { thumbnail: bookCover },
+      categories: ['Thriller', 'Mystery'],
     },
   },
   {
     id: '5',
     volumeInfo: {
       title: '1984',
+      authors: ['George Orwell'],
       averageRating: 4.4,
-      imageLinks: {
-        thumbnail: bookCover,
-      },
+      imageLinks: { thumbnail: bookCover },
+      categories: ['Dystopia', 'Political Fiction'],
     },
   },
   {
     id: '6',
     volumeInfo: {
       title: 'The Shining',
+      authors: ['Stephen King'],
       averageRating: 4.3,
-      imageLinks: {
-        thumbnail: bookCover,
-      },
+      imageLinks: { thumbnail: bookCover },
+      categories: ['Horror', 'Thriller'],
     },
   },
   {
     id: '7',
     volumeInfo: {
       title: 'Pride and Prejudice',
+      authors: ['Jane Austen'],
       averageRating: 4.5,
-      imageLinks: {
-        thumbnail: bookCover,
-      },
+      imageLinks: { thumbnail: bookCover },
+      categories: ['Romance', 'Classic'],
     },
   },
   {
     id: '8',
     volumeInfo: {
       title: 'The Martian',
+      authors: ['Andy Weir'],
       averageRating: 4.6,
-      imageLinks: {
-        thumbnail: bookCover,
-      },
+      imageLinks: { thumbnail: bookCover },
+      categories: ['Science Fiction', 'Survival'],
     },
   },
 ];

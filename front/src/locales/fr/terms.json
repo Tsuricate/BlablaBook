@@ -1,0 +1,105 @@
+{
+  "buttons": {
+    "back": "Retour"
+  },
+  "cgu": {
+    "title": "Conditions Générales d’Utilisation",
+    "subtitle": "Application Blablabook"
+  },
+  "articles": {
+    "article1": {
+      "title": "Article 1 – Objet",
+      "content": "Les présentes Conditions Générales d’Utilisation (CGU) ont pour objet de définir les modalités et conditions d’utilisation du site Blablabook. L’utilisation du site implique l’acceptation pleine et entière des présentes CGU."
+    },
+    "article2": {
+      "title": "Article 2 – Éditeur du site",
+      "content1": "Le site Blablabook est édité dans le cadre d’un projet pédagogique réalisé par un groupe de travail.",
+      "content2": "Aucune structure juridique formelle (société ou association déclarée) n’est constituée à ce jour.",
+      "contact": "Pour toute question, vous pouvez contacter :",
+      "email": "📧 Email : [à compléter]"
+    },
+    "article3": {
+      "title": "Article 3 – Hébergement",
+      "content": "Le site est hébergé à titre provisoire par une plateforme d’hébergement de type cloud (ex : Vercel ou équivalent). Les informations précises d’hébergement pourront être mises à jour ultérieurement."
+    },
+    "article4": {
+      "title": "Article 4 – Description du service",
+      "content1": "Blablabook est une application permettant :",
+      "list": [
+        "de consulter une base de données de livres ;",
+        "de rechercher des ouvrages ;",
+        "de constituer une bibliothèque personnelle ;",
+        "de marquer des livres comme lus ou à lire."
+      ],
+      "content2": "Les données relatives aux livres (titres, descriptions, images) proviennent exclusivement de l’API fournie par Google Books API. Le site ne modifie pas ces contenus."
+    },
+    "article5": {
+      "title": "Article 5 – Accès au service",
+      "content1": "Le site est accessible gratuitement à tout utilisateur disposant d’un accès à Internet.",
+      "list": [
+        "L’accès à certaines fonctionnalités (bibliothèque personnelle) nécessite la création d’un compte.",
+        "La consultation des livres peut être accessible sans compte."
+      ],
+      "content2": "L’éditeur ne garantit pas un accès continu et sans interruption."
+    },
+    "article6": {
+      "title": "Article 6 – Conditions d’inscription",
+      "content1": "Pour créer un compte, l’utilisateur doit :",
+      "list": ["fournir une adresse email valide ;", "ne pas usurper l’identité d’un tiers."],
+      "content2": "L’utilisateur est responsable de la confidentialité de ses identifiants."
+    },
+    "article7": {
+      "title": "Article 7 – Données personnelles",
+      "content1": "Le site collecte uniquement les données suivantes :",
+      "list1": ["adresse email."],
+      "content2": "Aucune donnée sensible n’est collectée.",
+      "content3": "Des cookies strictement techniques peuvent être utilisés pour :",
+      "list2": ["assurer le fonctionnement du service ;", "maintenir la session utilisateur."],
+      "content4": "Aucun tracking ni analyse comportementale n’est réalisé."
+    },
+    "article8": {
+      "title": "Article 8 – Propriété intellectuelle",
+      "content1": "Les contenus affichés (livres, images, descriptions) proviennent de Google Books API et restent la propriété de leurs ayants droit. L’application Blablabook ne revendique aucun droit sur ces contenus.",
+      "content2": "L’utilisateur dispose uniquement d’un droit d’usage personnel et non commercial."
+    },
+    "article9": {
+      "title": "Article 9 – Utilisation du service",
+      "content1": "L’utilisateur s’engage à ne pas :",
+      "list": [
+        "utiliser le site de manière frauduleuse ;",
+        "tenter d’accéder de manière non autorisée aux systèmes ;",
+        "détourner le service de son usage normal ;",
+        "porter atteinte à la sécurité ou à l’intégrité du site."
+      ],
+      "content2": "Tout manquement peut entraîner la suspension ou la suppression du compte."
+    },
+    "article10": {
+      "title": "Article 10 – Gestion des comptes",
+      "content1": "L’utilisateur peut demander la suppression de son compte à tout moment.",
+      "content2": "L’éditeur se réserve le droit de suspendre ou supprimer un compte, et de refuser l’accès au service sans préavis en cas de non-respect des présentes CGU."
+    },
+    "article11": {
+      "title": "Article 11 – Responsabilité",
+      "content1": "Le site est fourni « tel quel », sans garantie.",
+      "list": [
+        "L’éditeur ne saurait être tenu responsable des interruptions de service (notamment liées à l’API Google Books API) ;",
+        "des bugs ou dysfonctionnements ;",
+        "de la perte éventuelle de données ;",
+        "de l’indisponibilité temporaire ou permanente du service."
+      ],
+      "content2": "L’utilisateur reconnaît utiliser le service sous sa seule responsabilité."
+    },
+    "article12": {
+      "title": "Article 12 – Évolution du service",
+      "content": "Le site peut être modifié, suspendu ou interrompu à tout moment, sans préavis. Aucune garantie de continuité n’est assurée, notamment dans le cadre d’un projet pédagogique."
+    },
+    "article13": {
+      "title": "Article 13 – Modification des CGU",
+      "content": "Les présentes CGU peuvent être modifiées à tout moment. Les utilisateurs seront informés en cas de modification substantielle."
+    },
+    "article14": {
+      "title": "Article 14 – Droit applicable",
+      "content": "Les présentes CGU sont régies par le droit français. En cas de litige, et à défaut de résolution amiable, les juridictions françaises seront compétentes."
+    }
+  }
+}

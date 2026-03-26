@@ -48,9 +48,13 @@ const mapVolumeToBook = (volume: Record<string, unknown>): GoogleBook => {
 };
 
 // Recherche des livres via l'API Google Books à partir d'une requête texte
-export const searchBooks = async (query: string, maxResults = 20): Promise<GoogleBook[]> => {
+export const searchBooks = async (
+  query: string,
+  maxResults = 20,
+  startIndex = 0
+): Promise<GoogleBook[]> => {
   const response = await axios.get(GOOGLE_BOOKS_API_BASE_URL, {
-    params: { q: query, maxResults, key: process.env.GOOGLE_BOOKS_API_KEY },
+    params: { q: query, maxResults, startIndex, key: process.env.GOOGLE_BOOKS_API_KEY },
   });
 
   // items peut être undefined si aucun résultat, on retourne un tableau vide dans ce cas

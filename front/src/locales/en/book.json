@@ -1,0 +1,23 @@
+{
+  "breadcrumb": {
+    "home": "Home",
+    "category": "Category"
+  },
+  "details": {
+    "description": "Description",
+    "technicalDetails": "Technical details",
+    "language": "Language",
+    "pageCount": "Page count",
+    "publisher": "Publisher",
+    "coverAlt": "Book cover"
+  },
+  "themes": {
+    "dragon": "Dragon lovers 🐉",
+    "gardening": "Gardening vibes 🌱",
+    "ecology": "For the planet 🌍",
+    "cooking": "Get cooking 🍳",
+    "travel": "Travel mood ✈️",
+    "tech": "New technologies 💻",
+    "animals": "Furry companions 🐾"
+  }
+}

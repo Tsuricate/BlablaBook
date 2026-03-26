@@ -1,0 +1,23 @@
+{
+  "breadcrumb": {
+    "home": "Accueil",
+    "category": "Catégorie"
+  },
+  "details": {
+    "description": "Description",
+    "technicalDetails": "Détails techniques",
+    "language": "Langue",
+    "pageCount": "Nombre de pages",
+    "publisher": "Éditeur",
+    "coverAlt": "Couverture du livre"
+  },
+  "themes": {
+    "dragon": "Passion dragons 🐉",
+    "gardening": "Envie de jardinage 🌱",
+    "ecology": "Pour la planète 🌍",
+    "cooking": "À vos fourneaux 🍳",
+    "travel": "Envie de voyager ✈️",
+    "tech": "Les nouvelles technologies 💻",
+    "animals": "Compagnons poilus 🐾"
+  }
+}
