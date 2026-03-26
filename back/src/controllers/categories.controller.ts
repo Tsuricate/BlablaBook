@@ -15,7 +15,7 @@ export const getCategories = async (_req: Request, res: Response): Promise<void>
       select: { name: true },
     });
 
-    res.json(categories.map((c) => c.name));
+    res.json(categories.map((category) => category.name));
   } catch {
     res.status(500).json({ error: 'Erreur serveur' });
   }
