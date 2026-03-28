@@ -28,3 +28,7 @@ export const searchQuerySchema = z.object({
 });
 
 export type SearchQuerySchema = z.infer<typeof searchQuerySchema>;
+
+export const statusSchema = z.object({
+  status: z.literal(['read', 'wishlist']),
+});

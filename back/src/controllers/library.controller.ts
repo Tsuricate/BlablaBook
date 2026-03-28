@@ -2,13 +2,21 @@ import { z } from 'zod';
 import type { Response } from 'express';
 
 import type { AuthRequest } from '../middlewares/auth.middleware';
-import { getUserBooksByQuery, getUserLibraryBooks, formatBooks } from '../services/library.service';
+import {
+  getUserBooksByQuery,
+  getUserLibraryBooks,
+  formatBooks,
+  findBookInLibrary,
+  updateUserBook,
+} from '../services/library.service';
 import {
   getUserLibraryQuerySchema,
   searchQuerySchema,
+  statusSchema,
   type LibraryQuerySchema,
   type SearchQuerySchema,
 } from '../schema/library.schema';
+import { checkIdFromParams } from '../lib/validators';
 
 /**
  * Retrieves all books belonging to a connected user with pagination support.
@@ -114,6 +122,45 @@ export const searchInLibrary = async (req: AuthRequest, res: Response): Promise<
     });
   } catch (error) {
     console.error('Error fetching user library:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error.',
+    });
+  }
+};
+
+/**
+ * Updates the status of a book in the user's library.
+ *
+ * @param req - The authenticated request object containing the user's ID, book ID, and new status.
+ * @param res - The response object used to send the updated book data or an error message.
+ * @returns A Promise that resolves when the response is sent.
+ */
+export const updateBookStatus = async (req: AuthRequest, res: Response): Promise<void> => {
+  const userId = req.userId as number;
+  const bookId = await checkIdFromParams(req.params.id as string);
+  const userBookId = { userId, bookId };
+
+  const userBook = await findBookInLibrary(userBookId);
+  if (!userBook) {
+    res.status(404).json({ error: "Book doesn't exist in library" });
+  }
+
+  const parsed = statusSchema.safeParse(req.body);
+  console.log(parsed.data);
+  if (parsed.error) {
+    res.status(400).json({ success: false, error: z.flattenError(parsed.error).fieldErrors });
+  }
+
+  try {
+    const data = await updateUserBook(userBookId, parsed.data?.status);
+
+    res.status(200).json({
+      success: true,
+      data,
+    });
+  } catch (error) {
+    console.error(error);
     res.status(500).json({
       success: false,
       message: 'Internal server error.',

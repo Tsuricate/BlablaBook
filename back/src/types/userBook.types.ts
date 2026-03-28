@@ -27,3 +27,8 @@ export type BookWithRelations = {
 export type UserBookWithDetails = UserBook & {
   book: BookWithRelations;
 };
+
+export type UserBookPk = {
+  userId: number;
+  bookId: number;
+};

@@ -1,5 +1,5 @@
-import { prisma, type ReadingStatus } from '../utils/prisma.utils';
-import { UserBookWithDetails } from '../types/userBook.types';
+import { prisma, type ReadingStatus, type UserBook } from '../utils/prisma.utils';
+import type { UserBookWithDetails, UserBookPk } from '../types/userBook.types';
 
 /**
  * Formats an array of user books by extracting and transforming book details.
@@ -581,4 +581,29 @@ export const getUserLibraryBooks = async (
   }
 
   return { userBooks, total };
+};
+
+export const findBookInLibrary = async (userIdBookId: UserBookPk) =>
+  await prisma.userBook.findUnique({ where: { userId_bookId: userIdBookId } });
+
+/**
+ * Updates the reading status of a book in the user's library.
+ * This function updates the status of a specific book identified by userId and bookId.
+ *
+ * @param userIdBookId - An object containing userId and bookId to identify the book in the library.
+ * @param status - The new reading status to set ('read', 'wishlist').
+ * @returns Promise resolving to the updated user book record.
+ */
+export const updateUserBook = async (
+  userIdBookId: UserBookPk,
+  status: ReadingStatus | undefined
+): Promise<UserBook> => {
+  return await prisma.userBook.update({
+    where: {
+      userId_bookId: userIdBookId,
+    },
+    data: {
+      status,
+    },
+  });
 };
