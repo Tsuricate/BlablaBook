@@ -16,7 +16,6 @@ import {
 import axios from 'axios';
 
 import { PageLayout } from './layouts/PageLayout';
-import Header from './Header';
 import MobileMenu from './MobileMenu';
 import SearchBar from './SearchBar';
 
@@ -48,7 +47,7 @@ const CategoryPage = () => {
     if (search) params.search = search;
 
     axios
-      .get<CategoryBooksResponse>(`/api/categories/${category}`, { params })
+      .get<CategoryBooksResponse>(`${import.meta.env.VITE_API_URL}/api/categories/${category}`, { params })
       .then((res) => {
         setBooks(res.data.books);
         setCategoryName(res.data.category);
@@ -76,7 +75,7 @@ const CategoryPage = () => {
   };
 
   return (
-    <PageLayout imageSrc={homeImage} imageSize={25}>
+    <PageLayout imageSrc={homeImage} imagePosition="top" imageSize={25}>
       <Stack gap={6} pb={{ base: 20, md: 2 }}>
         {categoryName && (
           <Text fontSize="2xl" fontWeight="bold">
@@ -154,7 +153,7 @@ const CategoryPage = () => {
               <HStack justify="center" gap={2}>
                 <Button
                   size="sm"
-                  variant="category"
+                  variant={"category" as never}
                   disabled={page === 1}
                   onClick={() => setPage((p) => p - 1)}
                 >
@@ -165,7 +164,7 @@ const CategoryPage = () => {
                 </Text>
                 <Button
                   size="sm"
-                  variant="category"
+                  variant={"category" as never}
                   disabled={page === totalPages}
                   onClick={() => setPage((p) => p + 1)}
                 >

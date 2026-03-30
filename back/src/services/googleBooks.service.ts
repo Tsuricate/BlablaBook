@@ -62,6 +62,26 @@ export const searchBooks = async (
   return items.map((item) => mapVolumeToBook(item));
 };
 
+// Récupère les livres d'une catégorie via l'API Google Books avec subject:
+export const getBooksBySubject = async (
+  subject: string,
+  page: number,
+  maxResults: number
+): Promise<{ books: GoogleBook[]; totalItems: number }> => {
+  const response = await axios.get(GOOGLE_BOOKS_API_BASE_URL, {
+    params: {
+      q: `subject:${subject}`,
+      startIndex: (page - 1) * maxResults,
+      maxResults,
+      key: process.env.GOOGLE_BOOKS_API_KEY,
+    },
+  });
+
+  const totalItems = (response.data.totalItems as number) ?? 0;
+  const items = (response.data.items ?? []) as Record<string, unknown>[];
+  return { books: items.map(mapVolumeToBook), totalItems };
+};
+
 // Récupère un livre précis via son identifiant Google Books
 export const getBookById = async (googleId: string): Promise<GoogleBook> => {
   const response = await axios.get(`${GOOGLE_BOOKS_API_BASE_URL}/${googleId}`, {

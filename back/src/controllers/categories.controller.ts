@@ -1,10 +1,11 @@
 import type { Request, Response } from 'express';
 import { z } from 'zod';
 import { PrismaClient } from '../../generated/prisma/client.js';
+import { getBooksBySubject } from '../services/googleBooks.service.js';
 
 const prisma = new PrismaClient();
 
-const CATEGORIES_LIMIT = 50;
+const CATEGORIES_LIMIT = 15;
 
 // GET /api/categories
 export const getCategories = async (_req: Request, res: Response): Promise<void> => {
@@ -42,43 +43,26 @@ export const getBooksByCategory = async (
   const categoryName = req.params.category;
 
   try {
-    const category = await prisma.category.findFirst({
-      where: { name: { contains: categoryName, mode: 'insensitive' } },
-    });
+    const { books, totalItems } = await getBooksBySubject(categoryName.trim(), page, limit);
 
-    if (!category) {
+    if (totalItems === 0) {
       res.status(404).json({ error: 'Catégorie introuvable' });
       return;
     }
 
-    const [books, total] = await Promise.all([
-      prisma.book.findMany({
-        where: { categories: { some: { categoryId: category.id } } },
-        skip: (page - 1) * limit,
-        take: limit,
-        select: {
-          id: true,
-          title: true,
-          imageLinks: true,
-          averageRating: true,
-          publishedDate: true,
-          authors: { select: { author: { select: { name: true } } } },
-        },
-      }),
-      prisma.book.count({
-        where: { categories: { some: { categoryId: category.id } } },
-      }),
-    ]);
-
     res.json({
-      category: category.name,
-      total,
+      category: categoryName.trim(),
+      total: totalItems,
       page,
       limit,
-      totalPages: Math.ceil(total / limit),
+      totalPages: Math.ceil(totalItems / limit),
       books: books.map((b) => ({
-        ...b,
-        authors: b.authors.map((a) => a.author.name),
+        id: b.id,
+        title: b.title,
+        imageLinks: (b.imageLinks as Record<string, string>)?.thumbnail ?? null,
+        averageRating: b.averageRating ?? null,
+        publishedDate: b.publishedDate ? String(b.publishedDate) : null,
+        authors: b.authors ?? [],
       })),
     });
   } catch {
