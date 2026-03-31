@@ -137,7 +137,7 @@ const Login = () => {
   };
 
   return (
-    <PageLayout imageSrc={homeImage} imagePosition="left" imageSize={20}>
+    <PageLayout imageSrc={homeImage} imagePosition="left">
       <Flex justify="center" align="center" mt={{ md: '15%' }}>
         <Box
           as="form"
@@ -145,7 +145,7 @@ const Login = () => {
           borderWidth={{ base: 0, md: 4 }}
           borderRadius={{ base: 0, md: 4 }}
           width={{ base: '40vh', md: '50vh' }}
-          height={{ base: '100vh', md: 'auto' }}
+          height={{ base: '100%', md: 'auto' }}
         >
           <VStack p={{ base: 4, md: 8 }} align="start" width="100%">
             <Heading
@@ -203,7 +203,7 @@ const Login = () => {
               >
                 <Checkbox.HiddenInput name="rememberMe" />
                 <Checkbox.Control />
-                <Checkbox.Label>Remember me</Checkbox.Label>
+                <Checkbox.Label>{t('login.rememberMe')}</Checkbox.Label>
               </Checkbox.Root>
 
               <Button

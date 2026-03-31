@@ -15,25 +15,26 @@ enum ReadingStatus {
 }
 
 model User {
-  id        Int        @id @default(autoincrement())
-  username  String     @unique
-  email     String     @unique
-  password  String
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
-  books     UserBook[]
+  id            Int            @id @default(autoincrement())
+  username      String         @unique
+  email         String         @unique
+  password      String
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  books         UserBook[]
   refreshTokens RefreshToken[]
 
   @@map("user")
 }
 
 model RefreshToken {
-  id        Int   @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   token     String   @unique
-  issuedAt  DateTime @default(now())
-  expiresAt DateTime
+  issuedAt  DateTime @default(now()) @map("issued_at")
+  expiresAt DateTime @map("expires_at")
+  userId    Int      @map("user_id")
   user      User     @relation(fields: [userId], references: [id])
-  userId    Int
+
   @@map("refresh_token")
 }
 
@@ -45,6 +46,7 @@ model Book {
   imageLinks    Json?          @map("image_links")
   language      String?
   description   String?
+  googleBookId  String         @map("google_book_id") @unique
   publishedDate DateTime?      @map("published_date") @db.Date // corresponding date format in ProstgreSQL: YYYY-MM-DD
   isbn10        String?        @unique @map("isbn_10")
   isbn13        String?        @unique @map("isbn_13")

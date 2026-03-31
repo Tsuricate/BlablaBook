@@ -18,7 +18,7 @@ const MobileMenu = () => {
       bottom={0}
       left={0}
       right={0}
-      bg={{ _light: 'light.50', _dark: 'brown.800' }}
+      bg={{ _light: 'brown.400', _dark: 'brown.800' }}
       borderTop={{
         _light: '1px solid var(--chakra-colors-light-200)',
         _dark: '1px solid var(--chakra-colors-brown-600)',

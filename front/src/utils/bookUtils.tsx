@@ -1,19 +1,24 @@
-import noBookCover from '../assets/noBookCover.jpg';
+import type { Book } from '../types/book';
 
-export const getBookImageByScreen = (imageLinks?: Book['imageLinks']): string => {
-  if (!imageLinks) return noBookCover;
+export const getBookImageByScreen = (imageLinks?: Book['imageLinks']): string | null => {
+  if (!imageLinks) return null;
 
   const width = window.innerWidth;
+  let url: string | undefined;
 
   if (width >= 1200) {
-    return imageLinks.extraLarge || imageLinks.large || imageLinks.medium || noBookCover;
-  }
-  if (width >= 768) {
-    return imageLinks.large || imageLinks.medium || imageLinks.thumbnail || noBookCover;
-  }
-  if (width >= 480) {
-    return imageLinks.medium || imageLinks.small || imageLinks.thumbnail || noBookCover;
+    url = imageLinks.extraLarge || imageLinks.large || imageLinks.medium;
+  } else if (width >= 768) {
+    url = imageLinks.large || imageLinks.medium || imageLinks.thumbnail;
+  } else if (width >= 480) {
+    url = imageLinks.medium || imageLinks.small || imageLinks.thumbnail;
+  } else {
+    url = imageLinks.small || imageLinks.thumbnail || imageLinks.smallThumbnail;
   }
 
-  return imageLinks.small || imageLinks.thumbnail || imageLinks.smallThumbnail || noBookCover;
+  if (url?.startsWith('http://')) {
+    url = url.replace('http://', 'https://');
+  }
+
+  return url ?? null;
 };

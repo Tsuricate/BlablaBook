@@ -7,6 +7,7 @@ const searchQuerySchema = z.object({
   q: z.string().min(1, 'Le paramètre q est requis'),
   maxResults: z.coerce.number().min(1).max(40).optional(),
   startIndex: z.coerce.number().min(0).optional().default(0),
+  lang: z.string().optional().default('en'),
 });
 
 export const search = async (req: Request, res: Response): Promise<void> => {

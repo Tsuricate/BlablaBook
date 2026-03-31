@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 import { Link as RouterLink, useLocation } from 'react-router';
 import { useColorModeValue } from './ui/color-mode';
 
@@ -12,9 +12,9 @@ interface NavLinkProps {
 
 const NavLink: React.FC<NavLinkProps> = ({ to, icon, vertical = false, children }) => {
   const location = useLocation();
-  const isActive = location.pathname === to;
-  const activeColor = useColorModeValue('brown.600', 'brown.200');
-  const defaultColor = useColorModeValue('brown.400', 'brown.600');
+  const isActive = location.pathname === to || location.pathname.startsWith(`${to}/`);
+  const activeColor = useColorModeValue('light.50', 'brown.100');
+  const defaultColor = useColorModeValue('light.200', 'brown.400');
   const color = isActive ? activeColor : defaultColor;
 
   return (
@@ -27,13 +27,14 @@ const NavLink: React.FC<NavLinkProps> = ({ to, icon, vertical = false, children 
         gap={{ base: 1, md: 2 }}
         color={color}
         fontWeight={isActive ? 'bold' : 'medium'}
+        textDecoration={isActive ? 'underline' : 'none'}
         transition="all 0.2s"
         _hover={{
           transform: 'translateY(-1px)',
         }}
       >
         {icon && React.createElement(icon, { size: 20 })}
-        {children}
+        <Heading>{children}</Heading>
       </Box>
     </RouterLink>
   );

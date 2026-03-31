@@ -3,6 +3,15 @@ import { formatDate } from '../utils/dateFormatter.utils';
 
 const GOOGLE_BOOKS_API_BASE_URL = process.env.GOOGLE_BOOKS_API_BASE_URL as string;
 
+interface ImageLinks {
+  smallThumbnail?: string;
+  thumbnail?: string;
+  small?: string;
+  medium?: string;
+  large?: string;
+  extraLarge?: string;
+}
+
 export interface GoogleBook {
   id: string;
   title: string;
@@ -16,7 +25,7 @@ export interface GoogleBook {
   categories?: string[];
   averageRating?: number;
   ratingCount?: number;
-  imageLinks?: Record<string, string> | {};
+  imageLinks?: ImageLinks;
   language?: string;
 }
 
@@ -51,10 +60,19 @@ const mapVolumeToBook = (volume: Record<string, unknown>): GoogleBook => {
 export const searchBooks = async (
   query: string,
   maxResults = 20,
-  startIndex = 0
+  startIndex = 0,
+  language = 'fr'
 ): Promise<GoogleBook[]> => {
   const response = await axios.get(GOOGLE_BOOKS_API_BASE_URL, {
-    params: { q: query, maxResults, startIndex, key: process.env.GOOGLE_BOOKS_API_KEY },
+    params: {
+      q: query,
+      maxResults,
+      startIndex,
+      key: process.env.GOOGLE_BOOKS_API_KEY,
+      printType: 'books',
+      orderBy: 'relevance',
+      langRestrict: language,
+    },
   });
 
   // items peut être undefined si aucun résultat, on retourne un tableau vide dans ce cas

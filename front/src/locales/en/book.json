@@ -12,12 +12,28 @@
     "coverAlt": "Book cover"
   },
   "themes": {
-    "dragon": "Dragon lovers 🐉",
-    "gardening": "Gardening vibes 🌱",
-    "ecology": "For the planet 🌍",
-    "cooking": "Get cooking 🍳",
-    "travel": "Travel mood ✈️",
-    "tech": "New technologies 💻",
-    "animals": "Furry companions 🐾"
+    "adapted": "Screen adaptations",
+    "dystopian": "Dystopian worlds",
+    "recommended": "Everyone’s talking about it",
+
+    "harryPotter": "⚡ Harry Potter",
+    "starWars": "Star Wars",
+    "lotr": "The Lord of the Rings",
+    "stephenKing": "Stephen King",
+    "sherlockHolmes": "Sherlock Holmes",
+    "hungerGames": "Hunger Games",
+    "gameOfThrones": "Game of Thrones"
+  },
+  "library": {
+    "allBooks": "All books",
+    "collections": {
+      "label": "Collections",
+      "read": "Read",
+      "wishlist": "Wishlist"
+    },
+    "empty": "You don’t have any books in your library yet"
+  },
+  "categories": {
+    "subtitle": "Step into worlds that inspire you"
   }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import axios from 'axios';
+import type { Book } from '../types/book';
 
 /**
  * Custom hook to manage book search state and API calls.
@@ -51,7 +52,7 @@ export const useBookSearch = () => {
       if (setUrl) setSearchParams({ q: query });
 
       const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/books/search`, {
-        params: { q: query, startIndex: index },
+        params: { q: query, startIndex: index, lang: 'fr' },
       });
 
       if (initial) {
@@ -85,7 +86,11 @@ export const useBookSearch = () => {
     fetchBooks(searchValue, 0, true);
   };
 
-  const handleLoadMoreBooks = () => fetchBooks(searchValue, startIndex + 20);
+  const handleLoadMoreBooks = () => {
+    const nextIndex = startIndex + 20;
+    setStartIndex(nextIndex);
+    fetchBooks(searchValue, nextIndex);
+  };
 
   return {
     searchValue,

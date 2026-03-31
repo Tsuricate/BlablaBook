@@ -1,8 +1,8 @@
-import { Navigate } from 'react-router';
+import { Navigate, Outlet } from 'react-router';
 import { useCurrentUser } from '../context/UserContext';
 
 interface ProtectedRouteProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
@@ -14,7 +14,11 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     return <Navigate to="/login" replace />;
   }
 
-  return children;
+  if (children) {
+    return <>{children}</>;
+  }
+
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

@@ -57,3 +57,56 @@ Command to clean the docker cache if needed:
 
    # Valid command with 'y' and press enter
 ```
+
+## Database Seeding with dataset
+
+To start with a clean database, follow these steps:
+
+- Delete the folder containing the Prisma client: `generated/`
+- Delete the Prisma migrations by removing the `migrations/` folder located in the `prisma/` directory
+- Clear the Docker cache with the command `docker system prune -f`.
+- Delete all Docker volumes (be careful, this deletes all unused volumes, check that the volumes you want to delete do not contain important data). To do this, run the command:
+
+  ```bash
+  docker volume prune -f
+  ```
+
+- Delete the Blablabook database volume: `docker volume rm blabla-book_blablabook-db-volume`
+- Start the docker-compose: `docker compose --env-file .env.docker.dev up`
+- In the backend service container, reset the migrations with the command: `pnpm prisma:migrate:reset`
+- In the backend service container, run the development migration with the command: `pnpm prisma:migrate:dev`.  
+  Prisma will ask you to give a name to the migration. Enter a name (for example `init-db`) and press enter.
+- To seed the database with a dataset for the library, in the backend service container run the command: `pnpm prisma:seed`
+- To clear the database and reset the library dataset to its initial state, run the following command in the backend service container: `pnpm prisma:reset`
+
+Users created in the database for development after seeding:
+
+```json
+[
+  {
+    "username": "Yoko",
+    "email": "yoko@mail.com",
+    "password": "Password12345!",
+  },
+  {
+    "username": "John",
+    "email": "john@mail.com",
+    "password": "Password12345!",
+  },
+  {
+    "username": "Paul",
+    "email": "paul@mail.com",
+    "password": "Password12345!",
+  },
+  {
+    "username": "Ringo",
+    "email": "ringo@mail.com",
+    "password": "Password12345!",
+  },
+  {
+    "username": "Georges",
+    "email": "georges@mail.com",
+    "password": "Password12345!",
+  },
+];
+```

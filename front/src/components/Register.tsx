@@ -181,15 +181,15 @@ const Register = () => {
   };
 
   return (
-    <PageLayout imageSrc={homeImage} imagePosition="left" imageSize={20}>
-      <Flex justify="center" align="center" mt={{ md: '15%' }}>
+    <PageLayout imageSrc={homeImage} imagePosition="left">
+      <Flex justify="center" align="center" height="100%" pt={{ md: 4 }} pb={{ base: 16, md: 2 }}>
         <Box
           as="form"
           onSubmit={handleSubmit}
           borderWidth={{ base: 0, md: 4 }}
           borderRadius={{ base: 0, md: 4 }}
           width={{ base: '40vh', md: '50vh' }}
-          height={{ base: '100vh', md: 'auto' }}
+          height={{ base: '100%', md: 'auto' }}
         >
           <VStack p={{ base: 4, md: 8 }} align="start" width="100%">
             <Heading

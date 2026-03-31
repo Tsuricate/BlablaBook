@@ -1,5 +1,5 @@
 import React, { type ReactNode } from 'react';
-import { Box, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, Image, useBreakpointValue } from '@chakra-ui/react';
 import Header from '../Header';
 
 type PageLayoutProps = {
@@ -7,15 +7,14 @@ type PageLayoutProps = {
   children: ReactNode;
   header?: ReactNode;
   imagePosition?: 'top' | 'left';
-  imageSize?: number;
 };
 
 export const PageLayout: React.FC<PageLayoutProps> = ({
   imageSrc,
   imagePosition = 'top',
-  imageSize = 20,
   children,
 }) => {
+  const imageSize = useBreakpointValue({ base: 25, md: 32 });
   const flexDirection = { base: 'column', md: imagePosition === 'left' ? 'row' : 'column' };
   const imageHeight = `${imageSize}vh`;
   const imageWidth = `${imageSize}vw`;
@@ -36,9 +35,27 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
         position="relative"
       >
         <Image src={imageSrc} alt="Page image" objectFit="cover" width="100%" height="100%" />
+        <Box position="absolute" inset={0} bg="blackAlpha.500" pointerEvents="none" />
       </Box>
 
-      <Box flex="1" padding={{ base: 4, md: 8 }}>
+      <Box
+        flex="1"
+        mt={{ base: '-24px', md: imagePosition === 'top' ? '-32px' : 0 }}
+        ml={{ md: imagePosition === 'left' ? '-32px' : 0 }}
+        borderColor={{
+          _light: 'brown.400',
+          _dark: 'rgb(239 239 239 / 14%)',
+        }}
+        borderTopWidth={{ base: '1px', md: imagePosition === 'top' ? '1px' : 0 }}
+        borderTopLeftRadius="3xl"
+        borderTopRightRadius={{ base: '3xl', md: imagePosition === 'top' ? '3xl' : 0 }}
+        borderLeftWidth={{ base: 0, md: imagePosition === 'left' ? '1px' : '0' }}
+        borderBottomLeftRadius={{ base: 0, md: imagePosition === 'left' ? '3xl' : 0 }}
+        paddingX={{ base: 5, md: 10 }}
+        paddingY={{ base: 5, md: 8 }}
+        bg={{ _light: 'light.100', _dark: 'brown.900' }}
+        zIndex={1}
+      >
         {children}
       </Box>
     </Flex>

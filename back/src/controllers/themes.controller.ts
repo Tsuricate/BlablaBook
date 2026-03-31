@@ -1,7 +1,11 @@
 import type { Request, Response } from 'express';
 import { z } from 'zod';
-import { type GoogleBook, searchBooks } from '../services/googleBooks.service';
-import { topFeaturedThemes, getRandomThemes } from '../utils/topFeaturedThemes.utils';
+import { searchBooks } from '../services/googleBooks.service';
+import {
+  buildGoogleBooksQuery,
+  getRandomThemes,
+  getThemeData,
+} from '../utils/topFeaturedThemes.utils';
 
 /**
  * Controller for handling top featured themes requests.
@@ -14,9 +18,8 @@ import { topFeaturedThemes, getRandomThemes } from '../utils/topFeaturedThemes.u
 export const getTopFeaturedThemes = async (req: Request, res: Response): Promise<void> => {
   const paginationSchema = z.object({
     limit: z.coerce.number().min(1).max(40).default(20), // SearchBooks() coerces a limit of 40
+    lang: z.enum(['en', 'fr']).default('en'),
   });
-
-  const randomThemes = getRandomThemes(3);
 
   try {
     // Validate and parse pagination parameters from query string
@@ -27,23 +30,48 @@ export const getTopFeaturedThemes = async (req: Request, res: Response): Promise
       return;
     }
 
-    const { limit } = parsed.data;
+    const { limit, lang } = parsed.data;
+
+    const randomThemes = getRandomThemes(3);
 
     const topThemesBooks = await Promise.all(
-      randomThemes.map(async (theme) => {
-        const books: GoogleBook[] = await searchBooks(topFeaturedThemes[theme], limit);
-        return [theme, books];
+      randomThemes.map(async (themeKey) => {
+        const theme = getThemeData(themeKey, lang);
+
+        // CASE 1: controlled themes -> single search
+        if (theme.type === 'search') {
+          const books = await searchBooks(theme.query, limit);
+          return [themeKey, books];
+        }
+
+        // CASE 2: collections → one search per query, then merge + deduplicate results
+        const booksArraysRes = await Promise.all(
+          theme.data.queries.map((book) =>
+            searchBooks(buildGoogleBooksQuery(book.title, book.author), 1)
+          )
+        );
+
+        const booksArrays = booksArraysRes.flat().slice(0, limit);
+
+        const books = booksArrays
+          .flat()
+          .filter(
+            (book, index, allBooks) =>
+              allBooks.findIndex((otherBook) => otherBook.id === book.id) === index
+          )
+          .slice(0, limit);
+
+        return [themeKey, books];
       })
     );
 
     const data = Object.fromEntries(topThemesBooks);
 
     res.json(data);
-    // TODO: Implement error handler
   } catch (error) {
-    res.status(502).json({ error: 'Something wrong with Google Books API' });
-    if (error instanceof Error) {
-      console.log(error.name, error.message);
-    }
+    console.error(error);
+    res.status(502).json({
+      error: 'Something wrong with Google Books API',
+    });
   }
 };

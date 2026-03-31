@@ -1,4 +1,4 @@
-interface Book {
+export interface Book {
   id: string;
   title: string;
   description?: string;
@@ -16,8 +16,13 @@ interface Book {
   language?: string;
   pageCount?: number;
   publisher?: string;
-  industryIdentifiers?: {
-    type: 'ISBN_10' | 'ISBN_13';
-    identifier: string;
-  }[];
+  isbn13?: string;
+  isbn10?: string;
+}
+
+export interface UserBook {
+  userId: number;
+  bookId: number;
+  status: string;
+  book: Book;
 }

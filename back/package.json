@@ -5,9 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx --watch --env-file=.env ./src/index.ts",
-    "docker:dev": "pnpm prisma:generate && pnpm dev",
+    "docker:dev": "pnpm prisma:generate && pnpm prisma:push && pnpm dev",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:migrate:reset": "prisma migrate reset --force",
+    "prisma:seed": "tsx ./src/models/library-seeding.ts",
+    "prisma:reset": "pnpm prisma:migrate:reset && pnpm prisma:seed",
     "start": "tsx index.ts",
     "seed": "tsx prisma/seed.ts",
     "test": "vitest"

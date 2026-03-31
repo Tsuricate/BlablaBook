@@ -22,6 +22,7 @@ const SearchBar = ({ searchValue, onChange, onSubmit, onClear }: SearchBarProps)
 
   return (
     <InputGroup
+      mb={{ base: 2, md: 3 }}
       endElement={
         <HStack gap={1} paddingInline={0}>
           {searchValue && (
@@ -51,6 +52,7 @@ const SearchBar = ({ searchValue, onChange, onSubmit, onClear }: SearchBarProps)
         value={searchValue}
         onChange={onChange}
         onKeyDown={handleKeyDown}
+        variant="searchBar"
       />
     </InputGroup>
   );
