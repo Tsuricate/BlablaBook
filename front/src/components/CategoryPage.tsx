@@ -12,6 +12,7 @@ import BookCardList from './BookCardList';
 import homeImage from '../assets/homePageImage.jpg';
 import type { Book } from '../types/book';
 import { CATEGORIES } from '../utils/categories';
+import i18n from '../i18n';
 
 interface CategoryBooksResponse {
   category: string;
