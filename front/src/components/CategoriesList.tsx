@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import type { Category } from '@/types/category';
 import { Button, Heading, Box, HStack, Wrap, WrapItem, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 export interface CategoriesListProps {
-  categories: Category[];
+  categories: string[];
   onSelectCategory: (categoryName: string) => void;
 }
 
@@ -41,20 +40,20 @@ const CategoriesList = ({ categories, onSelectCategory }: CategoriesListProps) =
       >
         {visibleCategories.map((category) => {
           const button = (
-            <Button size="sm" variant="category" onClick={() => onSelectCategory(category.name)}>
-              {category.name}
+            <Button size="sm" variant={"category" as never} onClick={() => onSelectCategory(category)}>
+              {category}
             </Button>
           );
 
           return showAll ? (
-            <WrapItem key={category.id}>{button}</WrapItem>
+            <WrapItem key={category}>{button}</WrapItem>
           ) : (
-            <Box key={category.id}>{button}</Box>
+            <Box key={category}>{button}</Box>
           );
         })}
 
         {categories.length > 10 && (
-          <Button size="sm" variant="category" onClick={() => setShowAll((prev) => !prev)}>
+          <Button size="sm" variant={"category" as never} onClick={() => setShowAll((prev) => !prev)}>
             {showAll ? t('categories.showLess') : t('categories.showAll')}
           </Button>
         )}

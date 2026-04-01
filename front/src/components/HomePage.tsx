@@ -15,7 +15,6 @@ import homeImage from '../assets/homePageImage.jpg';
 import { slugify } from '../utils/stringUtils';
 import { getThemeLabel } from '../utils/themeUtils';
 import { useBookSearch } from '../hooks/useBookSearch';
-import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
   const navigate = useNavigate();

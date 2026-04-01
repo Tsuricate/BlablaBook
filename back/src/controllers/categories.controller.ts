@@ -59,10 +59,11 @@ export const getBooksByCategory = async (
       books: books.map((b) => ({
         id: b.id,
         title: b.title,
-        imageLinks: (b.imageLinks as Record<string, string>)?.thumbnail ?? null,
+        imageLinks: b.imageLinks ?? {},
         averageRating: b.averageRating ?? null,
         publishedDate: b.publishedDate ? String(b.publishedDate) : null,
         authors: b.authors ?? [],
+        categories: b.categories ?? [],
       })),
     });
   } catch {

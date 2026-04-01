@@ -1,33 +1,31 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import {
-  Stack,
-  Text,
-  Wrap,
-  WrapItem,
-  Spinner,
-  Center,
-  Button,
-  HStack,
-  Image,
-  Box,
-  VStack,
-} from '@chakra-ui/react';
+import { Stack, Text, Spinner, Center, Button, HStack } from '@chakra-ui/react';
 import axios from 'axios';
 
 import { PageLayout } from './layouts/PageLayout';
 import MobileMenu from './MobileMenu';
 import SearchBar from './SearchBar';
+import BookCardList from './BookCardList';
 
 import homeImage from '../assets/homePageImage.jpg';
-import type { CategoryBook, CategoryBooksResponse } from '@/types/categoryBook';
+import type { Book } from '../types/book';
+
+interface CategoryBooksResponse {
+  category: string;
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+  books: Book[];
+}
 
 const LIMIT = 20;
 
 const CategoryPage = () => {
   const { category } = useParams<{ category: string }>();
 
-  const [books, setBooks] = useState<CategoryBook[]>([]);
+  const [books, setBooks] = useState<Book[]>([]);
   const [categoryName, setCategoryName] = useState('');
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -75,7 +73,7 @@ const CategoryPage = () => {
   };
 
   return (
-    <PageLayout imageSrc={homeImage} imagePosition="top" imageSize={25}>
+    <PageLayout imageSrc={homeImage} imagePosition="top">
       <Stack gap={6} pb={{ base: 20, md: 2 }}>
         {categoryName && (
           <Text fontSize="2xl" fontWeight="bold">
@@ -114,40 +112,7 @@ const CategoryPage = () => {
               {total} livre{total > 1 ? 's' : ''}
             </Text>
 
-            <Wrap gap={4}>
-              {books.map((book) => (
-                <WrapItem key={book.id}>
-                  <VStack gap={2} align="start" w={{ base: '140px', md: '160px' }}>
-                    <Box
-                      w="100%"
-                      h={{ base: '210px', md: '230px' }}
-                      borderRadius="md"
-                      overflow="hidden"
-                      bg="brown.200"
-                    >
-                      <Image
-                        src={book.imageLinks ?? undefined}
-                        alt={book.title}
-                        objectFit="cover"
-                        w="100%"
-                        h="100%"
-                      />
-                    </Box>
-                    <Text fontSize="sm" fontWeight="semibold" lineClamp={2}>
-                      {book.title}
-                    </Text>
-                    {book.authors.length > 0 && (
-                      <Text fontSize="xs" color="brown.600" lineClamp={1}>
-                        {book.authors.join(', ')}
-                      </Text>
-                    )}
-                    {book.averageRating !== null && (
-                      <Text fontSize="xs">⭐ {book.averageRating}</Text>
-                    )}
-                  </VStack>
-                </WrapItem>
-              ))}
-            </Wrap>
+            <BookCardList books={books} wrap />
 
             {totalPages > 1 && (
               <HStack justify="center" gap={2}>
