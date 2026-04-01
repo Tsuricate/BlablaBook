@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
@@ -12,23 +11,13 @@ import CategoriesList from './CategoriesList';
 import BookCardList from './BookCardList';
 
 import homeImage from '../assets/homePageImage.jpg';
-import { slugify } from '../utils/stringUtils';
 import { getThemeLabel } from '../utils/themeUtils';
 import { useBookSearch } from '../hooks/useBookSearch';
 
 const HomePage = () => {
-  const navigate = useNavigate();
   const { t } = useTranslation('common');
 
   const isInitialRender = useRef(true);
-  const [categories, setCategories] = useState<string[]>([]);
-
-  useEffect(() => {
-    axios
-      .get<string[]>(`${import.meta.env.VITE_API_URL}/api/categories`)
-      .then((res) => setCategories(res.data))
-      .catch(() => setCategories([]));
-  }, []);
 
   const {
     searchValue,
@@ -71,11 +60,6 @@ const HomePage = () => {
     }
   }, [activeQuery]);
 
-  const handleSelectCategory = (categoryName: string) => {
-    const slug = slugify(categoryName);
-    navigate(`/categories/${slug}`);
-  };
-
   return (
     <PageLayout imageSrc={homeImage} imagePosition="top">
       <Stack gap={5} pb={{ base: 20, md: 2 }}>
@@ -86,7 +70,7 @@ const HomePage = () => {
           onClear={handleClear}
         />
 
-        <CategoriesList categories={categories} onSelectCategory={handleSelectCategory} />
+        <CategoriesList />
 
         {activeQuery ? (
           <>

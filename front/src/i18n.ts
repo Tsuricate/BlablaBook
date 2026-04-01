@@ -46,6 +46,7 @@ i18n
       order: ['navigator', 'htmlTag'],
       caches: [],
     },
+    pluralSeparator: '_',
   });
 
 export default i18n;

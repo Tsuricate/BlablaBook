@@ -33,6 +33,27 @@
     "empty": "Vous n'avez pas encore de livres dans votre blibliothèque"
   },
   "categories": {
-    "subtitle": "Plongez dans des univers qui vous inspirent"
+    "subtitle": "Plongez dans des univers qui vous inspirent",
+    "categoryNotFound": "Catégorie introuvable",
+    "noBooksInCategory": "Aucun livre trouvé pour cette catégorie",
+    "booksCount_one": "{{count}} livre",
+    "booksCount_other": "{{count}} livres",
+    "list": {
+      "romance": "Romance",
+      "thriller": "Thriller",
+      "sciFi": "Science-fiction",
+      "fantasy": "Fantasy",
+      "mystery": "Mystère",
+      "crime": "Roman policier",
+      "horror": "Horreur",
+      "historical": "Fiction historique",
+      "youngAdult": "Young Adult",
+      "dystopian": "Dystopie",
+      "adventure": "Aventure",
+      "drama": "Drame",
+      "biography": "Biographie",
+      "selfHelp": "Développement personnel",
+      "classics": "Classiques"
+    }
   }
 }

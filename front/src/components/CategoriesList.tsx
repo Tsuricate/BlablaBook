@@ -1,19 +1,25 @@
 import { useState } from 'react';
-import { Button, Heading, Box, HStack, Wrap, WrapItem, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
+import { Button, Heading, Box, HStack, Wrap, WrapItem, Text } from '@chakra-ui/react';
+import { useNavigate } from 'react-router';
+import { CATEGORIES } from '../utils/categories';
 
-export interface CategoriesListProps {
-  categories: string[];
-  onSelectCategory: (categoryName: string) => void;
-}
-
-const CategoriesList = ({ categories, onSelectCategory }: CategoriesListProps) => {
+const CategoriesList = () => {
   const [showAll, setShowAll] = useState(false);
   const { t } = useTranslation(['common', 'book']);
+  const navigate = useNavigate();
 
+  const categories = CATEGORIES.map((category) => ({
+    ...category,
+    label: t(`book:categories.list.${category.key}`),
+  }));
   const visibleCategories = showAll ? categories : categories.slice(0, 10);
 
   const Container = showAll ? Wrap : HStack;
+
+  const handleSelectCategory = (category: (typeof CATEGORIES)[number]) => {
+    navigate(`/categories/${category.slug}`);
+  };
 
   return (
     <Box as="section" mb={{ base: 4, md: 6 }}>
@@ -40,20 +46,20 @@ const CategoriesList = ({ categories, onSelectCategory }: CategoriesListProps) =
       >
         {visibleCategories.map((category) => {
           const button = (
-            <Button size="sm" variant={"category" as never} onClick={() => onSelectCategory(category)}>
-              {category}
+            <Button size="sm" variant="category" onClick={() => handleSelectCategory(category)}>
+              {category.label}
             </Button>
           );
 
           return showAll ? (
-            <WrapItem key={category}>{button}</WrapItem>
+            <WrapItem key={category.key}>{button}</WrapItem>
           ) : (
-            <Box key={category}>{button}</Box>
+            <Box key={category.key}>{button}</Box>
           );
         })}
 
         {categories.length > 10 && (
-          <Button size="sm" variant={"category" as never} onClick={() => setShowAll((prev) => !prev)}>
+          <Button size="sm" variant="category" onClick={() => setShowAll((prev) => !prev)}>
             {showAll ? t('categories.showLess') : t('categories.showAll')}
           </Button>
         )}

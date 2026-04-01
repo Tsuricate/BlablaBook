@@ -20,5 +20,8 @@
     "addBook": "Add book"
   },
   "noDescription": "No description available.",
-  "bookCoverAlt": "Book cover"
+  "bookCoverAlt": "Book cover",
+  "previous": "Previous",
+  "next": "Next",
+  "page": "Page"
 }

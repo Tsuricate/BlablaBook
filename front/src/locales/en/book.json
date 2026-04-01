@@ -34,6 +34,27 @@
     "empty": "You don’t have any books in your library yet"
   },
   "categories": {
-    "subtitle": "Step into worlds that inspire you"
+    "subtitle": "Step into worlds that inspire you",
+    "categoryNotFound": "Category not found",
+    "noBooksInCategory": "No books found in this category",
+    "booksCount_one": "{{count}} book",
+    "booksCount_other": "{{count}} books",
+    "list": {
+      "romance": "Romance",
+      "thriller": "Thriller",
+      "sciFi": "Science Fiction",
+      "fantasy": "Fantasy",
+      "mystery": "Mystery",
+      "crime": "Crime Fiction",
+      "horror": "Horror",
+      "historical": "Historical Fiction",
+      "youngAdult": "Young Adult",
+      "dystopian": "Dystopian",
+      "adventure": "Adventure",
+      "drama": "Drama",
+      "biography": "Biography",
+      "selfHelp": "Personal Development",
+      "classics": "Classics"
+    }
   }
 }

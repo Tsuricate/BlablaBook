@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { Stack, Text, Spinner, Center, Button, HStack } from '@chakra-ui/react';
 import axios from 'axios';
 
@@ -10,6 +11,7 @@ import BookCardList from './BookCardList';
 
 import homeImage from '../assets/homePageImage.jpg';
 import type { Book } from '../types/book';
+import { CATEGORIES } from '../utils/categories';
 
 interface CategoryBooksResponse {
   category: string;
@@ -26,7 +28,6 @@ const CategoryPage = () => {
   const { category } = useParams<{ category: string }>();
 
   const [books, setBooks] = useState<Book[]>([]);
-  const [categoryName, setCategoryName] = useState('');
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [page, setPage] = useState(1);
@@ -34,21 +35,40 @@ const CategoryPage = () => {
   const [searchInput, setSearchInput] = useState('');
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const language = i18n.language.split('-')[0];
+
+  const { t } = useTranslation(['common', 'book']);
+
+  const categoryConfig = CATEGORIES.find((categoryItem) => categoryItem.slug === category);
+  const categoryLabel = categoryConfig
+    ? t(`book:categories.list.${categoryConfig.key}`)
+    : t('book:categories.categoryNotFound');
 
   useEffect(() => {
-    if (!category) return;
+    if (!categoryConfig) {
+      setNotFound(true);
+      setLoading(false);
+      setBooks([]);
+      return;
+    }
 
     setLoading(true);
     setNotFound(false);
 
-    const params: Record<string, string | number> = { limit: LIMIT, page };
-    if (search) params.search = search;
+    const params = {
+      limit: LIMIT,
+      page,
+      lang: language,
+      ...(search && { search }),
+    };
 
     axios
-      .get<CategoryBooksResponse>(`${import.meta.env.VITE_API_URL}/api/categories/${category}`, { params })
+      .get<CategoryBooksResponse>(
+        `${import.meta.env.VITE_API_URL}/api/categories/${categoryConfig.key}`,
+        { params }
+      )
       .then((res) => {
         setBooks(res.data.books);
-        setCategoryName(res.data.category);
         setTotal(res.data.total);
         setTotalPages(res.data.totalPages);
       })
@@ -58,8 +78,10 @@ const CategoryPage = () => {
         }
         setBooks([]);
       })
-      .finally(() => setLoading(false));
-  }, [category, page, search]);
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [categoryConfig, page, search]);
 
   const handleSearchSubmit = () => {
     setPage(1);
@@ -73,11 +95,11 @@ const CategoryPage = () => {
   };
 
   return (
-    <PageLayout imageSrc={homeImage} imagePosition="top">
+    <PageLayout imageSrc={homeImage}>
       <Stack gap={6} pb={{ base: 20, md: 2 }}>
-        {categoryName && (
+        {categoryConfig && (
           <Text fontSize="2xl" fontWeight="bold">
-            {categoryName}
+            {categoryLabel}
           </Text>
         )}
 
@@ -96,21 +118,19 @@ const CategoryPage = () => {
 
         {!loading && notFound && (
           <Center py={10}>
-            <Text color="brown.600">Catégorie introuvable.</Text>
+            <Text color="brown.600">{t('book:categories.categoryNotFound')}</Text>
           </Center>
         )}
 
         {!loading && !notFound && books.length === 0 && (
           <Center py={10}>
-            <Text color="brown.600">Aucun livre trouvé pour cette catégorie.</Text>
+            <Text color="brown.600">{t('book:categories.noBooksInCategory')}</Text>
           </Center>
         )}
 
         {!loading && books.length > 0 && (
           <>
-            <Text fontSize="sm" color="brown.600">
-              {total} livre{total > 1 ? 's' : ''}
-            </Text>
+            <Text>{t('categories.booksCount', { count: Number(total) || 0 })}</Text>
 
             <BookCardList books={books} wrap />
 
@@ -118,22 +138,22 @@ const CategoryPage = () => {
               <HStack justify="center" gap={2}>
                 <Button
                   size="sm"
-                  variant={"category" as never}
+                  variant="category"
                   disabled={page === 1}
                   onClick={() => setPage((p) => p - 1)}
                 >
-                  Précédent
+                  {t('common:previous')}
                 </Button>
                 <Text fontSize="sm">
-                  Page {page} / {totalPages}
+                  {t('common:page')} {page} / {totalPages}
                 </Text>
                 <Button
                   size="sm"
-                  variant={"category" as never}
+                  variant="category"
                   disabled={page === totalPages}
                   onClick={() => setPage((p) => p + 1)}
                 >
-                  Suivant
+                  {t('common:next')}
                 </Button>
               </HStack>
             )}
