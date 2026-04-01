@@ -266,8 +266,8 @@ const Terms = () => {
             <Text>{t('articles.article14.content')}</Text>
           </Box>
 
-          <Button asChild width="100%" variant="solid">
-            <RouterLink to="/register">{t('buttons.back')}</RouterLink>
+          <Button width="100%" variant="solid" onClick={() => window.close()}>
+            {t('buttons.back')}
           </Button>
         </Stack>
       </Box>

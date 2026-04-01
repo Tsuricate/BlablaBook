@@ -96,10 +96,9 @@ const Register = () => {
         console.error('User creation failed', response.data.message);
       }
     } catch (error) {
-      console.log('error', error);
+      console.error('error', error);
       // Traitement des erreurs
       if (axios.isAxiosError<RegisterErrorResponse>(error)) {
-        // const registerError = error.response?.data.message || error.message;
         const backEndMessage = error.response?.data.message || 'GENERIC';
         const messageKey =
           {
@@ -109,7 +108,6 @@ const Register = () => {
 
         const translatedMessage = t(messageKey);
 
-        // if (registerError) {
         toaster.create({
           title: t('register.errorTitle'),
           description: translatedMessage,
@@ -296,6 +294,7 @@ const Register = () => {
                       termsLink: (
                         <RouterLink
                           to="/terms"
+                          target="_blank"
                           style={{ color: ' #00BCD4', textDecoration: 'underline' }}
                         ></RouterLink>
                       ),

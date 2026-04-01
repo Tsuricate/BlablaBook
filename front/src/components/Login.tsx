@@ -23,7 +23,6 @@ import homeImage from '../assets/homePageImage.jpg';
 import { Link as RouterLink, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import MobileMenu from './MobileMenu';
-import { axiosAuth } from '../utils/axiosAuth';
 import { useCurrentUser } from '../context/UserContext';
 
 //Typage Typescript
@@ -60,10 +59,14 @@ const Login = () => {
     event.preventDefault();
     setIsSubmitting(true);
     try {
-      const response = await axiosAuth.post('/api/auth/login', {
-        ...userInfos,
-        rememberMe,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        {
+          ...userInfos,
+          rememberMe,
+        },
+        { withCredentials: true }
+      );
 
       setUser(response.data.data);
 
@@ -78,18 +81,21 @@ const Login = () => {
         console.error('Logging in failed', response.data.message);
       }
     } catch (error) {
+      console.error('Error :', error);
       // Gestion des erreurs (y compris les erreurs lancées par le backend)
       if (axios.isAxiosError(error)) {
         // Erreur HTTP (ex: 401, 500)
-        const errorMessage = error.response?.data?.message || error.message;
-        toaster.create({
-          title: t('login.defaultError'),
-          description:
-            errorMessage === 'INVALID_CREDENTIALS' ? t('login.error') : t('login.serverErrorTitle'),
-          type: 'error',
-          duration: 6000,
-          closable: true,
-        });
+        const errorMessage = error.response?.data?.message;
+
+        if (errorMessage === 'INVALID_CREDENTIALS') {
+          toaster.create({
+            title: t('login.defaultError'),
+            description: t('login.error'),
+            type: 'error',
+            duration: 6000,
+            closable: true,
+          });
+        }
       } else {
         // Erreur inattendue
         toaster.create({

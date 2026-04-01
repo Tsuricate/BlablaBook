@@ -9,6 +9,7 @@ type UserContextType = {
   isLoggedIn: boolean;
   loading: boolean;
   setUser: (user: User | null) => void;
+  logout: () => void;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -52,6 +53,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     setLoading(false);
   };
 
+  const logout = () => {
+    setUser(null);
+  };
+
   useEffect(() => {
     fetchUserWithRefresh();
   }, []);
@@ -65,6 +70,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         isLoggedIn,
         loading,
         setUser,
+        logout,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 // src/services/auth.service.ts
 import { AuthSchema } from '../schema/auth.schema';
-import { prisma } from '../utils/prisma.utils';
+import { prisma, User } from '../utils/prisma.utils';
 import * as argon2 from 'argon2';
 import { convertInMs } from '../utils/time.utils';
 import crypto from 'crypto';
@@ -40,9 +40,7 @@ export const checkUserExists = async (email: string, username: string) => {
 };
 
 // Crée un nouvel utilisateur
-export const registerUser = async (data: AuthFormValues) => {
-  const { username, email, password } = data;
-
+export const registerUser = async (username: string, email: string, password: string) => {
   // Vérification de l'existence de l'utilisateur
   await checkUserExists(email, username);
 
@@ -62,6 +60,10 @@ export const registerUser = async (data: AuthFormValues) => {
 // Recherche un utilisateur par email
 export const findUserByEmail = async (email: string) => {
   return prisma.user.findUnique({ where: { email } });
+};
+
+export const findUserByUsername = async (username: string) => {
+  return prisma.user.findUnique({ where: { username } });
 };
 
 // Vérifie le mot de passe de l'utilisateur
@@ -187,4 +189,67 @@ export const refreshUserToken = async (refreshToken: string) => {
       email: tokenRecord.user.email,
     },
   };
+};
+
+export const deleteUser = async (userId: number) => {
+  deleteRefreshToken(userId);
+  const deletedUser = prisma.user.delete({ where: { id: userId } });
+  const deletedUserHasBook = prisma.userBook.deleteMany({ where: { userId: userId } });
+  const transactions = await prisma.$transaction([deletedUserHasBook, deletedUser]);
+
+  return transactions;
+};
+
+export const deleteRefreshToken = async (userId: number) => {
+  return prisma.refreshToken.deleteMany({ where: { userId: userId } });
+};
+
+export const updateUser = async (
+  userId: number,
+  username: string | undefined,
+  email: string | undefined,
+  password: string | undefined
+) => {
+  const updates: Partial<User> = {};
+
+  if (username) {
+    updates.username = username;
+  }
+
+  if (email) {
+    updates.email = email;
+  }
+
+  if (password) {
+    const hashedPassword = await argon2.hash(password);
+    updates.password = hashedPassword;
+  }
+
+  if (Object.keys(updates).length === 0) {
+    throw { status: 400, message: 'No fields to update' };
+  }
+
+  const errors: { message: string }[] = [];
+
+  if (updates.email) {
+    const existingEmail = await findUserByEmail(updates.email);
+    if (existingEmail) {
+      // throw { status: 409, message: 'GENERIC' };
+      errors.push({ message: 'GENERIC' });
+    }
+  }
+
+  if (updates.username) {
+    const existingUser = await findUserByUsername(updates.username);
+    if (existingUser) {
+      // throw { status: 409, message: 'USERNAME_TAKEN' };
+      errors.push({ message: 'USERNAME_TAKEN' });
+    }
+  }
+
+  if (errors.length > 0) {
+    throw { status: 409, errors };
+  }
+
+  return prisma.user.update({ where: { id: userId }, data: updates });
 };

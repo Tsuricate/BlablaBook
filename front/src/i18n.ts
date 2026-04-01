@@ -7,12 +7,14 @@ import commonFr from './locales/fr/common.json';
 import authFr from './locales/fr/auth.json';
 import bookFr from './locales/fr/book.json';
 import termsFr from './locales/fr/terms.json';
+import accountFr from './locales/fr/account.json';
 
 // EN
 import commonEn from './locales/en/common.json';
 import authEn from './locales/en/auth.json';
 import bookEn from './locales/en/book.json';
 import termsEn from './locales/en/terms.json';
+import accountEn from './locales/en/account.json';
 
 i18n
   .use(LanguageDetector)
@@ -24,12 +26,14 @@ i18n
         auth: authFr,
         book: bookFr,
         terms: termsFr,
+        account: accountFr,
       },
       en: {
         common: commonEn,
         auth: authEn,
         book: bookEn,
         terms: termsEn,
+        account: accountEn,
       },
     },
     fallbackLng: 'fr',

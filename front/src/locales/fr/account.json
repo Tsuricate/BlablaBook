@@ -1,0 +1,38 @@
+{
+  "errors": {
+    "title": "Erreur",
+    "userNotFound": "Impossible de modifier le compte : identifiant utilisateur manquant.",
+    "noModification": "Aucune modification effectuée.",
+    "noModificationDescription": "Aucune modification effectuée.",
+    "errorUsername": "Le nom d'utilisateur est deja pris",
+    "errorEmail": "Cet email est deja utilisé",
+    "defaultError": "Une erreur est survenue lors de la modification de votre compte.",
+    "errorsDeleteAccount": "Une erreur est survenue lors de la suppression de votre compte.",
+    "passwordMismatch": "Les mots de passe ne correspondent pas"
+  },
+  "success": {
+    "modificationSuccess": "Modification effectuée.",
+    "modificationSuccessDescription": "Votre compte a bien été modifié.",
+    "deleteSuccess": "Suppression effectuée.",
+    "deleteSuccessDescription": "Votre compte a bien été supprimé."
+  },
+  "deconnect": {
+    "title": "Deconnexion",
+    "description": "Vous etes bien deconnecté."
+  },
+  "generale": {
+    "logout": "Se deconnecter",
+    "deleteAccount": " Supprimer le compte",
+    "modification": " Modifier vos informations",
+    "deleteConfirme": " Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.",
+    "deleteConfirmeYes": "Oui",
+    "deleteConfirmeNo": "Non",
+    "modificationConfirme": "Valider les modifications",
+    "modificationCancel": "Annuler toutes modifications",
+    "account": "Mon compte",
+    "confirmPassword": "Confirmer le mot de passe",
+    "password": "Mot de passe",
+    "email": "Email",
+    "username": "Nom d'utilisateur"
+  }
+}
