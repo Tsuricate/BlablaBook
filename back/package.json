@@ -15,7 +15,7 @@
     "prisma:reset": "pnpm prisma:migrate:reset && pnpm prisma:seed",
     "start": "tsx index.ts",
     "seed": "tsx prisma/seed.ts",
-    "test": "vitest"
+    "test": "vitest run"
   },
   "keywords": [],
   "author": "",

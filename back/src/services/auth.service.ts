@@ -1,14 +1,10 @@
-// src/services/auth.service.ts
-import { AuthSchema } from '../schema/auth.schema';
 import { prisma, User } from '../utils/prisma.utils';
 import * as argon2 from 'argon2';
 import { convertInMs } from '../utils/time.utils';
 import crypto from 'crypto';
 import jwt, { SignOptions } from 'jsonwebtoken';
-import { z } from 'zod';
 
 // Typage TypeScript
-type AuthFormValues = z.infer<typeof AuthSchema>;
 export type UserError = {
   status?: number;
   field: 'username' | 'generic';
