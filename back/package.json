@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "tsx --watch --env-file=.env ./src/index.ts",
     "docker:dev": "pnpm prisma:generate && pnpm prisma:push && pnpm dev",

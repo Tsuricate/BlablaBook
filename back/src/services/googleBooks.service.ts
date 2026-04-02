@@ -94,7 +94,7 @@ export const getBooksBySubject = async (
     params: {
       q: `subject:"${FormattedSubject}"`,
       startIndex: (page - 1) * maxResults,
-      maxResults,
+      maxResults: maxResults,
       langRestrict: lang,
       key: process.env.GOOGLE_BOOKS_API_KEY,
     },
@@ -102,7 +102,15 @@ export const getBooksBySubject = async (
 
   const totalItems = (response.data.totalItems as number) ?? 0;
   const items = (response.data.items ?? []) as Record<string, unknown>[];
-  return { books: items.map(mapVolumeToBook), totalItems };
+
+  //sort by published date
+  const sortedItems = items.map(mapVolumeToBook).sort((a, b) => {
+    const dateA = Number(a.publishedDate);
+    const dateB = Number(b.publishedDate);
+    return dateB - dateA;
+  });
+
+  return { books: sortedItems, totalItems };
 };
 
 // Récupère un livre précis via son identifiant Google Books
