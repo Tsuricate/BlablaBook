@@ -1,72 +1,50 @@
 import type { Request, Response } from 'express';
-import { z } from 'zod';
-import { PrismaClient } from '../../generated/prisma/client.js';
-import { getBooksBySubject } from '../services/googleBooks.service.js';
+import z from 'zod';
+import { getBooksBySubject } from '../services/googleBooks.service';
+import { paginationSchema, subjectSchema } from '../schema/categories.schema';
 
-const prisma = new PrismaClient();
-
-const CATEGORIES_LIMIT = 15;
-
-// GET /api/categories
-export const getCategories = async (_req: Request, res: Response): Promise<void> => {
-  try {
-    const categories = await prisma.category.findMany({
-      take: CATEGORIES_LIMIT,
-      orderBy: { books: { _count: 'desc' } },
-      select: { name: true },
-    });
-
-    res.json(categories.map((category) => category.name));
-  } catch {
-    res.status(500).json({ error: 'Erreur serveur' });
-  }
-};
-
-const paginationSchema = z.object({
-  limit: z.coerce.number().min(1).max(100).default(20),
-  page: z.coerce.number().min(1).default(1),
-});
-
-// GET /api/categories/:category
+// GET /api/categories/:category?page=1&limit=20
 export const getBooksByCategory = async (
   req: Request<{ category: string }>,
   res: Response
 ): Promise<void> => {
-  const parsed = paginationSchema.safeParse(req.query);
+  const parsedPagination = paginationSchema.safeParse(req.query);
+  const parsedSubject = subjectSchema.safeParse(req.params.category);
 
-  if (!parsed.success) {
-    res.status(400).json({ error: parsed.error.flatten().fieldErrors });
+  if (!parsedPagination.success) {
+    res
+      .status(400)
+      .json({ succes: false, error: z.flattenError(parsedPagination.error).fieldErrors });
     return;
   }
 
-  const { limit, page } = parsed.data;
-  const categoryName = req.params.category;
+  if (!parsedSubject.success) {
+    res.status(400).json({ succes: false, error: z.flattenError(parsedSubject.error).fieldErrors });
+    return;
+  }
+
+  const { limit, page, lang } = parsedPagination.data;
+
+  const categoryName = parsedSubject.data.trim();
 
   try {
-    const { books, totalItems } = await getBooksBySubject(categoryName.trim(), page, limit);
+    const { books, totalItems } = await getBooksBySubject(categoryName, page, limit, lang);
 
     if (totalItems === 0) {
-      res.status(404).json({ error: 'Catégorie introuvable' });
+      res.status(404).json({ success: false, error: 'CATEGORY_NOT_FOUND' });
       return;
     }
 
-    res.json({
-      category: categoryName.trim(),
-      total: totalItems,
-      page,
-      limit,
-      totalPages: Math.ceil(totalItems / limit),
-      books: books.map((b) => ({
-        id: b.id,
-        title: b.title,
-        imageLinks: b.imageLinks ?? {},
-        averageRating: b.averageRating ?? null,
-        publishedDate: b.publishedDate ? String(b.publishedDate) : null,
-        authors: b.authors ?? [],
-        categories: b.categories ?? [],
-      })),
+    const offset = (page - 1) * limit;
+    const hasNext = offset + limit < totalItems;
+    const hasPrevious = offset > 0;
+
+    res.status(200).json({
+      pagination: { total: totalItems, page, hasNext, hasPrevious },
+      category: categoryName,
+      books: books,
     });
   } catch {
-    res.status(500).json({ error: 'Erreur serveur' });
+    res.status(500).json({ success: false, error: 'INTERNAL_SERVER_ERROR' });
   }
 };

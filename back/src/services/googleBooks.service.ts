@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { formatDate } from '../utils/dateFormatter.utils';
+import { formatCategory } from '../utils/categories.utils';
 
 const GOOGLE_BOOKS_API_BASE_URL = process.env.GOOGLE_BOOKS_API_BASE_URL as string;
 
@@ -84,13 +85,17 @@ export const searchBooks = async (
 export const getBooksBySubject = async (
   subject: string,
   page: number,
-  maxResults: number
+  maxResults: number,
+  lang: string
 ): Promise<{ books: GoogleBook[]; totalItems: number }> => {
+  const FormattedSubject = formatCategory(subject);
+
   const response = await axios.get(GOOGLE_BOOKS_API_BASE_URL, {
     params: {
-      q: `subject:${subject}`,
+      q: `subject:"${FormattedSubject}"`,
       startIndex: (page - 1) * maxResults,
       maxResults,
+      langRestrict: lang,
       key: process.env.GOOGLE_BOOKS_API_KEY,
     },
   });
