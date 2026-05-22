@@ -33,9 +33,13 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   // --- Try to refresh the token via /auth/refresh ---
   const tryRefreshSession = async (): Promise<User | null> => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/refresh`, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/auth/refresh`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
       return response.data?.data ?? null;
     } catch {
       return null;
