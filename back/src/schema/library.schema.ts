@@ -27,7 +27,7 @@ export const bookSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
   averageRating: z.number().optional().nullable(),
-  ratingCount: z.number().default(0),
+  ratingCount: z.number().optional().default(0),
   imageLinks: z
     .object({
       smallThumbnail: z.string().optional().nullable(),

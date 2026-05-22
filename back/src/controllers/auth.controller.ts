@@ -26,34 +26,27 @@ interface CustomError {
   code?: string;
 }
 
-//function d'enregistrement d'un utilisateur dans la base de données avec les informations fournie par le frontend
 export const registerUserController = async (req: Request, res: Response) => {
   try {
-    // validation du body de la requête
     const { username, email, password, confirmPassword }: AuthFormValues = AuthSchema.parse(
       req.body
     );
 
-    // validation des mots de passe
     if (password !== confirmPassword) {
       return res.status(400).json({ success: false, message: 'Passwords do not match' });
     }
 
-    // appelle auth service pour enregistrer l'utilisateur
     const user = await registerUser(username, email, password);
 
-    // creation d'une constante newuser contenant les information de user sans le password
     const newUser = {
       id: user.id,
       username: user.username,
       email: user.email,
     };
-    // renvoi de la response
     return res
       .status(201)
       .json({ success: true, message: 'User created successfully', data: newUser });
   } catch (error) {
-    // gestion des erreurs
     if (error) {
       const userError = error as UserError;
       if (userError.field === 'username') {

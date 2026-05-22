@@ -30,7 +30,6 @@ export interface GoogleBook {
   language?: string;
 }
 
-// Transforme un volume brut retourné par l'API Google Books en objet GoogleBook
 const mapVolumeToBook = (volume: Record<string, unknown>): GoogleBook => {
   const info = (volume.volumeInfo ?? {}) as Record<string, unknown>;
   const identifiers =
@@ -58,7 +57,6 @@ const mapVolumeToBook = (volume: Record<string, unknown>): GoogleBook => {
   };
 };
 
-// Recherche des livres via l'API Google Books à partir d'une requête texte
 export const searchBooks = async (
   query: string,
   maxResults = 20,
@@ -109,7 +107,6 @@ export const searchBooks = async (
   return [];
 };
 
-// Récupère un livre précis via son identifiant Google Books
 export const getBookById = async (googleId: string): Promise<GoogleBook> => {
   const response = await axios.get(`${GOOGLE_BOOKS_API_BASE_URL}/${googleId}`, {
     params: { key: process.env.GOOGLE_BOOKS_API_KEY },

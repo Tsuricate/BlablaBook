@@ -83,9 +83,6 @@ export const ensureBookExists = async (googleBookId: string) => {
   return book;
 };
 
-/**
- * Returns the status of a book in a user’s library
- */
 export const getUserBookStatus = async (userId: number, bookId: number) => {
   const userBook = await prisma.userBook.findUnique({
     where: {

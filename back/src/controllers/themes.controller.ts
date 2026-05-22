@@ -7,22 +7,13 @@ import {
   getThemeData,
 } from '../utils/topFeaturedThemes.utils';
 
-/**
- * Controller for handling top featured themes requests.
- *
- * Retrieves the top featured books for predefined themes.
- *
- * Expected query parameters:
- *   - limit: Maximum number of results per page (default: 20, max: 40)
- */
 export const getTopFeaturedThemes = async (req: Request, res: Response): Promise<void> => {
   const paginationSchema = z.object({
-    limit: z.coerce.number().min(1).max(40).default(20), // SearchBooks() coerces a limit of 40
+    limit: z.coerce.number().min(1).max(40).default(20),
     lang: z.enum(['en', 'fr']).default('en'),
   });
 
   try {
-    // Validate and parse pagination parameters from query string
     const parsed = paginationSchema.safeParse(req.query);
 
     if (!parsed.success) {

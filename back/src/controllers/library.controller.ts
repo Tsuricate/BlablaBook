@@ -9,7 +9,7 @@ import {
   findBookInLibrary,
   updateUserBook,
   deleteUserBook,
-  checkIsExistsBook,
+  checkIsBookExist,
   addBookToLibrary,
   createBook,
 } from '../services/library.service';
@@ -24,16 +24,6 @@ import {
 import { checkIdFromParams } from '../lib/validators';
 import { getBookById } from '../services/googleBooks.service';
 
-/**
- * Retrieves all books belonging to a connected user with pagination support.
- * This function queries the database for books associated with the user's ID,
- * which is extracted from the authenticated request. Pagination is handled
- * by the backend with a default limit of 20 books per page and an starting offset of 0.
- *
- * @param req - The authenticated request object containing the user's ID.
- * @param res - The response object used to send the books data or an error message.
- * @returns A Promise that resolves when the response is sent.
- */
 export const getUserLibrary = async (req: AuthRequest, res: Response): Promise<void> => {
   const parsed: z.ZodSafeParseResult<LibraryQuerySchema> = getUserLibraryQuerySchema.safeParse(
     req.query
@@ -53,14 +43,12 @@ export const getUserLibrary = async (req: AuthRequest, res: Response): Promise<v
       return;
     }
 
-    // Pagination settings
     const limit = query?.limit ? query?.limit : 20; // Default limit of 20 books per page
     const offset = query?.page ? (query.page - 1) * limit : 0; // Default offset starting at 0
     const page = query.page;
 
     const { userBooks, total } = await getUserLibraryBooks(userId, query?.status, limit, offset);
 
-    // Calculate pagination metadata
     const hasNext = offset + limit < total;
     const hasPrevious = offset > 0;
 
@@ -79,13 +67,6 @@ export const getUserLibrary = async (req: AuthRequest, res: Response): Promise<v
   }
 };
 
-/**
- * Searches for books in a user's library with optional query filtering and pagination.
- *
- * @param req - The authenticated request object containing the user's ID and search parameters.
- * @param res - The response object used to send the search results or an error message.
- * @returns A Promise that resolves when the response is sent.
- */
 export const searchInLibrary = async (req: AuthRequest, res: Response): Promise<void> => {
   const parsed: z.ZodSafeParseResult<SearchQuerySchema> = searchQuerySchema.safeParse(req.query);
 
@@ -103,7 +84,6 @@ export const searchInLibrary = async (req: AuthRequest, res: Response): Promise<
       return;
     }
 
-    // Pagination settings
     const limit = query?.limit ? query?.limit : 20; // Default limit of 20 books per page
     const offset = query?.page ? (query.page - 1) * limit : 0; // Default offset starting at 0
     const page = query.page;
@@ -116,7 +96,6 @@ export const searchInLibrary = async (req: AuthRequest, res: Response): Promise<
       offset
     );
 
-    // Calculate pagination metadata
     const hasNext = offset + limit < total;
     const hasPrevious = offset > 0;
 
@@ -135,13 +114,6 @@ export const searchInLibrary = async (req: AuthRequest, res: Response): Promise<
   }
 };
 
-/**
- * Updates the status of a book in the user's library.
- *
- * @param req - The authenticated request object containing the user's ID, book ID, and new status.
- * @param res - The response object used to send the updated book data or an error message.
- * @returns A Promise that resolves when the response is sent.
- */
 export const updateBookStatus = async (req: AuthRequest, res: Response): Promise<void> => {
   const userId = req.userId as number;
   const bookId = await checkIdFromParams(req.params.id as string);
@@ -174,13 +146,6 @@ export const updateBookStatus = async (req: AuthRequest, res: Response): Promise
   }
 };
 
-/**
- * Deletes a book in the user's library.
- *
- * @param req - The authenticated request object containing the user's ID and book ID.
- * @param res - The response object used to send success or an error message.
- * @returns A Promise that resolves when the response is sent.
- */
 export const deleteBookFromLibrary = async (req: AuthRequest, res: Response): Promise<void> => {
   const userId = req.userId as number;
   const bookId = await checkIdFromParams(req.params.id as string);
@@ -204,23 +169,13 @@ export const deleteBookFromLibrary = async (req: AuthRequest, res: Response): Pr
   }
 };
 
-/**
- * Creates a new book or adds an existing book to the user's library.
- * This function first checks if the book already exists in the database.
- * If it exists, it adds the book to the user's library if not already present.
- * If the book does not exist, it creates a new book in the database and adds it to the user's library.
- *
- * @param req - The authenticated request object containing the user's ID and book details.
- * @param res - The response object used to send success or an error message.
- * @returns A Promise that resolves when the response is sent.
- */
 export const createAndAddBookToLibrary = async (req: AuthRequest, res: Response): Promise<void> => {
   const userId = req.userId as number;
 
   try {
     const { book, status } = createBookSchema.parse(req.body);
 
-    const foundBook = await checkIsExistsBook(book.id);
+    const foundBook = await checkIsBookExist(book.id);
 
     if (foundBook) {
       const userBookId = {
@@ -246,7 +201,12 @@ export const createAndAddBookToLibrary = async (req: AuthRequest, res: Response)
     } else {
       const googleBook = await getBookById(book.id);
       book.categories = googleBook.categories ? googleBook.categories : [];
-      await createBook(userId, status, book);
+      const createdBook = await createBook(googleBook);
+      await addBookToLibrary({
+        userId,
+        bookId: createdBook.id,
+        status,
+      });
     }
 
     res.status(201).json({ success: true });
