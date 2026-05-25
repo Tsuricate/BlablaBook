@@ -122,6 +122,7 @@ export const updateBookStatus = async (req: AuthRequest, res: Response): Promise
   const userBook = await findBookInLibrary(userBookId);
   if (!userBook) {
     res.status(404).json({ error: "Book doesn't exist in library" });
+    return;
   }
 
   const parsed = statusSchema.safeParse(req.body);
@@ -154,6 +155,7 @@ export const deleteBookFromLibrary = async (req: AuthRequest, res: Response): Pr
   const userBook = await findBookInLibrary(userBookId);
   if (!userBook) {
     res.status(404).json({ error: "Book doesn't exist in library" });
+    return;
   }
 
   try {

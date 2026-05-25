@@ -1,31 +1,11 @@
-import {
-  createTestUser,
-  createTestPublisher,
-  createTestBook,
-  createUserBook,
-  createTestAuthor,
-  createTestCategory,
-  createBookAuthor,
-  createBookCategory,
-} from './factories';
+import { createTestUser, createTestPublisher, createTestBook, createUserBook } from './factories';
 
-/* ---------------- TYPES ---------------- */
-
-type LibraryOverrides = {
-  user?: Parameters<typeof createTestUser>[0];
-  publisher?: Parameters<typeof createTestPublisher>[0];
-  book?: Parameters<typeof createTestBook>[1];
-  userBookStatus?: Parameters<typeof createUserBook>[2];
-};
-
-/* ---------------- LIBRARY SCENARIO ---------------- */
-
-export const createLibraryScenario = async (overrides: LibraryOverrides = {}) => {
+export const createLibraryScenario = async (overrides: any = {}) => {
   const user = await createTestUser(overrides.user);
   const publisher = await createTestPublisher(overrides.publisher);
   const book = await createTestBook(publisher.id, overrides.book);
 
-  const userBook = await createUserBook(user.id, book.id, overrides.userBookStatus);
+  const userBook = await createUserBook(user.id, book.id, overrides.status);
 
   return {
     user,
@@ -35,21 +15,22 @@ export const createLibraryScenario = async (overrides: LibraryOverrides = {}) =>
   };
 };
 
-/* ---------------- BOOK DETAIL SCENARIO ---------------- */
-
-export const createBookDetailScenario = async () => {
+export const createMultiLibraryScenario = async () => {
+  const user = await createTestUser();
   const publisher = await createTestPublisher();
-  const book = await createTestBook(publisher.id);
-  const author = await createTestAuthor();
-  const category = await createTestCategory();
 
-  await createBookAuthor(book.id, author.id);
-  await createBookCategory(book.id, category.id);
+  const book1 = await createTestBook(publisher.id, {
+    title: 'react book',
+    googleBookId: `react_${Date.now()}`,
+  });
 
-  return {
-    publisher,
-    book,
-    author,
-    category,
-  };
+  const book2 = await createTestBook(publisher.id, {
+    title: 'node book',
+    googleBookId: `node_${Date.now()}`,
+  });
+
+  await createUserBook(user.id, book1.id, 'read');
+  await createUserBook(user.id, book2.id, 'wishlist');
+
+  return { user, publisher, book1, book2 };
 };
