@@ -15,7 +15,11 @@
     "prisma:reset": "pnpm prisma:migrate:reset && pnpm prisma:seed",
     "start": "tsx index.ts",
     "seed": "tsx prisma/seed.ts",
-    "test": "vitest"
+    "test:db:up": "docker compose -f docker-compose.test.yml up -d",
+    "test:db:wait": "until pg_isready -h localhost -p 5435 -U postgres; do sleep 1; done",
+    "test:db:migrate": "dotenv -e .env.test -- prisma migrate deploy",
+    "test:run": "vitest run",
+    "test:e2e": "pnpm test:db:up && pnpm test:db:wait && pnpm test:db:migrate && vitest run"
   },
   "keywords": [],
   "author": "",
@@ -43,6 +47,7 @@
     "@types/express-xss-sanitizer": "^2.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.5.0",
+    "dotenv-cli": "^11.0.0",
     "prisma": "^6.19.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
