@@ -12,8 +12,24 @@ type UserOverrides = Partial<{
 type BookOverrides = Partial<{
   title: string;
   googleBookId: string;
-  language: string;
-  description: string;
+  language: string | null;
+  description: string | null;
+  authors: string[];
+  categories: string[];
+  averageRating: number | null;
+  ratingCount: number;
+  publishedDate: Date | null;
+  isbn10: string | null;
+  isbn13: string | null;
+  pageCount: number | null;
+  imageLinks: {
+    smallThumbnail?: string | null;
+    thumbnail?: string | null;
+    small?: string | null;
+    medium?: string | null;
+    large?: string | null;
+    extraLarge?: string | null;
+  } | null;
 }>;
 
 type PublisherOverrides = Partial<{
@@ -69,14 +85,24 @@ export const createTestCategory = async (overrides: CategoryOverrides = {}) => {
 /* ---------------- BOOK ---------------- */
 
 export const createTestBook = async (publisherId: number, overrides: BookOverrides = {}) => {
-  return prisma.book.create({
+  const book = await prisma.book.create({
     data: {
-      title: 'test book',
-      googleBookId: `google_${Date.now()}`,
+      title: overrides.title ?? 'test book',
+      googleBookId: overrides.googleBookId ?? `google_${Date.now()}`,
+      averageRating: overrides.averageRating ?? null,
+      ratingCount: overrides.ratingCount ?? 0,
+      language: overrides.language ?? null,
+      description: overrides.description ?? null,
+      publishedDate: overrides.publishedDate ?? null,
+      isbn10: overrides.isbn10 ?? null,
+      isbn13: overrides.isbn13 ?? null,
+      pageCount: overrides.pageCount ?? null,
+      imageLinks: overrides.imageLinks ?? undefined,
       publisherId,
-      ...overrides,
     },
   });
+
+  return book;
 };
 
 /* ---------------- AUTHOR ---------------- */
