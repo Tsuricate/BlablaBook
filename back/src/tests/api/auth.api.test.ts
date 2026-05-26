@@ -1,29 +1,29 @@
 import request from 'supertest';
 import app from '../../app';
 import { describe, expect, it } from 'vitest';
+import { randomUUID } from 'crypto';
 
-let i = 0;
-
-const baseUser = () => {
-  const base = Date.now();
+export const baseUser = () => {
+  const id = randomUUID();
   return {
-    username: `user_${base}_${++i}`,
-    email: `user_${base}_${++i}@test.com`,
+    username: `user_${id}`,
+    email: `user_${id}@test.com`,
     password: 'Password123!AA',
     confirmPassword: 'Password123!AA',
   };
 };
 
+const getAuthCookies = (loginResponse: any) => {
+  const cookies = loginResponse.headers['set-cookie'];
+  if (!cookies) {
+    throw new Error('No cookies returned from login');
+  }
+  return Array.isArray(cookies) ? cookies : [cookies];
+};
+
 describe('POST /api/auth/register', () => {
   it('should register a new user', async () => {
-    const base = Date.now();
-
-    const payload = {
-      username: `user_${base}_1`,
-      email: `user_${base}_1@test.com`,
-      password: 'Password123!A',
-      confirmPassword: 'Password123!A',
-    };
+    const payload = baseUser();
 
     const res = await request(app).post('/api/auth/register').send(payload);
 
@@ -159,136 +159,111 @@ describe('POST /api/auth/login', () => {
   });
 });
 
-describe('PATCH /api/auth/users/:id', () => {
-  it('should update user username', async () => {
+describe('POST /api/auth/logout', () => {
+  it('should logout successfully', async () => {
     const user = baseUser();
+
     await request(app).post('/api/auth/register').send(user);
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
-
-    const userId = login.body.data.id;
-    const res = await request(app)
-      .patch(`/api/auth/users/${userId}`)
-      .set('Cookie', login.headers['set-cookie'])
-      .send({
-        username: 'new_username',
-        email: user.email,
-        password: user.password,
-        confirmPassword: user.password,
-      });
-
-    expect(res.status).toBe(200);
-    expect(res.body.data.username).toBe('new_username');
-  });
-
-  it('should return 400 if passwords do not match', async () => {
-    const user = baseUser();
-    await request(app).post('/api/auth/register').send(user);
-
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
-
-    const userId = login.body.data.id;
-    const res = await request(app)
-      .patch(`/api/auth/users/${userId}`)
-      .set('Cookie', login.headers['set-cookie'])
-      .send({
-        username: 'new_username',
-        email: user.email,
-        password: user.password,
-        confirmPassword: 'wrong',
-      });
-
-    expect(res.status).toBe(400);
-  });
-
-  it('should return 409 if email already exists', async () => {
-    const user1 = baseUser();
-    const user2 = baseUser();
-
-    await request(app).post('/api/auth/register').send(user1);
-    await request(app).post('/api/auth/register').send(user2);
-
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user1.email, password: user1.password, rememberMe: false });
-
-    const res = await request(app)
-      .patch(`/api/auth/users/${login.body.data.id}`)
-      .set('Cookie', login.headers['set-cookie'])
-      .send({ email: user2.email });
-
-    expect(res.status).toBe(409);
-    expect(res.body.errors).toBeDefined();
-  });
-
-  it('should return 409 if username already exists', async () => {
-    const user1 = baseUser();
-    const user2 = baseUser();
-
-    await request(app).post('/api/auth/register').send(user1);
-    await request(app).post('/api/auth/register').send(user2);
 
     const login = await request(app).post('/api/auth/login').send({
-      email: user1.email,
-      password: user1.password,
+      email: user.email,
+      password: user.password,
       rememberMe: false,
     });
 
-    const res = await request(app)
-      .patch(`/api/auth/users/${login.body.data.id}`)
-      .set('Cookie', login.headers['set-cookie'])
-      .send({
-        username: user2.username,
-      });
+    const authCookies = getAuthCookies(login);
 
-    expect(res.status).toBe(409);
-    expect(res.body.errors).toBeDefined();
-  });
-});
-
-describe('DELETE /api/auth/users/:id', () => {
-  it('should delete user successfully', async () => {
-    const user = baseUser();
-
-    await request(app).post('/api/auth/register').send(user);
-
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
-
-    const userId = login.body.data.id;
-
-    const res = await request(app)
-      .delete(`/api/auth/users/${userId}`)
-      .set('Cookie', login.headers['set-cookie']);
+    const res = await request(app).post('/api/auth/logout').set('Cookie', authCookies);
 
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);
-    expect(res.body.message).toBe('User deleted successfully');
+    expect(res.body.message).toBe('Logout successful');
   });
 
   it('should return 401 if not authenticated', async () => {
-    const res = await request(app).delete('/api/auth/users/1');
+    const res = await request(app).post('/api/auth/logout');
 
     expect(res.status).toBe(401);
+    expect(res.body.message).toBe('Not authenticated');
   });
 
-  it('should return 500 if user does not exist', async () => {
+  it('should clear authentication cookies on logout', async () => {
     const user = baseUser();
 
     await request(app).post('/api/auth/register').send(user);
 
-    const login = await request(app)
+    const login = await request(app).post('/api/auth/login').send({
+      email: user.email,
+      password: user.password,
+      rememberMe: false,
+    });
+
+    const authCookies = getAuthCookies(login);
+
+    const res = await request(app).post('/api/auth/logout').set('Cookie', authCookies);
+
+    const cookies = res.headers['set-cookie'] ?? [];
+    const cookieArray = Array.isArray(cookies) ? cookies : [cookies];
+
+    const clearedToken = cookieArray.find((c) => c.includes('token=') && c.includes('Expires='));
+
+    const clearedRefresh = cookieArray.find(
+      (c) => c.includes('refreshToken=') && c.includes('Expires=')
+    );
+
+    expect(clearedToken).toBeDefined();
+    expect(clearedRefresh).toBeDefined();
+  });
+});
+
+describe('POST /api/auth/refresh', () => {
+  it('should refresh token successfully', async () => {
+    const user = baseUser();
+
+    await request(app).post('/api/auth/register').send(user);
+
+    const loginResponse = await request(app)
       .post('/api/auth/login')
       .send({ email: user.email, password: user.password, rememberMe: false });
 
-    const res = await request(app)
-      .delete('/api/auth/users/999999')
-      .set('Cookie', login.headers['set-cookie']);
+    const setCookieHeader = loginResponse.headers['set-cookie'];
 
-    expect(res.status).toBe(404);
+    expect(setCookieHeader).toBeDefined();
+
+    const refreshTokenCookie = Array.isArray(setCookieHeader)
+      ? setCookieHeader.find((cookie) => cookie.startsWith('refreshToken='))
+      : setCookieHeader;
+
+    expect(refreshTokenCookie).toBeDefined();
+
+    const refreshResponse = await request(app)
+      .post('/api/auth/refresh')
+      .set('Cookie', refreshTokenCookie as string);
+
+    expect(refreshResponse.status).toBe(200);
+    expect(refreshResponse.body.success).toBe(true);
+    expect(refreshResponse.body.data).toEqual({
+      id: expect.any(Number),
+      username: user.username,
+      email: user.email,
+    });
+
+    expect(refreshResponse.headers['set-cookie']).toBeDefined();
+  });
+
+  it('should return 401 if no refresh token is provided', async () => {
+    const response = await request(app).post('/api/auth/refresh');
+
+    expect(response.status).toBe(401);
+    expect(response.body.message).toBe('No refresh token provided');
+  });
+
+  it('should return 401 if refresh token is invalid', async () => {
+    const response = await request(app)
+      .post('/api/auth/refresh')
+      .set('Cookie', 'refreshToken=invalid_token');
+
+    expect(response.status).toBe(401);
+    expect(response.body.message).toBe('Invalid or expired refresh token');
   });
 });

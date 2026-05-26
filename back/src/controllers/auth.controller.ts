@@ -80,7 +80,7 @@ export const loginUserController = async (req: Request, res: Response) => {
       maxAge: convertInMs(process.env.JWT_EXPIRES_IN as string),
       path: '/api',
     });
-    res.cookie('refreshtoken', refreshToken, {
+    res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
