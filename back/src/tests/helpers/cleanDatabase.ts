@@ -1,4 +1,4 @@
-import { prisma } from '../helpers/prismaTestClient';
+import { prisma } from '../../utils/prisma.utils';
 
 export const cleanDatabase = async () => {
   await prisma.userBook.deleteMany();

@@ -1,6 +1,12 @@
-import { createTestUser, createTestPublisher, createTestBook, createUserBook } from './factories';
+import {
+  createTestUser,
+  createTestPublisher,
+  createTestBook,
+  createUserBook,
+  LibraryScenarioOverrides,
+} from './factories';
 
-export const createLibraryScenario = async (overrides: any = {}) => {
+export const createLibraryScenario = async (overrides: LibraryScenarioOverrides = {}) => {
   const user = await createTestUser(overrides.user);
   const publisher = await createTestPublisher(overrides.publisher);
   const book = await createTestBook(publisher.id, overrides.book);

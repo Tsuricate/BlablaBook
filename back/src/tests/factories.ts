@@ -1,4 +1,4 @@
-import { prisma } from './helpers/prismaTestClient';
+import { prisma } from '../utils/prisma.utils';
 import { ReadingStatus } from '../../generated/prisma';
 
 /* ---------------- TYPES ---------------- */
@@ -23,6 +23,13 @@ type PublisherOverrides = Partial<{
 type CategoryOverrides = Partial<{
   name: string;
 }>;
+
+export type LibraryScenarioOverrides = {
+  user?: UserOverrides;
+  publisher?: PublisherOverrides;
+  book?: BookOverrides;
+  status?: ReadingStatus;
+};
 
 /* ---------------- USER ---------------- */
 

@@ -8,20 +8,20 @@ import {
 } from '../utils/topFeaturedThemes.utils';
 
 export const getTopFeaturedThemes = async (req: Request, res: Response): Promise<void> => {
-  const paginationSchema = z.object({
+  const schema = z.object({
     limit: z.coerce.number().min(1).max(40).default(20),
     lang: z.enum(['en', 'fr']).default('en'),
   });
 
   try {
-    const parsed = paginationSchema.safeParse(req.query);
+    const parsedQuery = schema.safeParse(req.query);
 
-    if (!parsed.success) {
-      res.status(400).json({ error: z.flattenError(parsed.error).fieldErrors });
+    if (!parsedQuery.success) {
+      res.status(400).json({ error: z.flattenError(parsedQuery.error).fieldErrors });
       return;
     }
 
-    const { limit, lang } = parsed.data;
+    const { limit, lang } = parsedQuery.data;
 
     const randomThemes = getRandomThemes(3);
 
@@ -29,36 +29,44 @@ export const getTopFeaturedThemes = async (req: Request, res: Response): Promise
       randomThemes.map(async (themeKey) => {
         const theme = getThemeData(themeKey, lang);
 
-        // CASE 1: controlled themes -> single search
+        // CASE 1: simple search-based theme (direct Google Books query)
         if (theme.type === 'search') {
           const books = await searchBooks(theme.query, limit);
           return [themeKey, books];
         }
 
-        // CASE 2: collections → one search per query, then merge + deduplicate results
-        const booksArraysRes = await Promise.all(
-          theme.data.queries.map((book) =>
-            searchBooks(buildGoogleBooksQuery(book.title, book.author), 1)
-          )
-        );
+        // CASE 2: curated collection theme
+        // Each book is searched individually to ensure better precision
+        const searchPromises = theme.data.queries.map((book) => {
+          const googleQuery = buildGoogleBooksQuery(book.title, book.author);
 
-        const booksArrays = booksArraysRes.flat().slice(0, limit);
+          return searchBooks(googleQuery, 1);
+        });
 
-        const books = booksArrays
-          .flat()
-          .filter(
-            (book, index, allBooks) =>
-              allBooks.findIndex((otherBook) => otherBook.id === book.id) === index
-          )
-          .slice(0, limit);
+        const searchResults = await Promise.all(searchPromises);
 
-        return [themeKey, books];
+        // Flatten results from multiple API calls into a single array
+        const flatResults = searchResults.flat();
+
+        // Remove duplicate books based on Google Books ID
+        const seenIds = new Set();
+
+        const uniqueBooks = flatResults.filter((book) => {
+          if (seenIds.has(book.id)) return false;
+          seenIds.add(book.id);
+          return true;
+        });
+
+        // Limit final output per theme
+        const selectedBooks = uniqueBooks.slice(0, limit);
+
+        return [themeKey, selectedBooks];
       })
     );
 
-    const data = Object.fromEntries(topThemesBooks);
+    const responseData = Object.fromEntries(topThemesBooks);
 
-    res.json(data);
+    res.json(responseData);
   } catch (error) {
     console.error(error);
     res.status(502).json({

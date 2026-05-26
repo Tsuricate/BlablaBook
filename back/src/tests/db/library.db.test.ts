@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { prisma } from '../helpers/prismaTestClient';
+import { prisma } from '../../utils/prisma.utils';
 import { createLibraryScenario, createMultiLibraryScenario } from '../scenarios';
 import { createTestUser } from '../factories';
 import { ReadingStatus } from '../../../generated/prisma';
@@ -30,7 +30,7 @@ describe('Library (DB integration)', () => {
   });
 });
 
-describe('searchInLibrary (DB-level)', () => {
+describe('searchInLibrary (DB integration)', () => {
   it('should search books by title', async () => {
     const { user, book1 } = await createMultiLibraryScenario();
 
