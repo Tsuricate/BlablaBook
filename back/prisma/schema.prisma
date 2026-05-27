@@ -21,8 +21,8 @@ model User {
   password      String
   createdAt     DateTime       @default(now()) @map("created_at")
   updatedAt     DateTime       @updatedAt @map("updated_at")
-  books         UserBook[]
   refreshTokens RefreshToken[]
+  books         UserBook[]
 
   @@map("user")
 }
@@ -46,8 +46,8 @@ model Book {
   imageLinks    Json?          @map("image_links")
   language      String?
   description   String?
-  googleBookId  String         @map("google_book_id") @unique
-  publishedDate DateTime?      @map("published_date") @db.Date // corresponding date format in ProstgreSQL: YYYY-MM-DD
+  googleBookId  String         @unique @map("google_book_id") 
+  publishedDate DateTime?      @map("published_date") @db.Date
   isbn10        String?        @unique @map("isbn_10")
   isbn13        String?        @unique @map("isbn_13")
   pageCount     Int?           @map("page_count")
@@ -58,6 +58,7 @@ model Book {
   users         UserBook[]
   authors       BookAuthor[]
   categories    BookCategory[]
+ 
 
   @@map("book")
 }
@@ -74,7 +75,7 @@ model Author {
 
 model Publisher {
   id        Int      @id @default(autoincrement())
-  name      String?  @default("independent") @unique
+  name      String?  @unique @default("independent")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   books     Book[]
@@ -96,8 +97,8 @@ model UserBook {
   userId Int           @map("user_id")
   bookId Int           @map("book_id")
   status ReadingStatus @default(wishlist)
-  user   User          @relation(fields: [userId], references: [id])
   book   Book          @relation(fields: [bookId], references: [id])
+  user   User          @relation(fields: [userId], references: [id])
 
   @@id([userId, bookId])
   @@map("user_has_book")
@@ -106,8 +107,8 @@ model UserBook {
 model BookAuthor {
   bookId   Int    @map("book_id")
   authorId Int    @map("author_id")
-  book     Book   @relation(fields: [bookId], references: [id])
   author   Author @relation(fields: [authorId], references: [id])
+  book     Book   @relation(fields: [bookId], references: [id])
 
   @@id([bookId, authorId])
   @@map("book_has_author")
