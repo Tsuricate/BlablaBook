@@ -122,12 +122,14 @@ export const updateBookStatus = async (req: AuthRequest, res: Response): Promise
   const userBook = await findBookInLibrary(userBookId);
   if (!userBook) {
     res.status(404).json({ error: "Book doesn't exist in library" });
+    return;
   }
 
   const parsed = statusSchema.safeParse(req.body);
 
-  if (parsed.error) {
+  if (!parsed.success) {
     res.status(400).json({ success: false, error: z.flattenError(parsed.error).fieldErrors });
+    return;
   }
 
   try {
@@ -154,6 +156,7 @@ export const deleteBookFromLibrary = async (req: AuthRequest, res: Response): Pr
   const userBook = await findBookInLibrary(userBookId);
   if (!userBook) {
     res.status(404).json({ error: "Book doesn't exist in library" });
+    return;
   }
 
   try {
@@ -184,6 +187,7 @@ export const createAndAddBookToLibrary = async (req: AuthRequest, res: Response)
       };
 
       const userBook = await findBookInLibrary(userBookId);
+
       if (userBook) {
         res.status(400).json({
           success: false,

@@ -14,6 +14,7 @@ import {
 } from '../services/auth.service';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import { clearCookiesUser } from '../utils/clearAuthCookies';
+import { Prisma } from '../../generated/prisma/client';
 
 //Typage Typescript
 type AuthFormValues = z.infer<typeof AuthSchema>;
@@ -79,7 +80,7 @@ export const loginUserController = async (req: Request, res: Response) => {
       maxAge: convertInMs(process.env.JWT_EXPIRES_IN as string),
       path: '/api',
     });
-    res.cookie('refreshtoken', refreshToken, {
+    res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
@@ -163,6 +164,10 @@ export const deleteUserController = async (req: AuthRequest, res: Response) => {
 
     return res.status(200).json({ success: true, message: 'User deleted successfully' });
   } catch (error) {
+    const prismaError = error as Prisma.PrismaClientKnownRequestError;
+    if (prismaError.code === 'P2025') {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
     console.error('deleteUserController error', error);
     return res.status(500).json({ success: false, message: 'Server error' });
   }
@@ -190,19 +195,14 @@ export const patchUserController = async (req: AuthRequest, res: Response) => {
     return res.status(401).json({ success: false, message: 'Not authenticated' });
   }
   try {
-    // validation du body de la requête
-
     const { username, email, password, confirmPassword }: PatchFormValues = PatchSchema.parse(
       req.body
     );
-    // validation des mots de passe
     if (password !== confirmPassword) {
       return res.status(400).json({ success: false, message: 'Passwords do not match' });
     }
     //
-    // appelle auth service pour modifier l'utilisateur
     const user = await updateUser(Number(userId), username, email, password);
-    // creation d'une constante newuser contenant les information de user sans le password
     const newUser = {
       id: user.id,
       username: user.username,

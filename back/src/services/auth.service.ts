@@ -174,12 +174,11 @@ export const refreshUserToken = async (refreshToken: string) => {
 };
 
 export const deleteUser = async (userId: number) => {
-  deleteRefreshToken(userId);
-  const deletedUser = prisma.user.delete({ where: { id: userId } });
-  const deletedUserHasBook = prisma.userBook.deleteMany({ where: { userId: userId } });
-  const transactions = await prisma.$transaction([deletedUserHasBook, deletedUser]);
-
-  return transactions;
+  await deleteRefreshToken(userId);
+  await prisma.$transaction([
+    prisma.userBook.deleteMany({ where: { userId } }),
+    prisma.user.delete({ where: { id: userId } }),
+  ]);
 };
 
 export const deleteRefreshToken = async (userId: number) => {
@@ -214,14 +213,20 @@ export const updateUser = async (
   const errors: { message: string }[] = [];
 
   if (updates.email) {
-    const existingEmail = await findUserByEmail(updates.email);
+    const existingEmail = await prisma.user.findFirst({
+      where: { email: updates.email, NOT: { id: userId } },
+    });
+
     if (existingEmail) {
       errors.push({ message: 'GENERIC' });
     }
   }
 
   if (updates.username) {
-    const existingUser = await findUserByUsername(updates.username);
+    const existingUser = await prisma.user.findFirst({
+      where: { username: updates.username, NOT: { id: userId } },
+    });
+
     if (existingUser) {
       errors.push({ message: 'USERNAME_TAKEN' });
     }
