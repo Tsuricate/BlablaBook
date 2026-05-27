@@ -7,6 +7,7 @@ import { generateTestToken } from '../helpers/generateTestToken';
 import { createTestBook, createTestPublisher, createTestUser } from '../factories';
 
 import { getBookById, GoogleBook } from '../../services/googleBooks.service';
+import { createAuthCookie } from '../helpers/auth';
 
 /* ---------------- MOCK GOOGLE BOOKS ---------------- */
 
@@ -66,7 +67,7 @@ describe('GET /library', () => {
 
     const response = await request(app)
       .get('/api/library?page=1&limit=20')
-      .set('Cookie', [`token=${token}`]);
+      .set('Cookie', createAuthCookie(token));
 
     expect(response.status).toBe(200);
     expect(response.body.data).toHaveLength(1);
@@ -91,7 +92,7 @@ describe('GET /library', () => {
 
     const response = await request(app)
       .get('/api/library?limit=invalid')
-      .set('Cookie', [`token=${token}`]);
+      .set('Cookie', createAuthCookie(token));
 
     expect(response.status).toBe(400);
   });
@@ -102,7 +103,7 @@ describe('GET /library', () => {
 
     const response = await request(app)
       .get('/api/library?limit=1&page=1')
-      .set('Cookie', [`token=${token}`]);
+      .set('Cookie', createAuthCookie(token));
 
     expect(response.body.data).toHaveLength(1);
     expect(response.body.pagination.total).toBe(2);
@@ -122,7 +123,7 @@ describe('POST /library', () => {
 
     const response = await request(app)
       .post('/api/library')
-      .set('Cookie', [`token=${token}`])
+      .set('Cookie', createAuthCookie(token))
       .send({
         book: {
           id: book.googleBookId,
@@ -144,7 +145,7 @@ describe('POST /library', () => {
 
     const response = await request(app)
       .post('/api/library')
-      .set('Cookie', [`token=${token}`])
+      .set('Cookie', createAuthCookie(token))
       .send({
         book: {
           id: book.googleBookId,
@@ -167,7 +168,7 @@ describe('POST /library', () => {
 
     const response = await request(app)
       .post('/api/library')
-      .set('Cookie', [`token=${token}`])
+      .set('Cookie', createAuthCookie(token))
       .send({
         book: makeBookPayload(),
         status: 'read',
@@ -188,7 +189,7 @@ describe('PATCH /library', () => {
 
     const res = await request(app)
       .patch(`/api/library/${book.id}`)
-      .set('Cookie', [`token=${token}`])
+      .set('Cookie', createAuthCookie(token))
       .send({ status: 'wishlist' });
 
     expect(res.status).toBe(200);
@@ -205,7 +206,7 @@ describe('PATCH /library', () => {
 
     const res = await request(app)
       .patch(`/api/library/${book.id}`)
-      .set('Cookie', [`token=${token}`])
+      .set('Cookie', createAuthCookie(token))
       .send({ status: 'read' });
 
     expect(res.status).toBe(404);
@@ -218,7 +219,7 @@ describe('PATCH /library', () => {
 
     const res = await request(app)
       .patch(`/api/library/${book.id}`)
-      .set('Cookie', [`token=${token}`])
+      .set('Cookie', createAuthCookie(token))
       .send({ status: 'invalid' });
 
     expect(res.status).toBe(400);
@@ -242,7 +243,7 @@ describe('DELETE /library', () => {
 
     const res = await request(app)
       .delete(`/api/library/${book.id}`)
-      .set('Cookie', [`token=${token}`]);
+      .set('Cookie', createAuthCookie(token));
 
     expect(res.status).toBe(204);
   });
@@ -256,7 +257,7 @@ describe('DELETE /library', () => {
 
     const res = await request(app)
       .delete(`/api/library/${book.id}`)
-      .set('Cookie', [`token=${token}`]);
+      .set('Cookie', createAuthCookie(token));
 
     expect(res.status).toBe(404);
     expect(res.body.error).toBe("Book doesn't exist in library");

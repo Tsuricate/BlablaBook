@@ -3,6 +3,7 @@ import { prisma } from '../../utils/prisma.utils';
 import { createLibraryScenario, createMultiLibraryScenario } from '../scenarios';
 import { createTestUser } from '../factories';
 import { ReadingStatus } from '../../../generated/prisma';
+import { randomUUID } from 'crypto';
 
 describe('Library (DB integration)', () => {
   it('should return user library books', async () => {
@@ -100,8 +101,8 @@ describe('delete book from library (DB integration)', () => {
 describe('empty library', () => {
   it('should return empty library', async () => {
     const user = await createTestUser({
-      username: `empty_${Date.now()}`,
-      email: `empty_${Date.now()}@mail.com`,
+      username: `empty_${randomUUID()}`,
+      email: `empty_${randomUUID()}@mail.com`,
     });
 
     const result = await prisma.userBook.findMany({

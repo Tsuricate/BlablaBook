@@ -1,25 +1,8 @@
 import request from 'supertest';
 import app from '../../app';
 import { describe, expect, it } from 'vitest';
+import { baseUser, createAuthenticatedUser } from '../helpers/auth';
 import { randomUUID } from 'crypto';
-
-export const baseUser = () => {
-  const id = randomUUID();
-  return {
-    username: `user_${id}`,
-    email: `user_${id}@test.com`,
-    password: 'Password123!AA',
-    confirmPassword: 'Password123!AA',
-  };
-};
-
-const getAuthCookies = (loginResponse: any) => {
-  const cookies = loginResponse.headers['set-cookie'];
-  if (!cookies) {
-    throw new Error('No cookies returned from login');
-  }
-  return Array.isArray(cookies) ? cookies : [cookies];
-};
 
 describe('POST /api/auth/register', () => {
   it('should register a new user', async () => {
@@ -36,7 +19,7 @@ describe('POST /api/auth/register', () => {
   });
 
   it('should return 400 if passwords do not match', async () => {
-    const base = Date.now();
+    const base = randomUUID();
 
     const payload = {
       username: `user_${base}_2`,
@@ -50,7 +33,7 @@ describe('POST /api/auth/register', () => {
   });
 
   it('should return 409 if email already exists', async () => {
-    const base = Date.now();
+    const base = randomUUID();
 
     const existing = {
       username: `user_${base}_3`,
@@ -74,7 +57,7 @@ describe('POST /api/auth/register', () => {
   });
 
   it('should return 409 if username already exists', async () => {
-    const base = Date.now();
+    const base = randomUUID();
 
     const existing = {
       username: `user_${base}_4`,
@@ -161,18 +144,7 @@ describe('POST /api/auth/login', () => {
 
 describe('POST /api/auth/logout', () => {
   it('should logout successfully', async () => {
-    const user = baseUser();
-
-    await request(app).post('/api/auth/register').send(user);
-
-    const login = await request(app).post('/api/auth/login').send({
-      email: user.email,
-      password: user.password,
-      rememberMe: false,
-    });
-
-    const authCookies = getAuthCookies(login);
-
+    const { authCookies } = await createAuthenticatedUser();
     const res = await request(app).post('/api/auth/logout').set('Cookie', authCookies);
 
     expect(res.status).toBe(200);
@@ -188,17 +160,7 @@ describe('POST /api/auth/logout', () => {
   });
 
   it('should clear authentication cookies on logout', async () => {
-    const user = baseUser();
-
-    await request(app).post('/api/auth/register').send(user);
-
-    const login = await request(app).post('/api/auth/login').send({
-      email: user.email,
-      password: user.password,
-      rememberMe: false,
-    });
-
-    const authCookies = getAuthCookies(login);
+    const { authCookies } = await createAuthenticatedUser();
 
     const res = await request(app).post('/api/auth/logout').set('Cookie', authCookies);
 
@@ -218,13 +180,7 @@ describe('POST /api/auth/logout', () => {
 
 describe('POST /api/auth/refresh', () => {
   it('should refresh token successfully', async () => {
-    const user = baseUser();
-
-    await request(app).post('/api/auth/register').send(user);
-
-    const loginResponse = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
+    const { loginResponse, user } = await createAuthenticatedUser();
 
     const setCookieHeader = loginResponse.headers['set-cookie'];
 

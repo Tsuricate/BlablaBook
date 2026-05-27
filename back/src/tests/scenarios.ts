@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import {
   createTestUser,
   createTestPublisher,
@@ -27,12 +28,12 @@ export const createMultiLibraryScenario = async () => {
 
   const book1 = await createTestBook(publisher.id, {
     title: 'react book',
-    googleBookId: `react_${Date.now()}`,
+    googleBookId: `react_${randomUUID()}`,
   });
 
   const book2 = await createTestBook(publisher.id, {
     title: 'node book',
-    googleBookId: `node_${Date.now()}`,
+    googleBookId: `node_${randomUUID()}`,
   });
 
   await createUserBook(user.id, book1.id, 'read');

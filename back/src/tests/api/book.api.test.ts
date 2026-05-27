@@ -4,6 +4,7 @@ import axios from 'axios';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 import * as booksService from '../../services/book.service';
+import { randomUUID } from 'crypto';
 
 vi.mock('../../services/book.service');
 vi.mock('axios');
@@ -67,8 +68,8 @@ describe('GET /api/books/:id', () => {
 
   it('should return book with user status when authenticated', async () => {
     const user = {
-      username: `user_${Date.now()}`,
-      email: `user_${Date.now()}@test.com`,
+      username: `user_${randomUUID()}`,
+      email: `user_${randomUUID()}@test.com`,
       password: 'Password123!A',
       confirmPassword: 'Password123!A',
     };

@@ -1,41 +1,16 @@
 import request from 'supertest';
 import app from '../../app';
 import { describe, expect, it } from 'vitest';
-
-let i = 0;
-
-const baseUser = () => {
-  const base = Date.now();
-  return {
-    username: `user_${base}_${++i}`,
-    email: `user_${base}_${++i}@test.com`,
-    password: 'Password123!AA',
-    confirmPassword: 'Password123!AA',
-  };
-};
-
-const getAuthCookies = (loginResponse: any) => {
-  const cookies = loginResponse.headers['set-cookie'];
-
-  expect(cookies).toBeDefined();
-
-  expect(Array.isArray(cookies) || typeof cookies === 'string').toBe(true);
-
-  return cookies;
-};
+import { baseUser, createAuthenticatedUser } from '../helpers/auth';
 
 describe('PATCH /api/auth/users/:id', () => {
   it('should update user username', async () => {
-    const user = baseUser();
-    await request(app).post('/api/auth/register').send(user);
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
+    const { loginResponse, user } = await createAuthenticatedUser();
 
-    const userId = login.body.data.id;
+    const userId = loginResponse.body.data.id;
     const res = await request(app)
       .patch(`/api/auth/users/${userId}`)
-      .set('Cookie', login.headers['set-cookie'])
+      .set('Cookie', loginResponse.headers['set-cookie'])
       .send({
         username: 'new_username',
         email: user.email,
@@ -48,17 +23,12 @@ describe('PATCH /api/auth/users/:id', () => {
   });
 
   it('should return 400 if passwords do not match', async () => {
-    const user = baseUser();
-    await request(app).post('/api/auth/register').send(user);
+    const { loginResponse, user } = await createAuthenticatedUser();
 
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
-
-    const userId = login.body.data.id;
+    const userId = loginResponse.body.data.id;
     const res = await request(app)
       .patch(`/api/auth/users/${userId}`)
-      .set('Cookie', login.headers['set-cookie'])
+      .set('Cookie', loginResponse.headers['set-cookie'])
       .send({
         username: 'new_username',
         email: user.email,
@@ -116,19 +86,13 @@ describe('PATCH /api/auth/users/:id', () => {
 
 describe('DELETE /api/auth/users/:id', () => {
   it('should delete user successfully', async () => {
-    const user = baseUser();
+    const { loginResponse } = await createAuthenticatedUser();
 
-    await request(app).post('/api/auth/register').send(user);
-
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
-
-    const userId = login.body.data.id;
+    const userId = loginResponse.body.data.id;
 
     const res = await request(app)
       .delete(`/api/auth/users/${userId}`)
-      .set('Cookie', login.headers['set-cookie']);
+      .set('Cookie', loginResponse.headers['set-cookie']);
 
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);
@@ -142,17 +106,11 @@ describe('DELETE /api/auth/users/:id', () => {
   });
 
   it('should return 500 if user does not exist', async () => {
-    const user = baseUser();
-
-    await request(app).post('/api/auth/register').send(user);
-
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
+    const { loginResponse } = await createAuthenticatedUser();
 
     const res = await request(app)
       .delete('/api/auth/users/999999')
-      .set('Cookie', login.headers['set-cookie']);
+      .set('Cookie', loginResponse.headers['set-cookie']);
 
     expect(res.status).toBe(404);
   });
@@ -160,15 +118,7 @@ describe('DELETE /api/auth/users/:id', () => {
 
 describe('GET /api/auth/me', () => {
   it('should return current user', async () => {
-    const user = baseUser();
-
-    await request(app).post('/api/auth/register').send(user);
-
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
-
-    const authCookies = getAuthCookies(login);
+    const { user, authCookies } = await createAuthenticatedUser();
 
     const res = await request(app).get('/api/auth/me').set('Cookie', authCookies);
 
@@ -190,19 +140,15 @@ describe('GET /api/auth/me', () => {
   });
 
   it('should return 404 if user no longer exists', async () => {
-    const user = baseUser();
-
-    await request(app).post('/api/auth/register').send(user);
-
-    const login = await request(app)
-      .post('/api/auth/login')
-      .send({ email: user.email, password: user.password, rememberMe: false });
+    const { loginResponse } = await createAuthenticatedUser();
 
     await request(app)
-      .delete(`/api/auth/users/${login.body.data.id}`)
-      .set('Cookie', login.headers['set-cookie']);
+      .delete(`/api/auth/users/${loginResponse.body.data.id}`)
+      .set('Cookie', loginResponse.headers['set-cookie']);
 
-    const res = await request(app).get('/api/auth/me').set('Cookie', login.headers['set-cookie']);
+    const res = await request(app)
+      .get('/api/auth/me')
+      .set('Cookie', loginResponse.headers['set-cookie']);
 
     expect(res.status).toBe(404);
     expect(res.body.message).toBe('User not found');

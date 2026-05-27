@@ -1,5 +1,6 @@
 import { prisma } from '../utils/prisma.utils';
 import { ReadingStatus } from '../../generated/prisma';
+import { randomUUID } from 'crypto';
 
 /* ---------------- TYPES ---------------- */
 
@@ -52,8 +53,8 @@ export type LibraryScenarioOverrides = {
 export const createTestUser = async (overrides: UserOverrides = {}) => {
   return prisma.user.create({
     data: {
-      username: `user_${Date.now()}`,
-      email: `test_${Date.now()}@mail.com`,
+      username: `user_${randomUUID()}`,
+      email: `test_${randomUUID()}@mail.com`,
       password: 'test',
       ...overrides,
     },
@@ -65,7 +66,7 @@ export const createTestUser = async (overrides: UserOverrides = {}) => {
 export const createTestPublisher = async (overrides: PublisherOverrides = {}) => {
   return prisma.publisher.create({
     data: {
-      name: `publisher_${Date.now()}`,
+      name: `publisher_${randomUUID()}`,
       ...overrides,
     },
   });
@@ -76,7 +77,7 @@ export const createTestPublisher = async (overrides: PublisherOverrides = {}) =>
 export const createTestCategory = async (overrides: CategoryOverrides = {}) => {
   return prisma.category.create({
     data: {
-      name: `category_${Date.now()}`,
+      name: `category_${randomUUID()}`,
       ...overrides,
     },
   });
@@ -88,7 +89,7 @@ export const createTestBook = async (publisherId: number, overrides: BookOverrid
   const book = await prisma.book.create({
     data: {
       title: overrides.title ?? 'test book',
-      googleBookId: overrides.googleBookId ?? `google_${Date.now()}`,
+      googleBookId: overrides.googleBookId ?? `google_${randomUUID()}`,
       averageRating: overrides.averageRating ?? null,
       ratingCount: overrides.ratingCount ?? 0,
       language: overrides.language ?? null,
@@ -110,7 +111,7 @@ export const createTestBook = async (publisherId: number, overrides: BookOverrid
 export const createTestAuthor = async () => {
   return prisma.author.create({
     data: {
-      name: `author_${Date.now()}`,
+      name: `author_${randomUUID()}`,
     },
   });
 };
@@ -150,7 +151,7 @@ export const createBookCategory = async (bookId: number, categoryId: number) => 
 export const createRefreshToken = async (userId: number) => {
   return prisma.refreshToken.create({
     data: {
-      token: `token_${Date.now()}`,
+      token: `token_${randomUUID()}`,
       expiresAt: new Date(Date.now() + 1000 * 60 * 60),
       userId,
     },
