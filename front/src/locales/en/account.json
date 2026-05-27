@@ -1,0 +1,38 @@
+{
+  "errors": {
+    "title": "Error",
+    "userNotFound": "Unable to modify account: missing user ID.",
+    "noModification": "No changes made.",
+    "noModificationDescription": "No changes were made.",
+    "errorUsername": "The username is already taken.",
+    "errorEmail": "This email is already in use.",
+    "defaultError": "An error occurred while modifying your account.",
+    "errorsDeleteAccount": "An error occurred while deleting your account.",
+    "passwordMismatch": "Passwords do not match."
+  },
+  "success": {
+    "modificationSuccess": "Modification successful.",
+    "modificationSuccessDescription": "Your account has been successfully modified.",
+    "deleteSuccess": "Deletion successful.",
+    "deleteSuccessDescription": "Your account has been successfully deleted."
+  },
+  "deconnect": {
+    "title": "Disconnection",
+    "description": "You have been successfully disconnected."
+  },
+  "generale": {
+    "logout": "Log out",
+    "deleteAccount": "Delete account",
+    "modification": "Edit your information",
+    "deleteConfirme": "Are you sure you want to delete your account? This action is irreversible.",
+    "deleteConfirmeYes": "Yes",
+    "deleteConfirmeNo": "No",
+    "modificationConfirme": "Confirm changes",
+    "modificationCancel": "Cancel all changes",
+    "account": "My account",
+    "confirmPassword": "Confirm password",
+    "password": "Password",
+    "email": "Email",
+    "username": "Username"
+  }
+}

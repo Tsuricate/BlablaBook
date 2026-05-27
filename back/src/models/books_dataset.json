@@ -1,0 +1,3602 @@
+[
+  {
+    "id": "book_1",
+    "title": "1984",
+    "authors": ["Arthur Conan Doyle"],
+    "publisher": "Fayard",
+    "publishedDate": "1903-03-27",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "0400188874",
+    "isbn13": "3705515569502",
+    "pageCount": 235,
+    "categories": ["Histoire", "Poésie"],
+    "averageRating": 3.6,
+    "ratingCount": 256,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_2",
+    "title": "Alcools",
+    "authors": ["Jules Verne"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1996-06-19",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "1660791300",
+    "isbn13": "5686590019658",
+    "pageCount": 567,
+    "categories": ["Drame"],
+    "averageRating": 4.8,
+    "ratingCount": 1704,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_3",
+    "title": "Antigone",
+    "authors": ["Jean-Paul Sartre"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "1958-06-15",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "9145755482",
+    "isbn13": "3456234353269",
+    "pageCount": 285,
+    "categories": ["Science-Fiction"],
+    "averageRating": 4.2,
+    "ratingCount": 3240,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_4",
+    "title": "Autant en emporte le vent",
+    "authors": ["Virginia Woolf"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "1945-09-08",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "0593494994",
+    "isbn13": "7591700256526",
+    "pageCount": 354,
+    "categories": ["Histoire"],
+    "averageRating": 4.8,
+    "ratingCount": 1706,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_5",
+    "title": "Bel-Ami",
+    "authors": ["William Shakespeare"],
+    "publisher": "Albin Michel",
+    "publishedDate": "2008-10-23",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "4487586363",
+    "isbn13": "0297910577411",
+    "pageCount": 750,
+    "categories": ["Jeunesse", "Histoire", "Science-Fiction"],
+    "averageRating": 3.9,
+    "ratingCount": 3641,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_6",
+    "title": "Charlie et la Chocolaterie",
+    "authors": ["William Shakespeare"],
+    "publisher": "Pocket",
+    "publishedDate": "1981-01-25",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "2580733024",
+    "isbn13": "9538359660915",
+    "pageCount": 386,
+    "categories": ["Histoire", "Science", "Romance"],
+    "averageRating": 3.5,
+    "ratingCount": 4420,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_7",
+    "title": "Churchill",
+    "authors": ["William Shakespeare"],
+    "publisher": "Fayard",
+    "publishedDate": "1926-10-22",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "7322101380",
+    "isbn13": "0891379488709",
+    "pageCount": 627,
+    "categories": ["Philosophie"],
+    "averageRating": 4.0,
+    "ratingCount": 2293,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_8",
+    "title": "Crime et Châtiment",
+    "authors": ["Arthur Conan Doyle"],
+    "publisher": "Belfond",
+    "publishedDate": "1985-08-14",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "0390553837",
+    "isbn13": "6047872249126",
+    "pageCount": 582,
+    "categories": ["Philosophie", "Aventure", "Jeunesse"],
+    "averageRating": 4.3,
+    "ratingCount": 3482,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_9",
+    "title": "Critique de la raison pure",
+    "authors": ["Dan Brown"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "1952-09-17",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "3555799624",
+    "isbn13": "6103022412899",
+    "pageCount": 713,
+    "categories": ["Science-Fiction"],
+    "averageRating": 4.2,
+    "ratingCount": 1317,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_10",
+    "title": "Da Vinci Code",
+    "authors": ["Simone de Beauvoir"],
+    "publisher": "Hachette",
+    "publishedDate": "2003-12-23",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "0113154953",
+    "isbn13": "4860002357823",
+    "pageCount": 749,
+    "categories": ["Biographie", "Science-Fiction"],
+    "averageRating": 3.8,
+    "ratingCount": 3613,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_11",
+    "title": "Da Vinci Code",
+    "authors": ["James Joyce"],
+    "publisher": "Belfond",
+    "publishedDate": "1940-11-10",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "9047477514",
+    "isbn13": "0871063074659",
+    "pageCount": 586,
+    "categories": ["Policier"],
+    "averageRating": 3.3,
+    "ratingCount": 322,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_12",
+    "title": "Devenir",
+    "authors": ["Herman Melville"],
+    "publisher": "Stock",
+    "publishedDate": "1939-06-10",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "8373110617",
+    "isbn13": "2175658210746",
+    "pageCount": 247,
+    "categories": ["Horreur"],
+    "averageRating": 4.3,
+    "ratingCount": 1873,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_13",
+    "title": "Dracula",
+    "authors": ["Mark Twain"],
+    "publisher": "Pocket",
+    "publishedDate": "1960-06-28",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "9453153754",
+    "isbn13": "7123185709732",
+    "pageCount": 657,
+    "categories": ["Histoire"],
+    "averageRating": 3.1,
+    "ratingCount": 1353,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_14",
+    "title": "Dune",
+    "authors": ["Milan Kundera"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "1941-05-26",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "7505465267",
+    "isbn13": "8402977379621",
+    "pageCount": 189,
+    "categories": ["Thriller", "Fantasy"],
+    "averageRating": 3.3,
+    "ratingCount": 1748,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_15",
+    "title": "Einstein",
+    "authors": ["Virginia Woolf"],
+    "publisher": "Fayard",
+    "publishedDate": "1938-06-06",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "4447130513",
+    "isbn13": "5822445531675",
+    "pageCount": 456,
+    "categories": ["Aventure", "Romance"],
+    "averageRating": 4.7,
+    "ratingCount": 1272,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_16",
+    "title": "Einstein",
+    "authors": ["J.R.R. Tolkien"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "1912-06-09",
+    "description": "Un roman profond qui questionne la nature humaine et la société.",
+    "isbn10": "9989351049",
+    "isbn13": "7084010840225",
+    "pageCount": 609,
+    "categories": ["Biographie", "Philosophie"],
+    "averageRating": 4.4,
+    "ratingCount": 4054,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_17",
+    "title": "Eragon",
+    "authors": ["Sigmund Freud"],
+    "publisher": "Stock",
+    "publishedDate": "1973-01-07",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "8885534394",
+    "isbn13": "7696514114070",
+    "pageCount": 228,
+    "categories": ["Aventure", "Drame"],
+    "averageRating": 3.1,
+    "ratingCount": 4955,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_18",
+    "title": "Fondation",
+    "authors": ["James Joyce"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "1947-02-10",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "1979162106",
+    "isbn13": "6843634080108",
+    "pageCount": 155,
+    "categories": ["Histoire", "Aventure"],
+    "averageRating": 4.0,
+    "ratingCount": 958,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_19",
+    "title": "Frankenstein",
+    "authors": ["Bram Stoker"],
+    "publisher": "Grasset",
+    "publishedDate": "1908-06-18",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "1706163084",
+    "isbn13": "3031379469834",
+    "pageCount": 163,
+    "categories": ["Science", "Roman"],
+    "averageRating": 4.7,
+    "ratingCount": 2059,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_20",
+    "title": "Frida",
+    "authors": ["Bram Stoker"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1905-06-05",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "7910479185",
+    "isbn13": "6987993699539",
+    "pageCount": 332,
+    "categories": ["Philosophie"],
+    "averageRating": 3.9,
+    "ratingCount": 3525,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_21",
+    "title": "Gandhi",
+    "authors": ["Victor Hugo"],
+    "publisher": "Pocket",
+    "publishedDate": "1992-01-18",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "8366237204",
+    "isbn13": "2413485796633",
+    "pageCount": 501,
+    "categories": ["Jeunesse"],
+    "averageRating": 4.7,
+    "ratingCount": 4769,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_22",
+    "title": "Germinal",
+    "authors": ["J.R.R. Tolkien"],
+    "publisher": "Flammarion",
+    "publishedDate": "1934-10-08",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "6024448115",
+    "isbn13": "1727103413823",
+    "pageCount": 671,
+    "categories": ["Fantasy", "Poésie"],
+    "averageRating": 4.1,
+    "ratingCount": 3939,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_23",
+    "title": "Gone Girl",
+    "authors": ["Oscar Wilde"],
+    "publisher": "Grasset",
+    "publishedDate": "1963-11-09",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "4143227939",
+    "isbn13": "8789447222262",
+    "pageCount": 304,
+    "categories": ["Science-Fiction"],
+    "averageRating": 3.3,
+    "ratingCount": 23,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_24",
+    "title": "Guerre et Paix",
+    "authors": ["Virginia Woolf"],
+    "publisher": "Grasset",
+    "publishedDate": "1979-08-04",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "9130909352",
+    "isbn13": "0011729194893",
+    "pageCount": 379,
+    "categories": ["Philosophie", "Poésie"],
+    "averageRating": 3.4,
+    "ratingCount": 930,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_25",
+    "title": "Hamlet",
+    "authors": ["Stephen King"],
+    "publisher": "Belfond",
+    "publishedDate": "1984-10-12",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "9268549645",
+    "isbn13": "4337454638862",
+    "pageCount": 496,
+    "categories": ["Science-Fiction"],
+    "averageRating": 3.9,
+    "ratingCount": 4323,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_26",
+    "title": "Hamlet",
+    "authors": ["Charlotte Brontë"],
+    "publisher": "Stock",
+    "publishedDate": "1943-09-30",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "9589834145",
+    "isbn13": "8960569349558",
+    "pageCount": 212,
+    "categories": ["Aventure"],
+    "averageRating": 4.1,
+    "ratingCount": 25,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_27",
+    "title": "Hamlet",
+    "authors": ["Ray Bradbury"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "2003-08-07",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "4396315695",
+    "isbn13": "8351477782279",
+    "pageCount": 402,
+    "categories": ["Romance"],
+    "averageRating": 3.9,
+    "ratingCount": 516,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_28",
+    "title": "Harry Potter",
+    "authors": ["Franz Kafka"],
+    "publisher": "Flammarion",
+    "publishedDate": "1976-12-05",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "2492958733",
+    "isbn13": "1914438396486",
+    "pageCount": 114,
+    "categories": ["Thriller", "Policier", "Philosophie"],
+    "averageRating": 4.1,
+    "ratingCount": 2663,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_29",
+    "title": "Harry Potter",
+    "authors": ["William Shakespeare"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "2020-11-28",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "3059687289",
+    "isbn13": "4819705396973",
+    "pageCount": 551,
+    "categories": ["Jeunesse", "Science-Fiction", "Science"],
+    "averageRating": 3.8,
+    "ratingCount": 4100,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_30",
+    "title": "Hyperion",
+    "authors": ["H.G. Wells"],
+    "publisher": "Fayard",
+    "publishedDate": "2017-10-15",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "9022597181",
+    "isbn13": "1739501920038",
+    "pageCount": 789,
+    "categories": ["Science", "Policier"],
+    "averageRating": 3.9,
+    "ratingCount": 489,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_31",
+    "title": "Jane Eyre",
+    "authors": ["Mark Twain"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "1946-12-08",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "1948854670",
+    "isbn13": "1236801864612",
+    "pageCount": 432,
+    "categories": ["Science-Fiction", "Philosophie"],
+    "averageRating": 3.4,
+    "ratingCount": 1442,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_32",
+    "title": "Jane Eyre",
+    "authors": ["Charles Baudelaire"],
+    "publisher": "Stock",
+    "publishedDate": "1959-04-26",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "1253347403",
+    "isbn13": "3433764608714",
+    "pageCount": 656,
+    "categories": ["Science"],
+    "averageRating": 3.7,
+    "ratingCount": 1688,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_33",
+    "title": "Jane Eyre",
+    "authors": ["Kurt Vonnegut"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "2022-05-06",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "8952265881",
+    "isbn13": "8534286227621",
+    "pageCount": 759,
+    "categories": ["Roman", "Philosophie", "Poésie"],
+    "averageRating": 3.1,
+    "ratingCount": 2873,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_34",
+    "title": "Je suis une légende",
+    "authors": ["James Joyce"],
+    "publisher": "Stock",
+    "publishedDate": "2015-03-20",
+    "description": "Un livre qui vous fera voyager à travers le temps et l'espace.",
+    "isbn10": "4882685109",
+    "isbn13": "8663643224249",
+    "pageCount": 619,
+    "categories": ["Science", "Philosophie"],
+    "averageRating": 3.0,
+    "ratingCount": 2181,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_35",
+    "title": "L'Amant",
+    "authors": ["Friedrich Nietzsche"],
+    "publisher": "Seuil",
+    "publishedDate": "1941-02-08",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "5597066890",
+    "isbn13": "7042955513848",
+    "pageCount": 725,
+    "categories": ["Science", "Philosophie"],
+    "averageRating": 3.5,
+    "ratingCount": 3522,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_36",
+    "title": "L'Assassin royal",
+    "authors": ["Bram Stoker"],
+    "publisher": "Plon",
+    "publishedDate": "1906-06-22",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "8750887360",
+    "isbn13": "6994569543929",
+    "pageCount": 409,
+    "categories": ["Science-Fiction"],
+    "averageRating": 3.7,
+    "ratingCount": 2912,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_37",
+    "title": "L'Exorciste",
+    "authors": ["Oscar Wilde"],
+    "publisher": "Pocket",
+    "publishedDate": "1935-02-18",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "9372149572",
+    "isbn13": "2820406976360",
+    "pageCount": 267,
+    "categories": ["Horreur", "Romance", "Histoire"],
+    "averageRating": 4.9,
+    "ratingCount": 1766,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_38",
+    "title": "L'Origine des espèces",
+    "authors": ["Charles Dickens"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "1990-04-23",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "9820366523",
+    "isbn13": "2578384630340",
+    "pageCount": 261,
+    "categories": ["Science-Fiction", "Thriller"],
+    "averageRating": 4.8,
+    "ratingCount": 4874,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_39",
+    "title": "L'Univers dans une coquille de noix",
+    "authors": ["Milan Kundera"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1929-05-19",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "1724162037",
+    "isbn13": "8619433482968",
+    "pageCount": 725,
+    "categories": ["Romance", "Fantasy", "Jeunesse"],
+    "averageRating": 4.7,
+    "ratingCount": 4929,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_40",
+    "title": "L'Éducation sentimentale",
+    "authors": ["James Joyce"],
+    "publisher": "Seuil",
+    "publishedDate": "1917-03-20",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "6298294398",
+    "isbn13": "9472319330302",
+    "pageCount": 217,
+    "categories": ["Biographie", "Jeunesse", "Science-Fiction"],
+    "averageRating": 4.3,
+    "ratingCount": 3624,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_41",
+    "title": "L'Épée de vérité",
+    "authors": ["Ray Bradbury"],
+    "publisher": "Hachette",
+    "publishedDate": "1980-07-15",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "6157226875",
+    "isbn13": "2763421379531",
+    "pageCount": 508,
+    "categories": ["Romance", "Aventure"],
+    "averageRating": 4.5,
+    "ratingCount": 1039,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_42",
+    "title": "L'Éthique",
+    "authors": ["Toni Morrison"],
+    "publisher": "Seuil",
+    "publishedDate": "1933-04-24",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "0810305521",
+    "isbn13": "3465044542702",
+    "pageCount": 459,
+    "categories": ["Jeunesse", "Histoire"],
+    "averageRating": 4.7,
+    "ratingCount": 220,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_43",
+    "title": "L'Étrange Cas du Dr Jekyll et de Mr Hyde",
+    "authors": ["Franz Kafka"],
+    "publisher": "Stock",
+    "publishedDate": "1955-06-11",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "0724507924",
+    "isbn13": "4991721165779",
+    "pageCount": 415,
+    "categories": ["Biographie"],
+    "averageRating": 4.5,
+    "ratingCount": 3376,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_44",
+    "title": "L'Étrange Cas du Dr Jekyll et de Mr Hyde",
+    "authors": ["Friedrich Nietzsche"],
+    "publisher": "Fayard",
+    "publishedDate": "2004-05-20",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "0671219254",
+    "isbn13": "6254645812195",
+    "pageCount": 572,
+    "categories": ["Biographie", "Fantasy", "Policier"],
+    "averageRating": 3.5,
+    "ratingCount": 3037,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_45",
+    "title": "L'Étrange Cas du Dr Jekyll et de Mr Hyde",
+    "authors": ["Frank Herbert"],
+    "publisher": "Fayard",
+    "publishedDate": "1971-08-30",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "9776969657",
+    "isbn13": "6135911713572",
+    "pageCount": 310,
+    "categories": ["Poésie", "Drame"],
+    "averageRating": 4.9,
+    "ratingCount": 2821,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_46",
+    "title": "L'Étranger",
+    "authors": ["Charlotte Brontë"],
+    "publisher": "Belfond",
+    "publishedDate": "1979-11-20",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "1767294001",
+    "isbn13": "7971719209241",
+    "pageCount": 695,
+    "categories": ["Policier"],
+    "averageRating": 3.5,
+    "ratingCount": 3953,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_47",
+    "title": "L'Étranger",
+    "authors": ["Ray Bradbury"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1942-06-17",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "0158226326",
+    "isbn13": "4011369523208",
+    "pageCount": 278,
+    "categories": ["Poésie", "Drame"],
+    "averageRating": 3.9,
+    "ratingCount": 1198,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_48",
+    "title": "L'Étranger",
+    "authors": ["Kurt Vonnegut"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1962-06-16",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "5125246189",
+    "isbn13": "4681327590778",
+    "pageCount": 446,
+    "categories": ["Horreur"],
+    "averageRating": 4.9,
+    "ratingCount": 1445,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_49",
+    "title": "L'Être et le Néant",
+    "authors": ["Ernest Hemingway"],
+    "publisher": "Hachette",
+    "publishedDate": "2012-07-13",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "5348758069",
+    "isbn13": "7681253363468",
+    "pageCount": 391,
+    "categories": ["Romance", "Fantasy", "Roman"],
+    "averageRating": 3.4,
+    "ratingCount": 3300,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_50",
+    "title": "L'Être et le Néant",
+    "authors": ["Mary Shelley"],
+    "publisher": "Grasset",
+    "publishedDate": "2012-12-26",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "1643372424",
+    "isbn13": "3247155802693",
+    "pageCount": 441,
+    "categories": ["Fantasy", "Science", "Thriller"],
+    "averageRating": 4.8,
+    "ratingCount": 3384,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_51",
+    "title": "L'Île au trésor",
+    "authors": ["Frank Herbert"],
+    "publisher": "Stock",
+    "publishedDate": "2020-01-16",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "0589155672",
+    "isbn13": "8284223565709",
+    "pageCount": 499,
+    "categories": ["Philosophie", "Roman"],
+    "averageRating": 3.2,
+    "ratingCount": 1573,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_52",
+    "title": "L'Île au trésor",
+    "authors": ["Kurt Vonnegut"],
+    "publisher": "Belfond",
+    "publishedDate": "1939-02-21",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "1495586850",
+    "isbn13": "5554915222603",
+    "pageCount": 249,
+    "categories": ["Roman"],
+    "averageRating": 4.4,
+    "ratingCount": 3691,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_53",
+    "title": "L'Île au trésor",
+    "authors": ["Toni Morrison"],
+    "publisher": "Grasset",
+    "publishedDate": "1928-02-04",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "1806776905",
+    "isbn13": "9437774468606",
+    "pageCount": 498,
+    "categories": ["Science-Fiction", "Drame"],
+    "averageRating": 4.8,
+    "ratingCount": 1508,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_54",
+    "title": "L'Île au trésor",
+    "authors": ["Gustave Flaubert"],
+    "publisher": "Flammarion",
+    "publishedDate": "1926-05-11",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "5092303352",
+    "isbn13": "7287132117771",
+    "pageCount": 691,
+    "categories": ["Aventure", "Histoire"],
+    "averageRating": 3.9,
+    "ratingCount": 601,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_55",
+    "title": "La Chute de Constantinople",
+    "authors": ["H.G. Wells"],
+    "publisher": "Actes Sud",
+    "publishedDate": "2001-02-23",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "4940789348",
+    "isbn13": "5730954797631",
+    "pageCount": 469,
+    "categories": ["Policier", "Science-Fiction", "Romance"],
+    "averageRating": 4.3,
+    "ratingCount": 4853,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_56",
+    "title": "La Chute de Constantinople",
+    "authors": ["Charles Dickens"],
+    "publisher": "Seuil",
+    "publishedDate": "1955-12-11",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "6350994915",
+    "isbn13": "6308807043237",
+    "pageCount": 734,
+    "categories": ["Jeunesse", "Thriller", "Roman"],
+    "averageRating": 3.5,
+    "ratingCount": 909,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_57",
+    "title": "La Condition de l'homme moderne",
+    "authors": ["Sigmund Freud"],
+    "publisher": "Hachette",
+    "publishedDate": "1944-09-06",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "2949588562",
+    "isbn13": "5889816251685",
+    "pageCount": 530,
+    "categories": ["Horreur", "Drame"],
+    "averageRating": 3.6,
+    "ratingCount": 2364,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_58",
+    "title": "La Femme à la fenêtre",
+    "authors": ["Edgar Allan Poe"],
+    "publisher": "Belfond",
+    "publishedDate": "1967-06-15",
+    "description": "Un roman profond qui questionne la nature humaine et la société.",
+    "isbn10": "4500013086",
+    "isbn13": "1199673270250",
+    "pageCount": 326,
+    "categories": ["Romance", "Histoire", "Science"],
+    "averageRating": 3.4,
+    "ratingCount": 3750,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_59",
+    "title": "La Fille dans le jardin",
+    "authors": ["Kurt Vonnegut"],
+    "publisher": "Plon",
+    "publishedDate": "1925-02-04",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "1572083006",
+    "isbn13": "8254810902927",
+    "pageCount": 480,
+    "categories": ["Jeunesse", "Science-Fiction", "Policier"],
+    "averageRating": 3.5,
+    "ratingCount": 4369,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_60",
+    "title": "La Fille du train",
+    "authors": ["Dan Brown"],
+    "publisher": "Fayard",
+    "publishedDate": "1975-11-07",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "8339084387",
+    "isbn13": "5447712707095",
+    "pageCount": 162,
+    "categories": ["Philosophie"],
+    "averageRating": 4.1,
+    "ratingCount": 3772,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_61",
+    "title": "La Guerre des Gaules",
+    "authors": ["Jean-Paul Sartre"],
+    "publisher": "Grasset",
+    "publishedDate": "1903-05-29",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "4054388560",
+    "isbn13": "8300225441915",
+    "pageCount": 271,
+    "categories": ["Philosophie", "Aventure", "Biographie"],
+    "averageRating": 3.4,
+    "ratingCount": 2920,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_62",
+    "title": "La Lettre écarlate",
+    "authors": ["Paulo Coelho"],
+    "publisher": "Flammarion",
+    "publishedDate": "1995-08-10",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "4816540367",
+    "isbn13": "3873710595807",
+    "pageCount": 774,
+    "categories": ["Biographie", "Science-Fiction", "Roman"],
+    "averageRating": 4.5,
+    "ratingCount": 4211,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_63",
+    "title": "La Maison des damnés",
+    "authors": ["Mary Shelley"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1985-01-17",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "7302128175",
+    "isbn13": "5750487772391",
+    "pageCount": 267,
+    "categories": ["Romance", "Thriller"],
+    "averageRating": 4.0,
+    "ratingCount": 2957,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_64",
+    "title": "La Maison des murmures",
+    "authors": ["Frank Herbert"],
+    "publisher": "Grasset",
+    "publishedDate": "1985-07-03",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "0525824347",
+    "isbn13": "2847138260698",
+    "pageCount": 712,
+    "categories": ["Fantasy", "Poésie", "Histoire"],
+    "averageRating": 3.8,
+    "ratingCount": 623,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_65",
+    "title": "La Nausée",
+    "authors": ["Victor Hugo"],
+    "publisher": "Fayard",
+    "publishedDate": "1980-09-14",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "9508007554",
+    "isbn13": "9142346721727",
+    "pageCount": 445,
+    "categories": ["Drame", "Jeunesse", "Philosophie"],
+    "averageRating": 4.3,
+    "ratingCount": 1916,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_66",
+    "title": "La Nuit du chasseur",
+    "authors": ["Haruki Murakami"],
+    "publisher": "Grasset",
+    "publishedDate": "1942-11-26",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "9935158849",
+    "isbn13": "6194775253137",
+    "pageCount": 534,
+    "categories": ["Jeunesse", "Thriller", "Poésie"],
+    "averageRating": 3.7,
+    "ratingCount": 2873,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_67",
+    "title": "La Planète des singes",
+    "authors": ["Fyodor Dostoevsky"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1949-11-19",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "7676170396",
+    "isbn13": "7979307088890",
+    "pageCount": 350,
+    "categories": ["Roman", "Biographie", "Drame"],
+    "averageRating": 5.0,
+    "ratingCount": 2922,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_68",
+    "title": "La Planète des singes",
+    "authors": ["Philip K. Dick"],
+    "publisher": "Hachette",
+    "publishedDate": "2012-09-01",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "9844262330",
+    "isbn13": "5975042569969",
+    "pageCount": 306,
+    "categories": ["Science-Fiction", "Science"],
+    "averageRating": 4.8,
+    "ratingCount": 2341,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_69",
+    "title": "La Princesse de Clèves",
+    "authors": ["Franz Kafka"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1952-02-15",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "3787974403",
+    "isbn13": "9745269713751",
+    "pageCount": 206,
+    "categories": ["Jeunesse", "Policier", "Poésie"],
+    "averageRating": 4.3,
+    "ratingCount": 3600,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_70",
+    "title": "La République",
+    "authors": ["Toni Morrison"],
+    "publisher": "Belfond",
+    "publishedDate": "1946-05-06",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "8633232666",
+    "isbn13": "6168239070961",
+    "pageCount": 641,
+    "categories": ["Philosophie", "Poésie", "Policier"],
+    "averageRating": 3.5,
+    "ratingCount": 4589,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_71",
+    "title": "La Révolution française",
+    "authors": ["Stephen King"],
+    "publisher": "Seuil",
+    "publishedDate": "2010-12-24",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "8899356499",
+    "isbn13": "3460709163649",
+    "pageCount": 334,
+    "categories": ["Horreur"],
+    "averageRating": 4.8,
+    "ratingCount": 2220,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_72",
+    "title": "La Société du spectacle",
+    "authors": ["George Orwell"],
+    "publisher": "Fayard",
+    "publishedDate": "1968-03-27",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "6504929759",
+    "isbn13": "4938372759367",
+    "pageCount": 155,
+    "categories": ["Histoire", "Romance"],
+    "averageRating": 3.9,
+    "ratingCount": 4166,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_73",
+    "title": "La Société du spectacle",
+    "authors": ["William Shakespeare"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1907-05-24",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "0866645539",
+    "isbn13": "1305103238110",
+    "pageCount": 162,
+    "categories": ["Jeunesse", "Thriller"],
+    "averageRating": 3.6,
+    "ratingCount": 2031,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_74",
+    "title": "La Structure des révolutions scientifiques",
+    "authors": ["Simone de Beauvoir"],
+    "publisher": "Fayard",
+    "publishedDate": "2007-12-08",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "6356906513",
+    "isbn13": "1072324815288",
+    "pageCount": 298,
+    "categories": ["Biographie", "Philosophie", "Roman"],
+    "averageRating": 4.0,
+    "ratingCount": 4395,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_75",
+    "title": "La Structure des révolutions scientifiques",
+    "authors": ["Charles Baudelaire"],
+    "publisher": "Hachette",
+    "publishedDate": "2002-07-28",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "8401336028",
+    "isbn13": "5555949505289",
+    "pageCount": 375,
+    "categories": ["Thriller", "Horreur"],
+    "averageRating": 4.8,
+    "ratingCount": 4867,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_76",
+    "title": "La Théorie du tout",
+    "authors": ["William Shakespeare"],
+    "publisher": "Plon",
+    "publishedDate": "1910-02-08",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "4050356311",
+    "isbn13": "7703058197970",
+    "pageCount": 562,
+    "categories": ["Science-Fiction", "Aventure", "Philosophie"],
+    "averageRating": 4.5,
+    "ratingCount": 3230,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_77",
+    "title": "La Tour Sombre",
+    "authors": ["John Steinbeck"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "1976-01-06",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "4950282246",
+    "isbn13": "3030054081317",
+    "pageCount": 572,
+    "categories": ["Poésie", "Aventure", "Policier"],
+    "averageRating": 3.9,
+    "ratingCount": 3017,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_78",
+    "title": "La Vie devant soi",
+    "authors": ["Bram Stoker"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1913-02-05",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "3132936232",
+    "isbn13": "9798350607660",
+    "pageCount": 658,
+    "categories": ["Science", "Jeunesse"],
+    "averageRating": 3.6,
+    "ratingCount": 1784,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_79",
+    "title": "La Vérité sur l'affaire Harry Quebert",
+    "authors": ["Gabriel García Márquez"],
+    "publisher": "Grasset",
+    "publishedDate": "1975-11-27",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "0236819172",
+    "isbn13": "5142622531175",
+    "pageCount": 368,
+    "categories": ["Roman"],
+    "averageRating": 3.4,
+    "ratingCount": 322,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_80",
+    "title": "Le Capitaine Fracasse",
+    "authors": ["Agatha Christie"],
+    "publisher": "Belfond",
+    "publishedDate": "1955-10-19",
+    "description": "Un roman profond qui questionne la nature humaine et la société.",
+    "isbn10": "0459649526",
+    "isbn13": "7480166924516",
+    "pageCount": 659,
+    "categories": ["Romance", "Histoire", "Fantasy"],
+    "averageRating": 3.8,
+    "ratingCount": 2708,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_81",
+    "title": "Le Cerveau et la Pensée",
+    "authors": ["Jane Austen"],
+    "publisher": "Pocket",
+    "publishedDate": "1969-12-02",
+    "description": "Un livre qui vous fera voyager à travers le temps et l'espace.",
+    "isbn10": "2267846463",
+    "isbn13": "1203487157297",
+    "pageCount": 141,
+    "categories": ["Roman"],
+    "averageRating": 5.0,
+    "ratingCount": 891,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_82",
+    "title": "Le Chien des Baskerville",
+    "authors": ["Albert Einstein"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1981-06-12",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "5404723794",
+    "isbn13": "6972579938571",
+    "pageCount": 333,
+    "categories": ["Horreur"],
+    "averageRating": 4.2,
+    "ratingCount": 2473,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_83",
+    "title": "Le Chien des Baskerville",
+    "authors": ["Philip K. Dick"],
+    "publisher": "Grasset",
+    "publishedDate": "1924-07-16",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "5059196822",
+    "isbn13": "0750590923874",
+    "pageCount": 152,
+    "categories": ["Histoire"],
+    "averageRating": 4.7,
+    "ratingCount": 145,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_84",
+    "title": "Le Chien des Baskerville",
+    "authors": ["George Orwell"],
+    "publisher": "Grasset",
+    "publishedDate": "1960-09-06",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "4318668138",
+    "isbn13": "8404499627675",
+    "pageCount": 262,
+    "categories": ["Aventure"],
+    "averageRating": 4.6,
+    "ratingCount": 4385,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_85",
+    "title": "Le Chien des Baskerville",
+    "authors": ["Stephen King"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1904-07-14",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "3511058404",
+    "isbn13": "3980031763055",
+    "pageCount": 737,
+    "categories": ["Romance"],
+    "averageRating": 4.7,
+    "ratingCount": 4354,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_86",
+    "title": "Le Comte de Monte-Cristo",
+    "authors": ["Dan Brown"],
+    "publisher": "Seuil",
+    "publishedDate": "1937-01-29",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "2349278766",
+    "isbn13": "8982775170288",
+    "pageCount": 235,
+    "categories": ["Science", "Poésie", "Policier"],
+    "averageRating": 3.7,
+    "ratingCount": 957,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_87",
+    "title": "Le Cycle de l'Assassin",
+    "authors": ["Emily Brontë"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "1940-08-01",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "2339688027",
+    "isbn13": "6375390527599",
+    "pageCount": 403,
+    "categories": ["Biographie", "Drame", "Science-Fiction"],
+    "averageRating": 4.2,
+    "ratingCount": 927,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_88",
+    "title": "Le Gène égoïste",
+    "authors": ["Victor Hugo"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1918-03-31",
+    "description": "Un livre qui vous fera voyager à travers le temps et l'espace.",
+    "isbn10": "2500896817",
+    "isbn13": "6296380807347",
+    "pageCount": 742,
+    "categories": ["Science-Fiction"],
+    "averageRating": 3.4,
+    "ratingCount": 1865,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_89",
+    "title": "Le Gène égoïste",
+    "authors": ["Simone de Beauvoir"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "1952-01-08",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "0310239074",
+    "isbn13": "3410131827041",
+    "pageCount": 705,
+    "categories": ["Jeunesse"],
+    "averageRating": 5.0,
+    "ratingCount": 1643,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_90",
+    "title": "Le Hasard et la Nécessité",
+    "authors": ["Charlotte Brontë"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "2004-10-11",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "2428501389",
+    "isbn13": "5052047265585",
+    "pageCount": 126,
+    "categories": ["Drame", "Biographie"],
+    "averageRating": 4.6,
+    "ratingCount": 2604,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_91",
+    "title": "Le Hobbit",
+    "authors": ["Albert Camus"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "1975-12-22",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "5289955696",
+    "isbn13": "0669216695557",
+    "pageCount": 659,
+    "categories": ["Romance"],
+    "averageRating": 4.1,
+    "ratingCount": 1710,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_92",
+    "title": "Le Hobbit",
+    "authors": ["Gabriel García Márquez"],
+    "publisher": "Plon",
+    "publishedDate": "2022-06-30",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "1188793964",
+    "isbn13": "2254967348557",
+    "pageCount": 679,
+    "categories": ["Policier", "Thriller", "Drame"],
+    "averageRating": 4.2,
+    "ratingCount": 4125,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_93",
+    "title": "Le Hobbit",
+    "authors": ["Arthur Conan Doyle"],
+    "publisher": "Stock",
+    "publishedDate": "1918-01-05",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "7529741270",
+    "isbn13": "9865370665901",
+    "pageCount": 168,
+    "categories": ["Poésie", "Roman", "Romance"],
+    "averageRating": 3.2,
+    "ratingCount": 4293,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_94",
+    "title": "Le Horla",
+    "authors": ["Isaac Asimov"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "2004-02-25",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "2061173806",
+    "isbn13": "8253840785228",
+    "pageCount": 599,
+    "categories": ["Philosophie", "Roman"],
+    "averageRating": 5.0,
+    "ratingCount": 2425,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_95",
+    "title": "Le Journal d'Anne Frank",
+    "authors": ["Arthur Conan Doyle"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "1927-06-25",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "7736168107",
+    "isbn13": "0525134253985",
+    "pageCount": 101,
+    "categories": ["Aventure", "Jeunesse"],
+    "averageRating": 3.5,
+    "ratingCount": 2941,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_96",
+    "title": "Le Meilleur des mondes",
+    "authors": ["Franz Kafka"],
+    "publisher": "Belfond",
+    "publishedDate": "1986-01-25",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "8126501029",
+    "isbn13": "4946308835170",
+    "pageCount": 159,
+    "categories": ["Biographie", "Fantasy"],
+    "averageRating": 4.4,
+    "ratingCount": 2162,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_97",
+    "title": "Le Meilleur des mondes",
+    "authors": ["Jean-Paul Sartre"],
+    "publisher": "Pocket",
+    "publishedDate": "2000-08-08",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "9546347391",
+    "isbn13": "8546090633894",
+    "pageCount": 150,
+    "categories": ["Biographie", "Fantasy"],
+    "averageRating": 4.4,
+    "ratingCount": 4513,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_98",
+    "title": "Le Meurtre de Roger Ackroyd",
+    "authors": ["Homer"],
+    "publisher": "Plon",
+    "publishedDate": "2019-08-21",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "8434248292",
+    "isbn13": "8607384326938",
+    "pageCount": 254,
+    "categories": ["Poésie", "Biographie"],
+    "averageRating": 4.4,
+    "ratingCount": 1400,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_99",
+    "title": "Le Monde comme volonté et comme représentation",
+    "authors": ["Gustave Flaubert"],
+    "publisher": "Hachette",
+    "publishedDate": "1938-02-28",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "9172976095",
+    "isbn13": "4118984372622",
+    "pageCount": 465,
+    "categories": ["Fantasy", "Science-Fiction"],
+    "averageRating": 3.8,
+    "ratingCount": 4010,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_100",
+    "title": "Le Monde sans fin",
+    "authors": ["Virginia Woolf"],
+    "publisher": "Flammarion",
+    "publishedDate": "1955-03-31",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "0260634314",
+    "isbn13": "0171455855547",
+    "pageCount": 442,
+    "categories": ["Poésie", "Philosophie"],
+    "averageRating": 4.8,
+    "ratingCount": 140,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_101",
+    "title": "Le Mythe de Sisyphe",
+    "authors": ["Albert Camus"],
+    "publisher": "Hachette",
+    "publishedDate": "1947-06-12",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "8893442945",
+    "isbn13": "5063061497481",
+    "pageCount": 150,
+    "categories": ["Poésie"],
+    "averageRating": 5.0,
+    "ratingCount": 4450,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_102",
+    "title": "Le Nom du Vent",
+    "authors": ["Emily Brontë"],
+    "publisher": "Fayard",
+    "publishedDate": "2013-01-12",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "8703959822",
+    "isbn13": "3319356600407",
+    "pageCount": 260,
+    "categories": ["Aventure", "Horreur"],
+    "averageRating": 4.4,
+    "ratingCount": 42,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_103",
+    "title": "Le Nom du Vent",
+    "authors": ["Gustave Flaubert"],
+    "publisher": "Hachette",
+    "publishedDate": "1905-06-24",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "4251197373",
+    "isbn13": "7234482891447",
+    "pageCount": 101,
+    "categories": ["Poésie", "Histoire", "Drame"],
+    "averageRating": 4.5,
+    "ratingCount": 456,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_104",
+    "title": "Le Parfum d'Adam",
+    "authors": ["Gabriel García Márquez"],
+    "publisher": "Fayard",
+    "publishedDate": "1978-05-14",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "5347077203",
+    "isbn13": "6460191109380",
+    "pageCount": 104,
+    "categories": ["Policier", "Poésie", "Science"],
+    "averageRating": 4.4,
+    "ratingCount": 3534,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_105",
+    "title": "Le Patient",
+    "authors": ["Frank Herbert"],
+    "publisher": "Grasset",
+    "publishedDate": "1994-08-21",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "2302080002",
+    "isbn13": "1085327651196",
+    "pageCount": 783,
+    "categories": ["Poésie"],
+    "averageRating": 3.6,
+    "ratingCount": 2007,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_106",
+    "title": "Le Petit Nicolas",
+    "authors": ["Charles Baudelaire"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "1975-12-13",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "9059743381",
+    "isbn13": "6962055489442",
+    "pageCount": 309,
+    "categories": ["Thriller", "Fantasy"],
+    "averageRating": 3.4,
+    "ratingCount": 1112,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_107",
+    "title": "Le Petit Prince",
+    "authors": ["William Shakespeare"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "1966-01-11",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "3874099707",
+    "isbn13": "4234351779330",
+    "pageCount": 337,
+    "categories": ["Poésie", "Philosophie", "Roman"],
+    "averageRating": 4.7,
+    "ratingCount": 738,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_108",
+    "title": "Le Prince",
+    "authors": ["Gabriel García Márquez"],
+    "publisher": "Fayard",
+    "publishedDate": "1919-10-05",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "9925655258",
+    "isbn13": "2729662650006",
+    "pageCount": 305,
+    "categories": ["Jeunesse", "Romance", "Biographie"],
+    "averageRating": 3.1,
+    "ratingCount": 4110,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_109",
+    "title": "Le Prince",
+    "authors": ["Gabriel García Márquez"],
+    "publisher": "Actes Sud",
+    "publishedDate": "2001-06-14",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "8403968237",
+    "isbn13": "4400318633883",
+    "pageCount": 580,
+    "categories": ["Biographie"],
+    "averageRating": 3.6,
+    "ratingCount": 3468,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_110",
+    "title": "Le Prince",
+    "authors": ["Ernest Hemingway"],
+    "publisher": "Pocket",
+    "publishedDate": "2007-09-08",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "3512897199",
+    "isbn13": "4122821592882",
+    "pageCount": 270,
+    "categories": ["Drame", "Biographie"],
+    "averageRating": 4.0,
+    "ratingCount": 4085,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_111",
+    "title": "Le Prince",
+    "authors": ["Paulo Coelho"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "2019-01-18",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "4219468778",
+    "isbn13": "4712668194536",
+    "pageCount": 146,
+    "categories": ["Poésie", "Science"],
+    "averageRating": 4.5,
+    "ratingCount": 4080,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_112",
+    "title": "Le Rouge et le Noir",
+    "authors": ["Haruki Murakami"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "1995-10-15",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "7827148431",
+    "isbn13": "7348061306357",
+    "pageCount": 285,
+    "categories": ["Science-Fiction", "Biographie", "Horreur"],
+    "averageRating": 3.8,
+    "ratingCount": 251,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_113",
+    "title": "Le Rouge et le Noir",
+    "authors": ["Bram Stoker"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "2022-12-26",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "2195643173",
+    "isbn13": "2174620592455",
+    "pageCount": 167,
+    "categories": ["Poésie", "Policier"],
+    "averageRating": 3.6,
+    "ratingCount": 3315,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_114",
+    "title": "Le Rouge et le Noir",
+    "authors": ["George Orwell"],
+    "publisher": "Pocket",
+    "publishedDate": "2021-07-01",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "1378986327",
+    "isbn13": "9336582698328",
+    "pageCount": 358,
+    "categories": ["Science", "Fantasy"],
+    "averageRating": 4.9,
+    "ratingCount": 2813,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_115",
+    "title": "Le Seigneur des Anneaux",
+    "authors": ["Ray Bradbury"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "1909-11-15",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "1486328869",
+    "isbn13": "1147090323418",
+    "pageCount": 571,
+    "categories": ["Science-Fiction", "Horreur"],
+    "averageRating": 3.9,
+    "ratingCount": 4998,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_116",
+    "title": "Le Silence des agneaux",
+    "authors": ["Kurt Vonnegut"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1929-05-27",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "6269922384",
+    "isbn13": "8599908610218",
+    "pageCount": 289,
+    "categories": ["Policier"],
+    "averageRating": 4.6,
+    "ratingCount": 3782,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_117",
+    "title": "Le Spleen de Paris",
+    "authors": ["Milan Kundera"],
+    "publisher": "Belfond",
+    "publishedDate": "1918-04-04",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "0573322686",
+    "isbn13": "0296615606693",
+    "pageCount": 201,
+    "categories": ["Science", "Aventure", "Poésie"],
+    "averageRating": 3.2,
+    "ratingCount": 1187,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_118",
+    "title": "Le Tour du monde en quatre-vingts jours",
+    "authors": ["Edgar Allan Poe"],
+    "publisher": "Plon",
+    "publishedDate": "2009-06-17",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "1570979062",
+    "isbn13": "5748964458155",
+    "pageCount": 679,
+    "categories": ["Thriller", "Fantasy"],
+    "averageRating": 4.1,
+    "ratingCount": 3669,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_119",
+    "title": "Le Trône de Fer",
+    "authors": ["Isaac Asimov"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "2007-11-27",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "0644818851",
+    "isbn13": "9460417519871",
+    "pageCount": 100,
+    "categories": ["Jeunesse"],
+    "averageRating": 3.4,
+    "ratingCount": 4349,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_120",
+    "title": "Le Trône de Fer",
+    "authors": ["Ray Bradbury"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "1984-11-07",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "2266458161",
+    "isbn13": "5912108089343",
+    "pageCount": 147,
+    "categories": ["Philosophie", "Biographie"],
+    "averageRating": 3.9,
+    "ratingCount": 144,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_121",
+    "title": "Leonard de Vinci",
+    "authors": ["Milan Kundera"],
+    "publisher": "Pocket",
+    "publishedDate": "2007-03-04",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "2674287133",
+    "isbn13": "6504031092212",
+    "pageCount": 223,
+    "categories": ["Poésie", "Biographie"],
+    "averageRating": 3.6,
+    "ratingCount": 3638,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_122",
+    "title": "Leonard de Vinci",
+    "authors": ["Albert Camus"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "2011-08-20",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "3026470974",
+    "isbn13": "6349454106274",
+    "pageCount": 245,
+    "categories": ["Poésie", "Aventure"],
+    "averageRating": 4.4,
+    "ratingCount": 682,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_123",
+    "title": "Les Aventures de Tom Sawyer",
+    "authors": ["Agatha Christie"],
+    "publisher": "Plon",
+    "publishedDate": "1958-09-16",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "3638738937",
+    "isbn13": "8766434012123",
+    "pageCount": 355,
+    "categories": ["Histoire", "Horreur", "Biographie"],
+    "averageRating": 4.7,
+    "ratingCount": 934,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_124",
+    "title": "Les Chansons de Bilitis",
+    "authors": ["Jean-Paul Sartre"],
+    "publisher": "Plon",
+    "publishedDate": "1946-10-13",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "7216711717",
+    "isbn13": "4949765311556",
+    "pageCount": 456,
+    "categories": ["Romance"],
+    "averageRating": 4.0,
+    "ratingCount": 3030,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_125",
+    "title": "Les Chansons de Bilitis",
+    "authors": ["Charlotte Brontë"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "1910-08-27",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "4135097037",
+    "isbn13": "3483217761554",
+    "pageCount": 750,
+    "categories": ["Roman", "Romance"],
+    "averageRating": 3.6,
+    "ratingCount": 3117,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_126",
+    "title": "Les Chansons de Bilitis",
+    "authors": ["Toni Morrison"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1982-11-22",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "2904613822",
+    "isbn13": "6429448535722",
+    "pageCount": 212,
+    "categories": ["Science-Fiction", "Histoire"],
+    "averageRating": 4.4,
+    "ratingCount": 4489,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_127",
+    "title": "Les Chimères",
+    "authors": ["Oscar Wilde"],
+    "publisher": "Grasset",
+    "publishedDate": "1988-01-31",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "9464903106",
+    "isbn13": "6402031688504",
+    "pageCount": 684,
+    "categories": ["Romance"],
+    "averageRating": 4.8,
+    "ratingCount": 4018,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_128",
+    "title": "Les Chroniques de Narnia",
+    "authors": ["Charles Dickens"],
+    "publisher": "Plon",
+    "publishedDate": "1905-05-23",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "2565151181",
+    "isbn13": "5780671740294",
+    "pageCount": 270,
+    "categories": ["Aventure"],
+    "averageRating": 3.2,
+    "ratingCount": 1033,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_129",
+    "title": "Les Châtiments",
+    "authors": ["J.R.R. Tolkien"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1935-03-08",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "2163311025",
+    "isbn13": "5350988541433",
+    "pageCount": 561,
+    "categories": ["Drame", "Poésie"],
+    "averageRating": 4.1,
+    "ratingCount": 2106,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_130",
+    "title": "Les Cinq Cent Millions de la Bégum",
+    "authors": ["Frank Herbert"],
+    "publisher": "Pocket",
+    "publishedDate": "1956-07-27",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "8283788443",
+    "isbn13": "6070499335861",
+    "pageCount": 296,
+    "categories": ["Drame"],
+    "averageRating": 4.0,
+    "ratingCount": 1498,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_131",
+    "title": "Les Cinq Cent Millions de la Bégum",
+    "authors": ["James Joyce"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1921-10-17",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "0232256421",
+    "isbn13": "3454020384565",
+    "pageCount": 336,
+    "categories": ["Thriller", "Science"],
+    "averageRating": 4.6,
+    "ratingCount": 1880,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_132",
+    "title": "Les Cinq Cent Millions de la Bégum",
+    "authors": ["Toni Morrison"],
+    "publisher": "Stock",
+    "publishedDate": "1909-07-12",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "0557994311",
+    "isbn13": "2492749549102",
+    "pageCount": 596,
+    "categories": ["Philosophie", "Drame", "Biographie"],
+    "averageRating": 3.9,
+    "ratingCount": 341,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_133",
+    "title": "Les Contemplations",
+    "authors": ["Franz Kafka"],
+    "publisher": "Pocket",
+    "publishedDate": "1928-01-20",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "4275951746",
+    "isbn13": "1682874524731",
+    "pageCount": 442,
+    "categories": ["Philosophie"],
+    "averageRating": 3.6,
+    "ratingCount": 4775,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_134",
+    "title": "Les Contes de Grimm",
+    "authors": ["Mark Twain"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1928-11-12",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "6289087513",
+    "isbn13": "3805364098028",
+    "pageCount": 666,
+    "categories": ["Biographie", "Poésie", "Aventure"],
+    "averageRating": 3.0,
+    "ratingCount": 2839,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_135",
+    "title": "Les Contes de Grimm",
+    "authors": ["William Shakespeare"],
+    "publisher": "Fayard",
+    "publishedDate": "1913-09-17",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "4567773034",
+    "isbn13": "4817566880128",
+    "pageCount": 535,
+    "categories": ["Aventure"],
+    "averageRating": 3.9,
+    "ratingCount": 1882,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_136",
+    "title": "Les Dix Petits Nègres",
+    "authors": ["Agatha Christie"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1982-01-21",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "0400687608",
+    "isbn13": "4557272045052",
+    "pageCount": 419,
+    "categories": ["Jeunesse"],
+    "averageRating": 4.1,
+    "ratingCount": 4083,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_137",
+    "title": "Les Faux-Monnayeurs",
+    "authors": ["Albert Einstein"],
+    "publisher": "Grasset",
+    "publishedDate": "1906-10-27",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "7002954659",
+    "isbn13": "5486386336796",
+    "pageCount": 187,
+    "categories": ["Drame", "Histoire"],
+    "averageRating": 4.6,
+    "ratingCount": 49,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_138",
+    "title": "Les Fleurs du Mal",
+    "authors": ["Herman Melville"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1965-12-18",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "1251808240",
+    "isbn13": "2163964343387",
+    "pageCount": 230,
+    "categories": ["Aventure", "Poésie"],
+    "averageRating": 4.4,
+    "ratingCount": 4565,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_139",
+    "title": "Les Fleurs du Mal",
+    "authors": ["H.G. Wells"],
+    "publisher": "Grasset",
+    "publishedDate": "1923-03-20",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "5642801624",
+    "isbn13": "8637946055111",
+    "pageCount": 386,
+    "categories": ["Policier", "Drame"],
+    "averageRating": 3.9,
+    "ratingCount": 4019,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_140",
+    "title": "Les Fleurs du Mal",
+    "authors": ["Oscar Wilde"],
+    "publisher": "Pocket",
+    "publishedDate": "2008-07-10",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "4100867984",
+    "isbn13": "3733071517962",
+    "pageCount": 341,
+    "categories": ["Aventure"],
+    "averageRating": 4.8,
+    "ratingCount": 1648,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_141",
+    "title": "Les Hauts de Hurlevent",
+    "authors": ["Frank Herbert"],
+    "publisher": "Seuil",
+    "publishedDate": "1986-08-28",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "4800329181",
+    "isbn13": "6741494714906",
+    "pageCount": 338,
+    "categories": ["Drame", "Science-Fiction", "Biographie"],
+    "averageRating": 3.4,
+    "ratingCount": 520,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_142",
+    "title": "Les Illuminations",
+    "authors": ["William Shakespeare"],
+    "publisher": "Pocket",
+    "publishedDate": "1986-04-16",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "5177060048",
+    "isbn13": "2541705918670",
+    "pageCount": 773,
+    "categories": ["Fantasy", "Science-Fiction"],
+    "averageRating": 4.7,
+    "ratingCount": 2956,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_143",
+    "title": "Les Illuminations",
+    "authors": ["Ray Bradbury"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "1992-04-17",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "2527897971",
+    "isbn13": "2479800789194",
+    "pageCount": 279,
+    "categories": ["Histoire", "Aventure"],
+    "averageRating": 3.9,
+    "ratingCount": 3118,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_144",
+    "title": "Les Malheurs de Sophie",
+    "authors": ["Stephen King"],
+    "publisher": "Seuil",
+    "publishedDate": "1910-09-26",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "7027942056",
+    "isbn13": "4765693615364",
+    "pageCount": 109,
+    "categories": ["Histoire"],
+    "averageRating": 3.9,
+    "ratingCount": 3704,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_145",
+    "title": "Les Malheurs de Sophie",
+    "authors": ["Charlotte Brontë"],
+    "publisher": "Grasset",
+    "publishedDate": "2006-09-19",
+    "description": "Un livre qui vous fera voyager à travers le temps et l'espace.",
+    "isbn10": "6982103417",
+    "isbn13": "1230173157138",
+    "pageCount": 296,
+    "categories": ["Aventure"],
+    "averageRating": 4.5,
+    "ratingCount": 3648,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_146",
+    "title": "Les Misérables",
+    "authors": ["Stephen King"],
+    "publisher": "Plon",
+    "publishedDate": "1916-08-13",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "7216276274",
+    "isbn13": "1611900819266",
+    "pageCount": 530,
+    "categories": ["Romance", "Science-Fiction", "Horreur"],
+    "averageRating": 4.9,
+    "ratingCount": 3353,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_147",
+    "title": "Les Misérables",
+    "authors": ["Milan Kundera"],
+    "publisher": "Flammarion",
+    "publishedDate": "2015-12-19",
+    "description": "Un roman profond qui questionne la nature humaine et la société.",
+    "isbn10": "8732129661",
+    "isbn13": "5218596409793",
+    "pageCount": 604,
+    "categories": ["Poésie", "Aventure", "Policier"],
+    "averageRating": 4.7,
+    "ratingCount": 2063,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_148",
+    "title": "Les Oiseaux",
+    "authors": ["Edgar Allan Poe"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "2009-01-28",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "6775333202",
+    "isbn13": "6476147550424",
+    "pageCount": 330,
+    "categories": ["Jeunesse", "Biographie", "Roman"],
+    "averageRating": 3.9,
+    "ratingCount": 2344,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_149",
+    "title": "Les Oiseaux",
+    "authors": ["Charlotte Brontë"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1945-10-02",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "6486962803",
+    "isbn13": "5633976650589",
+    "pageCount": 423,
+    "categories": ["Histoire", "Jeunesse"],
+    "averageRating": 3.4,
+    "ratingCount": 3676,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_150",
+    "title": "Les Paradis artificiels",
+    "authors": ["Mary Shelley"],
+    "publisher": "Belfond",
+    "publishedDate": "1998-08-07",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "0217868044",
+    "isbn13": "3782391742781",
+    "pageCount": 340,
+    "categories": ["Science-Fiction"],
+    "averageRating": 4.9,
+    "ratingCount": 4927,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_151",
+    "title": "Les Raisins de la colère",
+    "authors": ["Ernest Hemingway"],
+    "publisher": "Plon",
+    "publishedDate": "1994-10-21",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "1998602086",
+    "isbn13": "4428342271914",
+    "pageCount": 119,
+    "categories": ["Poésie", "Romance", "Philosophie"],
+    "averageRating": 4.2,
+    "ratingCount": 2358,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_152",
+    "title": "Les Raisins de la colère",
+    "authors": ["Milan Kundera"],
+    "publisher": "Pocket",
+    "publishedDate": "1918-08-17",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "5601405444",
+    "isbn13": "9302639609131",
+    "pageCount": 561,
+    "categories": ["Drame"],
+    "averageRating": 4.7,
+    "ratingCount": 1408,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_153",
+    "title": "Les Raisins de la colère",
+    "authors": ["Charles Baudelaire"],
+    "publisher": "Pocket",
+    "publishedDate": "1947-01-30",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "1574066674",
+    "isbn13": "9354846348026",
+    "pageCount": 632,
+    "categories": ["Horreur", "Science-Fiction", "Roman"],
+    "averageRating": 4.4,
+    "ratingCount": 739,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_154",
+    "title": "Les Regrets",
+    "authors": ["Ursula K. Le Guin"],
+    "publisher": "Plon",
+    "publishedDate": "1983-09-16",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "7814326411",
+    "isbn13": "6090763483921",
+    "pageCount": 362,
+    "categories": ["Thriller", "Biographie", "Policier"],
+    "averageRating": 3.1,
+    "ratingCount": 1492,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_155",
+    "title": "Les Regrets",
+    "authors": ["Leo Tolstoy"],
+    "publisher": "Plon",
+    "publishedDate": "1942-08-28",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "8230845028",
+    "isbn13": "9786919473294",
+    "pageCount": 635,
+    "categories": ["Aventure"],
+    "averageRating": 5.0,
+    "ratingCount": 1779,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_156",
+    "title": "Les Regrets",
+    "authors": ["Charlotte Brontë"],
+    "publisher": "Pocket",
+    "publishedDate": "1908-01-29",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "0414464298",
+    "isbn13": "7794847153818",
+    "pageCount": 682,
+    "categories": ["Science", "Philosophie"],
+    "averageRating": 3.2,
+    "ratingCount": 2831,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_157",
+    "title": "Les Trois Mousquetaires",
+    "authors": ["Franz Kafka"],
+    "publisher": "Seuil",
+    "publishedDate": "1909-11-25",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "4380954551",
+    "isbn13": "1569487010649",
+    "pageCount": 590,
+    "categories": ["Fantasy", "Philosophie", "Aventure"],
+    "averageRating": 4.5,
+    "ratingCount": 1216,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_158",
+    "title": "Les Trois Mousquetaires",
+    "authors": ["J.R.R. Tolkien"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "2009-06-10",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "7875769829",
+    "isbn13": "1013407670739",
+    "pageCount": 641,
+    "categories": ["Fantasy", "Biographie", "Drame"],
+    "averageRating": 4.3,
+    "ratingCount": 4783,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_159",
+    "title": "Les Voyages de Gulliver",
+    "authors": ["Margaret Atwood"],
+    "publisher": "Grasset",
+    "publishedDate": "1955-02-02",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "7757795357",
+    "isbn13": "9902258057434",
+    "pageCount": 203,
+    "categories": ["Histoire", "Aventure"],
+    "averageRating": 4.5,
+    "ratingCount": 456,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_160",
+    "title": "Madame Bovary",
+    "authors": ["Gustave Flaubert"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1982-02-26",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "2451118151",
+    "isbn13": "4140583534946",
+    "pageCount": 308,
+    "categories": ["Jeunesse"],
+    "averageRating": 3.6,
+    "ratingCount": 4773,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_161",
+    "title": "Marie Curie",
+    "authors": ["Friedrich Nietzsche"],
+    "publisher": "Albin Michel",
+    "publishedDate": "1986-04-03",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "4530587489",
+    "isbn13": "5662531623163",
+    "pageCount": 203,
+    "categories": ["Drame", "Poésie"],
+    "averageRating": 5.0,
+    "ratingCount": 3892,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_162",
+    "title": "Marie Curie",
+    "authors": ["James Joyce"],
+    "publisher": "Plon",
+    "publishedDate": "1926-12-26",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "0984922433",
+    "isbn13": "7701116569556",
+    "pageCount": 616,
+    "categories": ["Romance", "Policier"],
+    "averageRating": 4.1,
+    "ratingCount": 2922,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_163",
+    "title": "Matilda",
+    "authors": ["Arthur Conan Doyle"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1903-10-19",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "5527898771",
+    "isbn13": "4573293498011",
+    "pageCount": 696,
+    "categories": ["Poésie", "Science", "Roman"],
+    "averageRating": 3.6,
+    "ratingCount": 2703,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_164",
+    "title": "Millenium",
+    "authors": ["Ernest Hemingway"],
+    "publisher": "Plon",
+    "publishedDate": "1938-06-11",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "2330902650",
+    "isbn13": "9900726411804",
+    "pageCount": 786,
+    "categories": ["Biographie"],
+    "averageRating": 3.5,
+    "ratingCount": 1722,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_165",
+    "title": "Misery",
+    "authors": ["Haruki Murakami"],
+    "publisher": "Plon",
+    "publishedDate": "2017-05-31",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "3070786700",
+    "isbn13": "6446159394662",
+    "pageCount": 623,
+    "categories": ["Thriller", "Philosophie", "Horreur"],
+    "averageRating": 3.0,
+    "ratingCount": 1182,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_166",
+    "title": "Moi, Malala",
+    "authors": ["John Steinbeck"],
+    "publisher": "Actes Sud",
+    "publishedDate": "2002-02-19",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "0354642864",
+    "isbn13": "3766805423590",
+    "pageCount": 389,
+    "categories": ["Drame", "Policier"],
+    "averageRating": 4.1,
+    "ratingCount": 105,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_167",
+    "title": "Mortelle randonnée",
+    "authors": ["Toni Morrison"],
+    "publisher": "Grasset",
+    "publishedDate": "1980-10-12",
+    "description": "Un récit poignant sur la quête de soi et la rédemption.",
+    "isbn10": "7784650782",
+    "isbn13": "9434324240828",
+    "pageCount": 516,
+    "categories": ["Drame", "Science", "Roman"],
+    "averageRating": 4.3,
+    "ratingCount": 1166,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_168",
+    "title": "Méditations métaphysiques",
+    "authors": ["William Shakespeare"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1921-11-17",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "4704652478",
+    "isbn13": "6327957204553",
+    "pageCount": 281,
+    "categories": ["Romance"],
+    "averageRating": 4.6,
+    "ratingCount": 4881,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_169",
+    "title": "Mémoires de guerre",
+    "authors": ["Charles Dickens"],
+    "publisher": "Seuil",
+    "publishedDate": "2004-01-29",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "9102226275",
+    "isbn13": "5635687705445",
+    "pageCount": 181,
+    "categories": ["Aventure", "Science-Fiction"],
+    "averageRating": 5.0,
+    "ratingCount": 1316,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_170",
+    "title": "Mémoires de guerre",
+    "authors": ["Ernest Hemingway"],
+    "publisher": "Plon",
+    "publishedDate": "1934-06-25",
+    "description": "Un livre qui vous fera voyager à travers le temps et l'espace.",
+    "isbn10": "0075257746",
+    "isbn13": "5716855807825",
+    "pageCount": 504,
+    "categories": ["Romance", "Science-Fiction", "Aventure"],
+    "averageRating": 3.8,
+    "ratingCount": 3481,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_171",
+    "title": "Napoléon",
+    "authors": ["Agatha Christie"],
+    "publisher": "Robert Laffont",
+    "publishedDate": "2005-08-21",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "3972767816",
+    "isbn13": "0161708917087",
+    "pageCount": 554,
+    "categories": ["Roman"],
+    "averageRating": 4.6,
+    "ratingCount": 4347,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_172",
+    "title": "Nelson Mandela",
+    "authors": ["Jules Verne"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1984-05-06",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "5475538603",
+    "isbn13": "9719769510186",
+    "pageCount": 748,
+    "categories": ["Aventure"],
+    "averageRating": 4.2,
+    "ratingCount": 2721,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_173",
+    "title": "Neuromancien",
+    "authors": ["Simone de Beauvoir"],
+    "publisher": "Grasset",
+    "publishedDate": "1930-05-01",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "0214925504",
+    "isbn13": "9027190504717",
+    "pageCount": 428,
+    "categories": ["Poésie"],
+    "averageRating": 4.5,
+    "ratingCount": 3018,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_174",
+    "title": "Orgueil et Préjugés",
+    "authors": ["H.G. Wells"],
+    "publisher": "Pocket",
+    "publishedDate": "1991-04-02",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "3022669418",
+    "isbn13": "9559767379838",
+    "pageCount": 334,
+    "categories": ["Histoire", "Philosophie", "Thriller"],
+    "averageRating": 4.2,
+    "ratingCount": 3624,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_175",
+    "title": "Outlander",
+    "authors": ["Oscar Wilde"],
+    "publisher": "Pocket",
+    "publishedDate": "1965-09-04",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "6410958219",
+    "isbn13": "2077971536056",
+    "pageCount": 748,
+    "categories": ["Thriller"],
+    "averageRating": 3.5,
+    "ratingCount": 4406,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_176",
+    "title": "Outlander",
+    "authors": ["Mary Shelley"],
+    "publisher": "Albin Michel",
+    "publishedDate": "2021-04-15",
+    "description": "Une réflexion sur la condition humaine et les choix moraux.",
+    "isbn10": "6246552187",
+    "isbn13": "5561380632834",
+    "pageCount": 454,
+    "categories": ["Horreur", "Roman", "Aventure"],
+    "averageRating": 3.2,
+    "ratingCount": 3382,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_177",
+    "title": "Phèdre",
+    "authors": ["Kurt Vonnegut"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "1956-09-13",
+    "description": "Un livre qui vous fera voyager à travers le temps et l'espace.",
+    "isbn10": "0935225329",
+    "isbn13": "1641260331809",
+    "pageCount": 427,
+    "categories": ["Thriller"],
+    "averageRating": 3.7,
+    "ratingCount": 4625,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_178",
+    "title": "Phèdre",
+    "authors": ["Dan Brown"],
+    "publisher": "Grasset",
+    "publishedDate": "1937-07-11",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "4434655393",
+    "isbn13": "9535772957655",
+    "pageCount": 438,
+    "categories": ["Histoire", "Policier"],
+    "averageRating": 4.5,
+    "ratingCount": 2170,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_179",
+    "title": "Phèdre",
+    "authors": ["J.R.R. Tolkien"],
+    "publisher": "Actes Sud",
+    "publishedDate": "1995-10-16",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "4071484341",
+    "isbn13": "2024341986422",
+    "pageCount": 202,
+    "categories": ["Philosophie"],
+    "averageRating": 3.8,
+    "ratingCount": 2040,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_180",
+    "title": "Phèdre",
+    "authors": ["Ursula K. Le Guin"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "1925-11-12",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "3005455061",
+    "isbn13": "5608736697243",
+    "pageCount": 469,
+    "categories": ["Thriller"],
+    "averageRating": 3.6,
+    "ratingCount": 3079,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_181",
+    "title": "Pippi Longstocking",
+    "authors": ["Jane Austen"],
+    "publisher": "Fayard",
+    "publishedDate": "1921-11-24",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "2912372303",
+    "isbn13": "4470419562200",
+    "pageCount": 588,
+    "categories": ["Philosophie", "Romance"],
+    "averageRating": 3.8,
+    "ratingCount": 1563,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_182",
+    "title": "Rendez-vous avec Rama",
+    "authors": ["Margaret Atwood"],
+    "publisher": "Belfond",
+    "publishedDate": "2009-10-12",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "7624112866",
+    "isbn13": "8343124233692",
+    "pageCount": 360,
+    "categories": ["Science"],
+    "averageRating": 4.6,
+    "ratingCount": 46,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_183",
+    "title": "Rendez-vous avec Rama",
+    "authors": ["Kurt Vonnegut"],
+    "publisher": "Pocket",
+    "publishedDate": "2000-06-24",
+    "description": "Un roman d'amour passionné et tragique.",
+    "isbn10": "4844257931",
+    "isbn13": "8515218341526",
+    "pageCount": 473,
+    "categories": ["Roman", "Drame"],
+    "averageRating": 4.0,
+    "ratingCount": 4189,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_184",
+    "title": "Robinson Crusoé",
+    "authors": ["John Steinbeck"],
+    "publisher": "Flammarion",
+    "publishedDate": "1917-06-24",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "7103620683",
+    "isbn13": "9888435963301",
+    "pageCount": 617,
+    "categories": ["Science", "Thriller"],
+    "averageRating": 4.8,
+    "ratingCount": 3307,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_185",
+    "title": "Roméo et Juliette",
+    "authors": ["Leo Tolstoy"],
+    "publisher": "Belfond",
+    "publishedDate": "1919-04-05",
+    "description": "Un livre qui vous fera voyager à travers le temps et l'espace.",
+    "isbn10": "2604271219",
+    "isbn13": "3056294461809",
+    "pageCount": 460,
+    "categories": ["Thriller", "Histoire"],
+    "averageRating": 4.4,
+    "ratingCount": 2428,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_186",
+    "title": "Sherlock Holmes",
+    "authors": ["Margaret Atwood"],
+    "publisher": "Belfond",
+    "publishedDate": "1962-05-14",
+    "description": "Une histoire fascinante mêlant mystère et suspense.",
+    "isbn10": "3815534653",
+    "isbn13": "3679008641411",
+    "pageCount": 186,
+    "categories": ["Poésie", "Fantasy"],
+    "averageRating": 4.8,
+    "ratingCount": 1153,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_187",
+    "title": "Sherlock Holmes",
+    "authors": ["Homer"],
+    "publisher": "Seuil",
+    "publishedDate": "1996-03-14",
+    "description": "Un récit captivant sur la survie et la résilience.",
+    "isbn10": "1891786123",
+    "isbn13": "7686654411718",
+    "pageCount": 269,
+    "categories": ["Science", "Fantasy", "Science-Fiction"],
+    "averageRating": 3.8,
+    "ratingCount": 3002,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_188",
+    "title": "Shining",
+    "authors": ["Edgar Allan Poe"],
+    "publisher": "Éditions Gallimard",
+    "publishedDate": "2022-12-20",
+    "description": "Une histoire touchante sur l'amitié et la loyauté.",
+    "isbn10": "8923350170",
+    "isbn13": "2244856328736",
+    "pageCount": 388,
+    "categories": ["Roman", "Science", "Philosophie"],
+    "averageRating": 4.4,
+    "ratingCount": 3222,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_189",
+    "title": "Shining",
+    "authors": ["Charles Baudelaire"],
+    "publisher": "Hachette",
+    "publishedDate": "1909-05-19",
+    "description": "Un roman profond qui questionne la nature humaine et la société.",
+    "isbn10": "0472617288",
+    "isbn13": "1482290336349",
+    "pageCount": 151,
+    "categories": ["Horreur", "Policier"],
+    "averageRating": 3.1,
+    "ratingCount": 4806,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_190",
+    "title": "Snow Crash",
+    "authors": ["Ernest Hemingway"],
+    "publisher": "Belfond",
+    "publishedDate": "1935-10-11",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "2693292843",
+    "isbn13": "5033197651051",
+    "pageCount": 390,
+    "categories": ["Romance", "Drame"],
+    "averageRating": 4.7,
+    "ratingCount": 810,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_191",
+    "title": "Snow Crash",
+    "authors": ["Victor Hugo"],
+    "publisher": "Fayard",
+    "publishedDate": "1983-08-17",
+    "description": "Un classique incontournable de la littérature mondiale.",
+    "isbn10": "6639567982",
+    "isbn13": "2601930948492",
+    "pageCount": 325,
+    "categories": ["Jeunesse"],
+    "averageRating": 4.9,
+    "ratingCount": 4688,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_192",
+    "title": "Steve Jobs",
+    "authors": ["Charles Dickens"],
+    "publisher": "Calmann-Lévy",
+    "publishedDate": "1910-12-09",
+    "description": "Une exploration des limites de la science et de l'éthique.",
+    "isbn10": "9026056834",
+    "isbn13": "9555564002981",
+    "pageCount": 737,
+    "categories": ["Science-Fiction", "Fantasy", "Thriller"],
+    "averageRating": 3.7,
+    "ratingCount": 4363,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_193",
+    "title": "Steve Jobs",
+    "authors": ["J.R.R. Tolkien"],
+    "publisher": "Le Livre de Poche",
+    "publishedDate": "1929-03-12",
+    "description": "Un livre qui vous fera voyager à travers le temps et l'espace.",
+    "isbn10": "5509807084",
+    "isbn13": "5547804786034",
+    "pageCount": 151,
+    "categories": ["Jeunesse", "Philosophie", "Drame"],
+    "averageRating": 3.6,
+    "ratingCount": 4159,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_194",
+    "title": "Ubik",
+    "authors": ["Oscar Wilde"],
+    "publisher": "Belfond",
+    "publishedDate": "1952-06-12",
+    "description": "Une œuvre majeure qui a marqué l'histoire de la littérature.",
+    "isbn10": "7396213309",
+    "isbn13": "2410067554427",
+    "pageCount": 753,
+    "categories": ["Fantasy", "Aventure", "Jeunesse"],
+    "averageRating": 3.2,
+    "ratingCount": 701,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_195",
+    "title": "Une brève histoire du temps",
+    "authors": ["Charles Baudelaire"],
+    "publisher": "Seuil",
+    "publishedDate": "1912-02-25",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "9493938592",
+    "isbn13": "6272894321259",
+    "pageCount": 421,
+    "categories": ["Biographie", "Horreur", "Roman"],
+    "averageRating": 3.9,
+    "ratingCount": 3370,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_196",
+    "title": "Vingt Mille Lieues sous les mers",
+    "authors": ["Gustave Flaubert"],
+    "publisher": "Actes Sud",
+    "publishedDate": "2014-08-10",
+    "description": "Un thriller haletant qui vous laissera sans voix.",
+    "isbn10": "6713379679",
+    "isbn13": "2090192877486",
+    "pageCount": 106,
+    "categories": ["Biographie", "Policier", "Romance"],
+    "averageRating": 4.3,
+    "ratingCount": 2794,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_197",
+    "title": "Vingt Mille Lieues sous les mers",
+    "authors": ["Jules Verne"],
+    "publisher": "Stock",
+    "publishedDate": "1904-08-06",
+    "description": "Une aventure captivante qui vous tiendra en haleine jusqu'à la dernière page.",
+    "isbn10": "8487973436",
+    "isbn13": "8126761512177",
+    "pageCount": 570,
+    "categories": ["Jeunesse", "Histoire", "Science"],
+    "averageRating": 4.2,
+    "ratingCount": 547,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "fr"
+  },
+  {
+    "id": "book_198",
+    "title": "Vingt Mille Lieues sous les mers",
+    "authors": ["Paulo Coelho"],
+    "publisher": "Grasset",
+    "publishedDate": "1924-07-26",
+    "description": "Un chef-d'œuvre intemporel qui explore les thèmes de l'amour et de la perte.",
+    "isbn10": "7070221829",
+    "isbn13": "4185282069219",
+    "pageCount": 422,
+    "categories": ["Poésie", "Jeunesse"],
+    "averageRating": 3.3,
+    "ratingCount": 290,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_199",
+    "title": "À la recherche du temps perdu",
+    "authors": ["Herman Melville"],
+    "publisher": "Flammarion",
+    "publishedDate": "1939-09-28",
+    "description": "Un voyage épique à travers des mondes imaginaires et des défis extraordinaires.",
+    "isbn10": "6239896303",
+    "isbn13": "5564169607307",
+    "pageCount": 505,
+    "categories": ["Roman", "Thriller"],
+    "averageRating": 4.3,
+    "ratingCount": 703,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  },
+  {
+    "id": "book_200",
+    "title": "Ça",
+    "authors": ["Oscar Wilde"],
+    "publisher": "Stock",
+    "publishedDate": "1981-04-10",
+    "description": "Un roman profond qui questionne la nature humaine et la société.",
+    "isbn10": "4952190597",
+    "isbn13": "3534860235670",
+    "pageCount": 472,
+    "categories": ["Fantasy"],
+    "averageRating": 4.2,
+    "ratingCount": 2200,
+    "imageLinks": {
+      "thumbnail": "https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+    },
+    "language": "en"
+  }
+]

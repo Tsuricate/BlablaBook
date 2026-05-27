@@ -1,0 +1,65 @@
+{
+  "breadcrumb": {
+    "home": "Accueil",
+    "category": "Catégorie"
+  },
+  "details": {
+    "description": "Description",
+    "technicalDetails": "Détails techniques",
+    "language": "Langue",
+    "pageCount": "Nombre de pages",
+    "publisher": "Éditeur",
+    "coverAlt": "Couverture du livre"
+  },
+  "themes": {
+    "adapted": "Adaptés au cinéma et en séries",
+    "dystopian": "Univers dystopiques",
+    "recommended": "Tout le monde en parle",
+    "harryPotter": "⚡ Harry Potter",
+    "starWars": "Star Wars",
+    "lotr": "Le Seigneur des Anneaux",
+    "stephenKing": "Stephen King",
+    "sherlockHolmes": "Sherlock Holmes",
+    "hungerGames": "Hunger Games",
+    "gameOfThrones": "Game of Thrones"
+  },
+  "library": {
+    "allBooks": "Tous les livres",
+    "collections": {
+      "label": "Collections",
+      "read": "Lus",
+      "wishlist": "Envie de lire"
+    },
+    "addBook": "Ajouter un livre",
+    "addBookToLibrary": "Ajouter ce livre à ma blibliothèque",
+    "addBookCTA": "Ce livre n’est pas encore dans votre bibliothèque",
+    "alreadyInCollection": "Ce livre est dans votre collection « {{collection}} »",
+    "addBookAction": "Ajouter",
+    "loginRequired": "Envie de l’ajouter à votre bibliothèque ? Connectez-vous pour continuer !",
+    "emptyLibrary": "Vous n'avez pas encore de livres dans votre blibliothèque",
+    "emptyCollection": "Vous n'avez pas encore de livres dans cette collection",
+    "addToLibrary": "Ajouter à votre bibliothèque",
+    "chooseCollection": "Choisir une collection",
+    "addSuccess": "Le livre \"{{title}}\" a bien été ajouté à votre collection \"{{status}}\"",
+    "deleteSuccess": "Le livre a bien été supprimé de votre bibliothèque",
+    "deleteError": "Impossible de supprimer le livre. Veuillez réessayer.",
+    "deleteConfirm": {
+      "title": "Confirmer la suppression",
+      "subtitle": "Voulez-vous vraiment retirer « {{title}} » de votre bibliothèque ?"
+    },
+    "errors": {
+      "internalServerError": "Une erreur inattendue est survenue. Veuillez réessayer.",
+      "bookAlreadyInLibrary": "Ce livre est déjà dans votre bibliothèque."
+    },
+    "actions": {
+      "edit": "Modifier",
+      "changeCollection": "Changer de collection",
+      "delete": "Supprimer",
+      "editCollection": "Déplacer vers la collection",
+      "backToCollections": "Retour aux collections"
+    }
+  },
+  "categories": {
+    "subtitle": "Plongez dans des univers qui vous inspirent"
+  }
+}

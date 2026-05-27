@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum ReadingStatus {
+  read
+  wishlist
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  username      String         @unique
+  email         String         @unique
+  password      String
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  refreshTokens RefreshToken[]
+  books         UserBook[]
+
+  @@map("user")
+}
+
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  issuedAt  DateTime @default(now()) @map("issued_at")
+  expiresAt DateTime @map("expires_at")
+  userId    Int      @map("user_id")
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("refresh_token")
+}
+
+model Book {
+  id            Int            @id @default(autoincrement())
+  title         String
+  averageRating Float?         @map("average_rating")
+  ratingCount   Int            @default(0) @map("rating_count")
+  imageLinks    Json?          @map("image_links")
+  language      String?
+  description   String?
+  googleBookId  String         @unique @map("google_book_id") 
+  publishedDate DateTime?      @map("published_date") @db.Date
+  isbn10        String?        @unique @map("isbn_10")
+  isbn13        String?        @unique @map("isbn_13")
+  pageCount     Int?           @map("page_count")
+  publisherId   Int            @map("publisher_id")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+  publisher     Publisher      @relation(fields: [publisherId], references: [id])
+  users         UserBook[]
+  authors       BookAuthor[]
+  categories    BookCategory[]
+ 
+
+  @@map("book")
+}
+
+model Author {
+  id        Int          @id @default(autoincrement())
+  name      String       @unique
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+  books     BookAuthor[]
+
+  @@map("author")
+}
+
+model Publisher {
+  id        Int      @id @default(autoincrement())
+  name      String?  @unique @default("independent")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  books     Book[]
+
+  @@map("publisher")
+}
+
+model Category {
+  id        Int            @id @default(autoincrement())
+  name      String         @unique
+  createdAt DateTime       @default(now()) @map("created_at")
+  updatedAt DateTime       @updatedAt @map("updated_at")
+  books     BookCategory[]
+
+  @@map("category")
+}
+
+model UserBook {
+  userId Int           @map("user_id")
+  bookId Int           @map("book_id")
+  status ReadingStatus @default(wishlist)
+  book   Book          @relation(fields: [bookId], references: [id])
+  user   User          @relation(fields: [userId], references: [id])
+
+  @@id([userId, bookId])
+  @@map("user_has_book")
+}
+
+model BookAuthor {
+  bookId   Int    @map("book_id")
+  authorId Int    @map("author_id")
+  author   Author @relation(fields: [authorId], references: [id])
+  book     Book   @relation(fields: [bookId], references: [id])
+
+  @@id([bookId, authorId])
+  @@map("book_has_author")
+}
+
+model BookCategory {
+  bookId     Int      @map("book_id")
+  categoryId Int      @map("category_id")
+  book       Book     @relation(fields: [bookId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  @@id([bookId, categoryId])
+  @@map("book_has_category")
+}

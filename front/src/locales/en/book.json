@@ -1,0 +1,66 @@
+{
+  "breadcrumb": {
+    "home": "Home",
+    "category": "Category"
+  },
+  "details": {
+    "description": "Description",
+    "technicalDetails": "Technical details",
+    "language": "Language",
+    "pageCount": "Page count",
+    "publisher": "Publisher",
+    "coverAlt": "Book cover"
+  },
+  "themes": {
+    "adapted": "Screen adaptations",
+    "dystopian": "Dystopian worlds",
+    "recommended": "Everyone’s talking about it",
+
+    "harryPotter": "⚡ Harry Potter",
+    "starWars": "Star Wars",
+    "lotr": "The Lord of the Rings",
+    "stephenKing": "Stephen King",
+    "sherlockHolmes": "Sherlock Holmes",
+    "hungerGames": "Hunger Games",
+    "gameOfThrones": "Game of Thrones"
+  },
+  "library": {
+    "allBooks": "All books",
+    "collections": {
+      "label": "Collections",
+      "read": "Read",
+      "wishlist": "Wishlist"
+    },
+    "addBook": "Add a book",
+    "addBookToLibrary": "Add this book to my library",
+    "addBookCTA": "This book isn’t in your library yet.",
+    "alreadyInCollection": "This book is in your « {{collection}} » collection",
+    "addBookAction": "Add",
+    "loginRequired": "Want to add it to your library? Log in to continue!",
+    "emptyLibrary": "You don’t have any books in your library yet",
+    "emptyCollection": "You don’t have any books in this collection yet",
+    "addToLibrary": "Add to your library",
+    "chooseCollection": "Choose a collection",
+    "addSuccess": "The book \"{{title}}\" has been successfully added to your \"{{status}}\" collection",
+    "deleteError": "Failed to remove the book. Please try again.",
+    "deleteSuccess": "The book has been removed from your library",
+    "deleteConfirm": {
+      "title": "Confirm deletion",
+      "subtitle": "Are you sure you want to remove \"{{title}}\" from your library?"
+    },
+    "errors": {
+      "internalServerError": "An unexpected error occurred. Please try again.",
+      "bookAlreadyInLibrary": "This book is already in your library."
+    },
+    "actions": {
+      "edit": "Edit",
+      "changeCollection": "Change collection",
+      "delete": "Delete",
+      "editCollection": "Move to collection",
+      "backToCollections": "Back to your collections"
+    }
+  },
+  "categories": {
+    "subtitle": "Step into worlds that inspire you"
+  }
+}

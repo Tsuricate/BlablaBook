@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: blabla-back
+    env: docker
+    plan: free
+    branch: main
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: <TA_NEON_DATABASE_URL>

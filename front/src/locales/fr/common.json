@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "discover": "Découvrir",
+    "library": "Bibliothèque",
+    "login": "Se connecter"
+  },
+  "search": {
+    "placeholder": "Rechercher par mot-clé, auteur...",
+    "clear": "Effacer",
+    "ariaLabel": "Rechercher un livre",
+    "resultsFor": "Résultats pour \"{{query}}\"",
+    "loadMore": "Afficher plus de résultats"
+  },
+  "categories": {
+    "title": "Catégories",
+    "showAll": "Voir tout",
+    "showLess": "Voir moins"
+  },
+  "bookCard": {
+    "addBook": "Ajouter le livre"
+  },
+  "noDescription": "Aucune description disponible.",
+  "bookCoverAlt": "Couverture du livre",
+  "myLibrary": "Ma bibliothèque",
+  "confirm": "Confirmer",
+  "delete": "Supprimer",
+  "cancel": "Annuler"
+}

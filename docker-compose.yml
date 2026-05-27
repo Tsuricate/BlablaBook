@@ -1,0 +1,71 @@
+services:
+  blablabook-db:
+    image: postgres:${PG_VERSION}
+    restart: unless-stopped
+    networks:
+      - blablabook-network
+    volumes:
+      - blablabook-db-volume:/var/lib/postgresql/${PG_VERSION}/docker
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - ${POSTGRES_PORT}:5432
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - ${ADMINER_PORT}:8080
+    depends_on:
+      blablabook-db:
+        condition: service_healthy
+    networks:
+      - blablabook-network
+
+  blablabook-back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    environment:
+      PORT: ${BACKEND_LOCAL_PORT}
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@blablabook-db:5432/${POSTGRES_DB}
+      NODE_ENV: development
+      GOOGLE_BOOKS_API_KEY: ${GOOGLE_BOOKS_API_KEY}
+    ports:
+      - ${BACKEND_LOCAL_PORT}:${BACKEND_LOCAL_PORT}
+    volumes:
+      - ./back:/app
+      - /app/node_modules
+    networks:
+      - blablabook-network
+    depends_on:
+      blablabook-db:
+        condition: service_healthy
+    command: pnpm run docker:dev
+
+  blablabook-front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    ports:
+      - ${FRONT_LOCAL_PORT}:5173
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+    networks:
+      - blablabook-network
+
+networks:
+  blablabook-network:
+
+volumes:
+  blablabook-db-volume:

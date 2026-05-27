@@ -1,0 +1,105 @@
+{
+  "buttons": {
+    "back": "Back"
+  },
+  "cgu": {
+    "title": "Terms of Use",
+    "subtitle": "Blablabook Application"
+  },
+  "articles": {
+    "article1": {
+      "title": "Article 1 – Purpose",
+      "content": "These Terms of Use define the terms and conditions for using the Blablabook website. Using the site implies full acceptance of these Terms of Use."
+    },
+    "article2": {
+      "title": "Article 2 – Site Publisher",
+      "content1": "The Blablabook website is published as part of an educational project carried out by a working group.",
+      "content2": "No formal legal structure (company or declared association) has been established to date.",
+      "contact": "For any questions, you can contact:",
+      "email": "📧 Email: [to be completed]"
+    },
+    "article3": {
+      "title": "Article 3 – Hosting",
+      "content": "The site is provisionally hosted on a cloud hosting platform (e.g., Vercel or equivalent). Precise hosting information may be updated later."
+    },
+    "article4": {
+      "title": "Article 4 – Service Description",
+      "content1": "Blablabook is an application that allows users to:",
+      "list": [
+        "browse a book database;",
+        "search for books;",
+        "create a personal library;",
+        "mark books as read or to be read."
+      ],
+      "content2": "Book-related data (titles, descriptions, images) are exclusively sourced from the Google Books API. The site does not modify this content."
+    },
+    "article5": {
+      "title": "Article 5 – Access to the Service",
+      "content1": "The site is freely accessible to any user with internet access.",
+      "list": [
+        "Access to certain features (personal library) requires creating an account.",
+        "Browsing books can be done without an account."
+      ],
+      "content2": "The publisher does not guarantee continuous, uninterrupted access."
+    },
+    "article6": {
+      "title": "Article 6 – Registration Conditions",
+      "content1": "To create an account, the user must:",
+      "list": ["provide a valid email address;", "not impersonate a third party."],
+      "content2": "The user is responsible for the confidentiality of their credentials."
+    },
+    "article7": {
+      "title": "Article 7 – Personal Data",
+      "content1": "The site only collects the following data:",
+      "list1": ["email address."],
+      "content2": "No sensitive data is collected.",
+      "content3": "Strictly technical cookies may be used to:",
+      "list2": ["ensure the service functions properly;", "maintain the user session."],
+      "content4": "No tracking or behavioral analysis is performed."
+    },
+    "article8": {
+      "title": "Article 8 – Intellectual Property",
+      "content1": "The displayed content (books, images, descriptions) comes from the Google Books API and remains the property of their respective rights holders. The Blablabook application claims no rights over this content.",
+      "content2": "The user only has a right to personal, non-commercial use."
+    },
+    "article9": {
+      "title": "Article 9 – Use of the Service",
+      "content1": "The user agrees not to:",
+      "list": [
+        "use the site fraudulently;",
+        "attempt to access systems without authorization;",
+        "divert the service from its normal use;",
+        "compromise the security or integrity of the site."
+      ],
+      "content2": "Any breach may result in the suspension or deletion of the account."
+    },
+    "article10": {
+      "title": "Article 10 – Account Management",
+      "content1": "The user can request the deletion of their account at any time.",
+      "content2": "The publisher reserves the right to suspend or delete an account and refuse access to the service without notice in case of non-compliance with these Terms of Use."
+    },
+    "article11": {
+      "title": "Article 11 – Liability",
+      "content1": "The site is provided \"as is\", without warranty.",
+      "list": [
+        "The publisher cannot be held liable for service interruptions (especially those related to the Google Books API);",
+        "bugs or malfunctions;",
+        "potential data loss;",
+        "temporary or permanent unavailability of the service."
+      ],
+      "content2": "The user acknowledges using the service at their own risk."
+    },
+    "article12": {
+      "title": "Article 12 – Service Evolution",
+      "content": "The site may be modified, suspended, or discontinued at any time without notice. No continuity guarantee is provided, especially in the context of an educational project."
+    },
+    "article13": {
+      "title": "Article 13 – Modification of the Terms of Use",
+      "content": "These Terms of Use may be modified at any time. Users will be informed in case of substantial changes."
+    },
+    "article14": {
+      "title": "Article 14 – Applicable Law",
+      "content": "These Terms of Use are governed by French law. In case of dispute, and failing an amicable resolution, French courts will have jurisdiction."
+    }
+  }
+}
