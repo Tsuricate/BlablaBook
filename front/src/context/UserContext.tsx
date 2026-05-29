@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import type { User } from '../types/user';
 import { Spinner } from '@chakra-ui/react';
 import { axiosAuth } from '../utils/axiosAuth';
-import axios from 'axios';
 
 type UserContextType = {
   user: User | null;
@@ -20,20 +19,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const isLoggedIn = !!user;
 
-  // --- Try to fetch the current user via /auth/me ---
-  const tryFetchUser = async (): Promise<User | null> => {
-    try {
-      const response = await axiosAuth.get('/api/auth/me');
-      return response.data?.data ?? null;
-    } catch {
-      return null;
-    }
-  };
-
   // --- Try to refresh the token via /auth/refresh ---
   const tryRefreshSession = async (): Promise<User | null> => {
     try {
-      const response = await axios.post(
+      const response = await axiosAuth.post(
         `${import.meta.env.VITE_API_URL}/api/auth/refresh`,
         {},
         {
@@ -46,15 +35,22 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // --- Try to fetch the current user via /auth/me ---
   const fetchUserWithRefresh = async () => {
-    let currentUser = await tryFetchUser();
-
-    if (!currentUser) {
-      currentUser = await tryRefreshSession();
+    try {
+      const res = await axiosAuth.get('/api/auth/me');
+      setUser(res.data.data);
+    } catch {
+      try {
+        await tryRefreshSession();
+        const res = await axiosAuth.get('/api/auth/me');
+        setUser(res.data.data);
+      } catch {
+        setUser(null);
+      }
+    } finally {
+      setLoading(false);
     }
-
-    setUser(currentUser);
-    setLoading(false);
   };
 
   const logout = () => {
