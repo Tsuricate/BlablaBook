@@ -11,7 +11,7 @@ const cookieOptions: CookieOptions = {
   httpOnly: true,
   secure: true,
   sameSite: 'lax',
-  path: '/api',
+  path: '/',
 };
 
 export const clearCookiesUser = (res: Response): void => {
