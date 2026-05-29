@@ -60,7 +60,7 @@ const Login = () => {
     setIsSubmitting(true);
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/login`,
+        '/api/auth/login',
         {
           ...userInfos,
           rememberMe,

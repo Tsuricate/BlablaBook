@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance for all authenticated requests
 export const axiosAuth = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: '/api',
   withCredentials: true,
 });
 
@@ -19,13 +19,7 @@ axiosAuth.interceptors.response.use(
 
       try {
         // Call the refresh endpoint to get a new token
-        await axiosAuth.post(
-          `${import.meta.env.VITE_API_URL}/api/auth/refresh`,
-
-          {},
-
-          { withCredentials: true }
-        );
+        await axiosAuth.post('/api/auth/refresh', {}, { withCredentials: true });
 
         // Retry the original request with the new token
         return axiosAuth(originalRequest);

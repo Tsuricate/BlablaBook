@@ -24,10 +24,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     return res.data.data;
   };
 
-  const refresh = async () => {
-    await axiosAuth.post('/api/auth/refresh', {});
-  };
-
   const initAuth = async () => {
     try {
       const user = await getMe();

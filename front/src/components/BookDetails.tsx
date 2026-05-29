@@ -51,7 +51,7 @@ const BookDetails = () => {
 
     const fetchBook = async () => {
       try {
-        const res = await axiosAuth.get(`${import.meta.env.VITE_API_URL}/api/books/${id}`);
+        const res = await axiosAuth.get(`/api/books/${id}`);
         setBook(res.data);
       } catch (error) {
         console.error('Error fetching book:', error);
