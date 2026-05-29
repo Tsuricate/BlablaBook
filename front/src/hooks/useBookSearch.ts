@@ -51,7 +51,7 @@ export const useBookSearch = () => {
     try {
       if (setUrl) setSearchParams({ q: query });
 
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/books/search`, {
+      const { data } = await axios.get('/api/books/search', {
         params: { q: query, startIndex: index, lang: 'fr' },
       });
 

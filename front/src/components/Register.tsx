@@ -61,13 +61,9 @@ const Register = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await axios.post<RegisterResponse>(
-        `${import.meta.env.VITE_API_URL}/api/auth/register`,
-        userInfos,
-        {
-          headers: { 'Content-Type': 'application/json' },
-        }
-      );
+      const response = await axios.post<RegisterResponse>('/api/auth/register', userInfos, {
+        headers: { 'Content-Type': 'application/json' },
+      });
       // Traitement de la résponse
       if (response.data.success && response.data.data) {
         toaster.create({

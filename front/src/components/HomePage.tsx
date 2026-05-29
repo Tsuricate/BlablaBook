@@ -48,10 +48,7 @@ const HomePage = () => {
     if (!activeQuery) {
       const fetchFeatured = async () => {
         try {
-          const res = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/books/topFeaturedThemes`,
-            { params: { lang: 'fr' } }
-          );
+          const res = await axios.get('/api/books/topFeaturedThemes', { params: { lang: 'fr' } });
           setFeaturedBooks(res.data);
         } catch (error) {
           console.error(error);
