@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { type AxiosRequestConfig } from 'axios';
 
 // Create an Axios instance for all authenticated requests
 export const axiosAuth = axios.create({
@@ -6,29 +6,48 @@ export const axiosAuth = axios.create({
   withCredentials: true,
 });
 
+let isRefreshing = false;
+
 // --- Response interceptor ---
 // Intercepts every response from requests made with axiosAuth before it reaches our code
 axiosAuth.interceptors.response.use(
   (response) => response, // If response is successful, we just return it
   async (error) => {
-    const originalRequest = error.config;
+    const originalRequest = error.config as AxiosRequestConfig & {
+      _retry?: boolean;
+    };
 
-    // If token is expired (401) and we haven't retried yet
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
+    const status = error.response?.status;
+    const url = originalRequest?.url;
 
-      try {
-        // Call the refresh endpoint to get a new token
-        await axiosAuth.post('/auth/refresh', {}, { withCredentials: true });
+    // Only handle 401 errors
+    if (status !== 401) return Promise.reject(error);
 
-        // Retry the original request with the new token
-        return axiosAuth(originalRequest);
-      } catch (refreshError) {
-        return Promise.reject(refreshError);
-      }
+    // Prevent retry loops
+
+    if (originalRequest._retry) return Promise.reject(error);
+
+    // Do not try to refresh on the refresh endpoint itself
+    if (url?.includes('/auth/refresh')) return Promise.reject(error);
+
+    // Prevent multiple refresh calls at the same time
+    if (isRefreshing) return Promise.reject(error);
+
+    originalRequest._retry = true;
+    isRefreshing = true;
+
+    try {
+      // Try to refresh the access token
+      await axiosAuth.post('/auth/refresh', {}, { withCredentials: true });
+
+      isRefreshing = false;
+
+      // Retry the original request
+      return axiosAuth(originalRequest);
+    } catch (refreshError) {
+      isRefreshing = false;
+
+      return Promise.reject(refreshError);
     }
-
-    // For all other errors, just reject
-    return Promise.reject(error);
   }
 );
