@@ -33,13 +33,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       const user = await getMe();
       setUser(user);
     } catch {
-      try {
-        await refresh();
-        const user = await getMe();
-        setUser(user);
-      } catch {
-        setUser(null);
-      }
+      setUser(null);
     } finally {
       setLoading(false);
     }
