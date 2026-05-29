@@ -19,20 +19,19 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const isLoggedIn = !!user;
 
-  const getMe = async () => {
-    const res = await axiosAuth.get('/auth/me');
-    return res.data.data;
+  const fetchMe = async () => {
+    try {
+      const response = await axiosAuth.get('/auth/me');
+      return response.data?.data ?? null;
+    } catch {
+      return null;
+    }
   };
 
   const initAuth = async () => {
-    try {
-      const user = await getMe();
-      setUser(user);
-    } catch {
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
+    const userData = await fetchMe();
+    setUser(userData);
+    setLoading(false);
   };
 
   const logout = () => {
@@ -46,7 +45,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   if (loading) return <Spinner />;
 
   return (
-    <UserContext.Provider value={{ user, isLoggedIn, loading, setUser, logout }}>
+    <UserContext.Provider
+      value={{
+        user,
+        isLoggedIn,
+        loading,
+        setUser,
+        logout,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
@@ -54,6 +61,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
 export const useCurrentUser = () => {
   const context = useContext(UserContext);
-  if (!context) throw new Error('useCurrentUser must be used within a UserProvider');
+  if (!context) {
+    throw new Error('useCurrentUser must be used within UserProvider');
+  }
   return context;
 };
