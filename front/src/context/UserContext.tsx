@@ -20,7 +20,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const isLoggedIn = !!user;
 
   const getMe = async () => {
-    const res = await axiosAuth.get('/api/auth/me');
+    const res = await axiosAuth.get('/auth/me');
     return res.data.data;
   };
 

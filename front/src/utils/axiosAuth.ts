@@ -19,7 +19,7 @@ axiosAuth.interceptors.response.use(
 
       try {
         // Call the refresh endpoint to get a new token
-        await axiosAuth.post('/api/auth/refresh', {}, { withCredentials: true });
+        await axiosAuth.post('/auth/refresh', {}, { withCredentials: true });
 
         // Retry the original request with the new token
         return axiosAuth(originalRequest);
