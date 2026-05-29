@@ -19,32 +19,24 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const isLoggedIn = !!user;
 
-  // --- Try to refresh the token via /auth/refresh ---
-  const tryRefreshSession = async (): Promise<User | null> => {
-    try {
-      const response = await axiosAuth.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/refresh`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
-      return response.data?.data ?? null;
-    } catch {
-      return null;
-    }
+  const getMe = async () => {
+    const res = await axiosAuth.get('/api/auth/me');
+    return res.data.data;
   };
 
-  // --- Try to fetch the current user via /auth/me ---
-  const fetchUserWithRefresh = async () => {
+  const refresh = async () => {
+    await axiosAuth.post('/api/auth/refresh', {}, { withCredentials: true });
+  };
+
+  const initAuth = async () => {
     try {
-      const res = await axiosAuth.get('/api/auth/me');
-      setUser(res.data.data);
+      const user = await getMe();
+      setUser(user);
     } catch {
       try {
-        await tryRefreshSession();
-        const res = await axiosAuth.get('/api/auth/me');
-        setUser(res.data.data);
+        await refresh();
+        const user = await getMe();
+        setUser(user);
       } catch {
         setUser(null);
       }
@@ -58,7 +50,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    fetchUserWithRefresh();
+    initAuth();
   }, []);
 
   if (loading) return <Spinner />;
