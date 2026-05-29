@@ -25,7 +25,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const refresh = async () => {
-    await axiosAuth.post('/api/auth/refresh', {}, { withCredentials: true });
+    await axiosAuth.post('/api/auth/refresh', {});
   };
 
   const initAuth = async () => {
@@ -56,15 +56,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   if (loading) return <Spinner />;
 
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        isLoggedIn,
-        loading,
-        setUser,
-        logout,
-      }}
-    >
+    <UserContext.Provider value={{ user, isLoggedIn, loading, setUser, logout }}>
       {children}
     </UserContext.Provider>
   );
