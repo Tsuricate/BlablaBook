@@ -8,7 +8,7 @@ const useLibraryActions = () => {
   const { updateBookInCollections, removeBookFromCollections } = useLibrary();
 
   const addBook = async (book: AddBookPayload) => {
-    const res = await axiosAuth.post('/api/library', {
+    const res = await axiosAuth.post('/library', {
       book,
       status: book.status ?? 'wishlist',
     });
@@ -22,7 +22,7 @@ const useLibraryActions = () => {
     toKey: string,
     status: Status
   ) => {
-    const res = await axiosAuth.patch(`/api/library/${bookId}`, {
+    const res = await axiosAuth.patch(`/library/${bookId}`, {
       status,
     });
 
@@ -33,7 +33,7 @@ const useLibraryActions = () => {
 
   const removeBook = async (bookId: string, fromKey: string) => {
     try {
-      await axiosAuth.delete(`/api/library/${bookId}`);
+      await axiosAuth.delete(`/library/${bookId}`);
       removeBookFromCollections(bookId, fromKey);
     } catch (error) {
       console.error('Delete failed', error);

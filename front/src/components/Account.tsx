@@ -123,7 +123,7 @@ const AccountPage = () => {
         setIsEditing(false);
         return setFormData(initialFormData);
       }
-      const response = await axiosAuth.patch(`/api/auth/users/${user.id}`, updatedData);
+      const response = await axiosAuth.patch(`/auth/users/${user.id}`, updatedData);
 
       if (response.data.success && response.data.data) {
         toaster.create({
@@ -245,7 +245,7 @@ const AccountPage = () => {
 
     setIsDeleting(true);
     try {
-      const response = await axiosAuth.delete(`/api/auth/users/${user.id}`);
+      const response = await axiosAuth.delete(`/auth/users/${user.id}`);
       if (response.data.success) {
         logout();
         toaster.create({
@@ -273,7 +273,7 @@ const AccountPage = () => {
 
   const handleLogoutClick = async () => {
     try {
-      const response = await axiosAuth.post('/api/auth/logout');
+      const response = await axiosAuth.post('/auth/logout');
       if (!response.data.success) {
         console.error('Error logging out:', response.data.message);
         return;
