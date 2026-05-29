@@ -16,7 +16,6 @@ import { AuthRequest } from '../middlewares/auth.middleware';
 import { clearCookiesUser } from '../utils/clearAuthCookies';
 import { Prisma } from '../../generated/prisma/client';
 
-//Typage Typescript
 type AuthFormValues = z.infer<typeof AuthSchema>;
 type LoginFormValues = z.infer<typeof LoginSchema>;
 type PatchFormValues = z.infer<typeof PatchSchema>;
@@ -67,39 +66,34 @@ export const registerUserController = async (req: Request, res: Response) => {
 
 export const loginUserController = async (req: Request, res: Response) => {
   try {
-    // validation du body de la requête
     const { email, password, rememberMe } = LoginSchema.parse(req.body) as LoginFormValues;
     // appelle auth service pour se connecter
     const { user, token, refreshToken } = await login(email, password, rememberMe);
 
-    // mise en place des cookies
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: convertInMs(process.env.JWT_EXPIRES_IN as string),
-      path: '/api',
+      path: '/',
     });
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: convertInMs(process.env.REFRESH_TOKEN_EXPIRES_IN as string),
-      path: '/api',
+      path: '/',
     });
 
-    // creation d'une constante newuser contenant les information de user sans le password
     const newuser = {
       id: user.id,
       username: user.username,
       email: user.email,
     };
 
-    //response au frontend de la reussite de la connexion
     return res.status(200).json({ success: true, message: 'Login successful', data: newuser });
   } catch (error) {
     const userError = error as UserError;
-    // Gestion des erreurs
     if (userError.message === 'INVALID_CREDENTIALS') {
       return res.status(401).json({ success: false, message: 'INVALID_CREDENTIALS' });
     }
@@ -138,7 +132,7 @@ export const refreshTokenController = async (req: Request, res: Response) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'none',
       maxAge: convertInMs(process.env.JWT_EXPIRES_IN as string),
     });
 
