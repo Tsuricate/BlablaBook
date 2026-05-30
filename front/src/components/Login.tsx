@@ -24,6 +24,7 @@ import { Link as RouterLink, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import MobileMenu from './MobileMenu';
 import { useCurrentUser } from '../context/UserContext';
+import { initCsrf } from '../utils/csrf';
 
 //Typage Typescript
 type LoginFormValues = z.infer<typeof LoginSchema>;
@@ -67,6 +68,7 @@ const Login = () => {
         },
         { withCredentials: true }
       );
+      await initCsrf();
 
       setUser(response.data.data);
 
