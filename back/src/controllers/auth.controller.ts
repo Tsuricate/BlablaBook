@@ -1,5 +1,6 @@
 import type z from 'zod';
 import { AuthSchema, LoginSchema, PatchSchema } from '../schema/auth.schema';
+import crypto from 'crypto';
 import type { Request, Response } from 'express';
 import { convertInMs } from '../utils/time.utils';
 import {
@@ -67,8 +68,8 @@ export const registerUserController = async (req: Request, res: Response) => {
 export const loginUserController = async (req: Request, res: Response) => {
   try {
     const { email, password, rememberMe } = LoginSchema.parse(req.body) as LoginFormValues;
-    // appelle auth service pour se connecter
     const { user, token, refreshToken } = await login(email, password, rememberMe);
+    const csrfToken = crypto.randomBytes(32).toString('hex');
 
     res.cookie('token', token, {
       httpOnly: true,
@@ -82,6 +83,12 @@ export const loginUserController = async (req: Request, res: Response) => {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: convertInMs(process.env.REFRESH_TOKEN_EXPIRES_IN as string),
+      path: '/',
+    });
+    res.cookie('csrf_token', csrfToken, {
+      httpOnly: false,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       path: '/',
     });
 
@@ -224,4 +231,17 @@ export const patchUserController = async (req: AuthRequest, res: Response) => {
       res.status(500).json({ success: false, message: 'Server error' });
     }
   }
+};
+
+export const getCsrfTokenController = (req: Request, res: Response) => {
+  const csrfToken = crypto.randomBytes(32).toString('hex');
+
+  res.cookie('csrf_token', csrfToken, {
+    httpOnly: false,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/',
+  });
+
+  return res.json({ csrfToken });
 };
