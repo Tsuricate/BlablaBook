@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import type { User } from '../types/user';
 import { Spinner } from '@chakra-ui/react';
 import { axiosAuth } from '../utils/axiosAuth';
+import { initCsrf } from '../utils/csrf';
 
 type UserContextType = {
   user: User | null;
@@ -29,6 +30,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const initAuth = async () => {
+    try {
+      await initCsrf();
+    } catch (error) {
+      console.error('CSRF init failed:', error);
+    }
     const userData = await fetchMe();
     setUser(userData);
     setLoading(false);
