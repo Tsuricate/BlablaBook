@@ -6,6 +6,7 @@ export const baseUser = () => {
   const id = randomUUID();
 
   return {
+    id: Number(id),
     username: `user_${id}`,
     email: `user_${id}@test.com`,
     password: 'Password123!AA',
