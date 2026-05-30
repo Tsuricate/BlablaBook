@@ -17,4 +17,7 @@ const cookieOptions: CookieOptions = {
 export const clearCookiesUser = (res: Response): void => {
   res.clearCookie('token', cookieOptions);
   res.clearCookie('refreshToken', cookieOptions);
+  res.clearCookie('csrf_token', {
+    path: '/',
+  });
 };

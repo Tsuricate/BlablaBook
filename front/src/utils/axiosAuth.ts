@@ -1,4 +1,5 @@
 import axios, { type AxiosRequestConfig } from 'axios';
+import { getCsrfToken } from '../utils/csrf';
 
 // Create an Axios instance for all authenticated requests
 export const axiosAuth = axios.create({
@@ -7,6 +8,17 @@ export const axiosAuth = axios.create({
 });
 
 let isRefreshing = false;
+
+// Add CSRF token to every request
+axiosAuth.interceptors.request.use((config) => {
+  const csrfToken = getCsrfToken();
+  if (csrfToken) {
+    config.headers = config.headers ?? {};
+    config.headers['x-csrf-token'] = csrfToken;
+  }
+
+  return config;
+});
 
 // --- Response interceptor ---
 // Intercepts every response from requests made with axiosAuth before it reaches our code
