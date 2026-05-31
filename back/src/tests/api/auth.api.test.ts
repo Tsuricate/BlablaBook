@@ -3,6 +3,8 @@ import app from '../../app';
 import { describe, expect, it } from 'vitest';
 import { baseUser, createAuthenticatedUser } from '../helpers/auth';
 import { randomUUID } from 'crypto';
+import { createAuthenticatedClient } from '../helpers/testClient';
+import { createTestUser } from '../factories';
 
 describe('POST /api/auth/register', () => {
   it('should register a new user', async () => {
@@ -144,8 +146,10 @@ describe('POST /api/auth/login', () => {
 
 describe('POST /api/auth/logout', () => {
   it('should logout successfully', async () => {
-    const { authCookies } = await createAuthenticatedUser();
-    const res = await request(app).post('/api/auth/logout').set('Cookie', authCookies);
+    const user = await createTestUser();
+    const client = createAuthenticatedClient(app, user.id);
+
+    const res = await client.post('/api/auth/logout');
 
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);
@@ -160,21 +164,33 @@ describe('POST /api/auth/logout', () => {
   });
 
   it('should clear authentication cookies on logout', async () => {
-    const { authCookies } = await createAuthenticatedUser();
-
-    const res = await request(app).post('/api/auth/logout').set('Cookie', authCookies);
+    const user = await createTestUser();
+    const client = createAuthenticatedClient(app, user.id);
+    const res = await client.post('/api/auth/logout');
 
     const cookies = res.headers['set-cookie'] ?? [];
     const cookieArray = Array.isArray(cookies) ? cookies : [cookies];
 
-    const clearedToken = cookieArray.find((c) => c.includes('token=') && c.includes('Expires='));
+    const clearedToken = cookieArray.find(
+      (cookie) => cookie.includes('token=') && cookie.includes('Expires=')
+    );
 
     const clearedRefresh = cookieArray.find(
-      (c) => c.includes('refreshToken=') && c.includes('Expires=')
+      (cookie) => cookie.includes('refreshToken=') && cookie.includes('Expires=')
     );
 
     expect(clearedToken).toBeDefined();
     expect(clearedRefresh).toBeDefined();
+  });
+
+  it('should reject request without csrf token', async () => {
+    const user = await createTestUser();
+    const client = createAuthenticatedClient(app, user.id);
+    client.setCsrf('');
+
+    const res = await client.post('/api/auth/logout');
+
+    expect(res.status).toBe(403);
   });
 });
 
@@ -221,5 +237,27 @@ describe('POST /api/auth/refresh', () => {
 
     expect(response.status).toBe(401);
     expect(response.body.message).toBe('Invalid or expired refresh token');
+  });
+});
+
+describe('GET /api/auth/csrf', () => {
+  it('should return csrf token and set cookie', async () => {
+    const res = await request(app).get('/api/auth/csrf');
+
+    expect(res.status).toBe(200);
+    expect(res.body.csrfToken).toBeDefined();
+
+    const cookies = res.headers['set-cookie'] ?? [];
+    const cookieArray = Array.isArray(cookies) ? cookies : [cookies];
+
+    const csrfCookie = cookieArray.find((c) => c.includes('csrf_token='));
+    expect(csrfCookie).toBeDefined();
+  });
+
+  it('should return different csrf tokens on multiple calls', async () => {
+    const res1 = await request(app).get('/api/auth/csrf');
+    const res2 = await request(app).get('/api/auth/csrf');
+
+    expect(res1.body.csrfToken).not.toBe(res2.body.csrfToken);
   });
 });
