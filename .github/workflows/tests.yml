@@ -18,30 +18,21 @@ jobs:
           POSTGRES_DB: book_app_test
         ports:
           - 5435:5432
-        options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 24
 
       - run: npm install -g pnpm
 
-      - name: Install dependencies
-        working-directory: back
+      - working-directory: back
         run: pnpm install
 
-      - name: Run integration tests
-        working-directory: back
+      - working-directory: back
         run: pnpm test:integration:ci
         env:
-          NODE_ENV: test
           DATABASE_URL: postgresql://postgres:postgres@localhost:5435/book_app_test
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
