@@ -40,7 +40,7 @@ jobs:
 
       - name: Run integration tests
         working-directory: back
-        run: pnpm test:integration
+        run: pnpm test:integration:ci
         env:
           NODE_ENV: test
           DATABASE_URL: postgresql://postgres:postgres@localhost:5435/book_app_test
