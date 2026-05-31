@@ -46,3 +46,4 @@ jobs:
         env:
           NODE_ENV: test
           DATABASE_URL: postgresql://postgres:postgres@localhost:5435/book_app_test
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
