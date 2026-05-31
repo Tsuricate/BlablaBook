@@ -22,7 +22,7 @@
     "test:db:wait": "until pg_isready -h localhost -p 5435 -U postgres; do sleep 1; done",
     "test:db:migrate": "dotenv -e .env.test -- tsx ./node_modules/prisma/build/index.js migrate reset --force --skip-seed",
     "test:run": "vitest run",
-    "test:e2e": "pnpm test:db:up && pnpm test:db:wait && pnpm test:db:migrate && dotenv -e .env.test -- vitest run"
+    "test:integration": "pnpm test:db:up && pnpm test:db:wait && pnpm test:db:migrate && dotenv -e .env.test -- vitest run"
   },
   "keywords": [],
   "author": "",
