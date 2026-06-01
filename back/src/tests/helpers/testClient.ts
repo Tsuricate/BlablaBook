@@ -3,15 +3,11 @@ import type { Express } from 'express';
 import { generateTestToken } from './generateTestToken';
 import { createAuthCookie } from './auth';
 
-export const createTestClient = (
-  app: Express,
-  initialCookies: string[] = [],
-  initialCsrf: string = 'test-csrf-token'
-) => {
+export const createTestClient = (app: Express) => {
   const agent = request.agent(app);
 
-  let cookies = initialCookies;
-  let csrfToken = initialCsrf;
+  let csrfToken = 'test-csrf-token';
+  let cookies: string[] = [];
 
   const attach = (req: any) => {
     req.set('Cookie', [...cookies, `csrf_token=${csrfToken}`]);
@@ -29,8 +25,8 @@ export const createTestClient = (
       cookies = newCookies;
     },
 
-    setCsrf: (newCsrf: string) => {
-      csrfToken = newCsrf;
+    setCsrf: (token: string) => {
+      csrfToken = token;
     },
   };
 };
@@ -40,6 +36,7 @@ export const createAuthenticatedClient = (app: Express, userId: number) => {
   const client = createTestClient(app);
 
   client.setCookies(createAuthCookie(token));
+  client.setCsrf('test-csrf-token');
 
   return client;
 };
