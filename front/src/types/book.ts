@@ -5,7 +5,6 @@ export interface Book {
   title: string;
   description?: string;
   authors: string[];
-  averageRating?: number;
   status: Status;
   imageLinks?: {
     smallThumbnail?: string;

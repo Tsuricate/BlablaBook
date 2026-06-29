@@ -15,7 +15,7 @@ const BookCard = ({ book }: BookCardProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const { title, authors, averageRating, imageLinks, categories } = book;
+  const { title, authors, imageLinks, categories } = book;
 
   const firstCategory = categories?.[0] ?? 'uncategorized';
   const rootCategory = firstCategory.split('/')[0].trim();
@@ -83,26 +83,6 @@ const BookCard = ({ book }: BookCardProps) => {
             _dark: 'linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.45) 100%)',
           }}
         />
-
-        {averageRating && (
-          <Box
-            position="absolute"
-            top={2}
-            left={2}
-            bg={{ _light: 'rgba(255,255,255,0.88)', _dark: 'rgba(0,0,0,0.60)' }}
-            color={{ _light: 'black', _dark: 'white' }}
-            backdropFilter="blur(8px)"
-            px={2}
-            py={1}
-            borderRadius="md"
-            fontSize="xs"
-            fontWeight="semibold"
-            borderWidth="1px"
-            borderColor={{ _light: 'rgba(0,0,0,0.06)', _dark: 'rgba(255,255,255,0.10)' }}
-          >
-            ⭐ {averageRating}
-          </Box>
-        )}
 
         <BookCardActions mode={mode} book={book} />
       </Box>

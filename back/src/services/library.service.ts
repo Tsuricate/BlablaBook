@@ -546,8 +546,6 @@ export const createBook = async (googleBookData: GoogleBook) => {
     },
     data: {
       title: googleBookData.title,
-      averageRating: googleBookData.averageRating,
-      ratingCount: googleBookData.ratingCount,
       imageLinks: cleanImageLinks(googleBookData.imageLinks),
       language: googleBookData.language,
       description: googleBookData.description,

@@ -5,6 +5,14 @@ import { createAndGetAuthors, createAndGetCategories } from './library.service';
 
 // TODO: remove any, add proper GoogleBook typing normalization, refacto with library service
 export const createBookInDbOnly = async (googleBookData: any) => {
+  const authors = googleBookData.authors
+    ? await createAndGetAuthors(cleanOtherBookData(googleBookData.authors))
+    : [];
+
+  const categories = googleBookData.categories
+    ? await createAndGetCategories(cleanOtherBookData(googleBookData.categories))
+    : [];
+
   const createdBook = await prisma.book.create({
     include: {
       publisher: true,
@@ -13,8 +21,6 @@ export const createBookInDbOnly = async (googleBookData: any) => {
     },
     data: {
       title: googleBookData.title,
-      averageRating: googleBookData.averageRating,
-      ratingCount: googleBookData.ratingCount,
       imageLinks: cleanImageLinks(googleBookData.imageLinks),
       language: googleBookData.language,
       description: googleBookData.description,
@@ -36,9 +42,7 @@ export const createBookInDbOnly = async (googleBookData: any) => {
     },
   });
 
-  if (googleBookData.authors) {
-    const authors = await createAndGetAuthors(cleanOtherBookData(googleBookData.authors));
-
+  if (authors.length) {
     await prisma.bookAuthor.createMany({
       data: authors.map((author) => ({
         bookId: createdBook.id,
@@ -47,9 +51,7 @@ export const createBookInDbOnly = async (googleBookData: any) => {
     });
   }
 
-  if (googleBookData.categories) {
-    const categories = await createAndGetCategories(cleanOtherBookData(googleBookData.categories));
-
+  if (categories.length) {
     await prisma.bookCategory.createMany({
       data: categories.map((category) => ({
         bookId: createdBook.id,
@@ -83,7 +85,7 @@ export const ensureBookExists = async (googleBookId: string) => {
   return book;
 };
 
-export const getUserBookStatus = async (userId: number, bookId: number) => {
+export const getUserBook = async (userId: number, bookId: number) => {
   const userBook = await prisma.userBook.findUnique({
     where: {
       userId_bookId: {
@@ -93,8 +95,9 @@ export const getUserBookStatus = async (userId: number, bookId: number) => {
     },
     select: {
       status: true,
+      rating: true,
     },
   });
 
-  return userBook?.status ?? null;
+  return userBook;
 };

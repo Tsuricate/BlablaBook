@@ -41,8 +41,6 @@ model RefreshToken {
 model Book {
   id            Int            @id @default(autoincrement())
   title         String
-  averageRating Float?         @map("average_rating")
-  ratingCount   Int            @default(0) @map("rating_count")
   imageLinks    Json?          @map("image_links")
   language      String?
   description   String?
@@ -97,6 +95,7 @@ model UserBook {
   userId Int           @map("user_id")
   bookId Int           @map("book_id")
   status ReadingStatus @default(wishlist)
+  rating Float?
   book   Book          @relation(fields: [bookId], references: [id])
   user   User          @relation(fields: [userId], references: [id])
 

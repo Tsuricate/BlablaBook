@@ -102,8 +102,6 @@ async function seed() {
       const book = await prisma.book.create({
         data: {
           title: bookData.title,
-          averageRating: bookData.averageRating,
-          ratingCount: bookData.ratingCount,
           imageLinks: bookData.imageLinks,
           language: bookData.language,
           description: bookData.description,
