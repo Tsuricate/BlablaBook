@@ -1,12 +1,12 @@
 import { Box, Drawer } from '@chakra-ui/react';
 
-interface LibraryDrawerShellProps {
+interface DrawerShellProps {
   title: string;
   subtitle?: string;
   children: React.ReactNode;
 }
 
-const LibraryDrawerShell = ({ title, subtitle, children }: LibraryDrawerShellProps) => (
+const DrawerShell = ({ title, subtitle, children }: DrawerShellProps) => (
   <Drawer.Content
     py={4}
     bg={{ _light: 'light.100', _dark: 'rgba(26,22,18,0.92)' }}
@@ -49,4 +49,4 @@ const LibraryDrawerShell = ({ title, subtitle, children }: LibraryDrawerShellPro
   </Drawer.Content>
 );
 
-export default LibraryDrawerShell;
+export default DrawerShell;

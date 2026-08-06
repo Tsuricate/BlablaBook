@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import {
   Box,
+  Button,
   Collapsible,
   Flex,
   Grid,
@@ -29,11 +30,14 @@ import AddBookActions from './AddBookActions';
 import EditBookActions from './EditBookActions';
 import { useCurrentUser } from '../context/UserContext';
 import ExpandableDescription from './ui/EnableDescrition';
+import BookRating from './BookRating';
+import { CiStar } from 'react-icons/ci';
 
 const BookDetails = () => {
   const { id } = useParams();
   const [book, setBook] = useState<Book | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isRatingOpen, setIsRatingOpen] = useState(false);
   const [bookLoading, setBookLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showAllCategories, setShowAllCategories] = useState(false);
@@ -129,22 +133,35 @@ const BookDetails = () => {
               </Text>
             </HStack>
 
-            {book && !isLoggedIn && <AddBookActions book={book} variant="button" />}
-
-            {book && isLoggedIn && !book.status && (
+            {book && (
               <AddBookActions
                 book={book}
-                variant="button"
                 onStatusChange={updateBookStatusLocally}
+                variant="button"
               />
             )}
 
             {book && isLoggedIn && book.status && (
-              <EditBookActions
-                book={book}
-                variant="button"
-                onStatusChange={updateBookStatusLocally}
-              />
+              <EditBookActions book={book} onStatusChange={updateBookStatusLocally} />
+            )}
+
+            {isLoggedIn && (
+              <>
+                <Button
+                  alignSelf="start"
+                  variant="category"
+                  width="full"
+                  onClick={() => setIsRatingOpen(true)}
+                >
+                  <CiStar />
+                  {t('book:rating.rate')}
+                </Button>
+                <BookRating
+                  open={isRatingOpen}
+                  onOpenChange={(details) => setIsRatingOpen(details.open)}
+                  bookId={book?.id}
+                />
+              </>
             )}
 
             <HStack mt={2} flexWrap="wrap" fontWeight="semibold">

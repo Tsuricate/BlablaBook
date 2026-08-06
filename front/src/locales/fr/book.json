@@ -61,5 +61,14 @@
   },
   "categories": {
     "subtitle": "Plongez dans des univers qui vous inspirent"
+  },
+  "rating": {
+    "rate": "Évaluer",
+    "rateBook": "Qu’avez-vous pensé de ce livre ?",
+    "communityRating": "Note de la communauté",
+    "noRatingsYet": "Aucune note pour le moment",
+    "myRating": "Ma note",
+    "ratings": "Notes",
+    "readingDate": "Dates de lecture"
   }
 }

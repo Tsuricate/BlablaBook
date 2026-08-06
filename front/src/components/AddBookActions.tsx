@@ -17,7 +17,7 @@ import type { Book, Status } from '../types/book';
 import useLibraryActions from '../hooks/useLibraryActions';
 import { toaster } from './ui/toaster';
 import LibraryPopoverShell from './LibraryPopoverShell';
-import LibraryDrawerShell from './LibraryDrawerShell';
+import LibraryDrawerShell from './DrawerShell';
 import { useCurrentUser } from '../context/UserContext';
 import { useNavigate } from 'react-router';
 
@@ -85,51 +85,6 @@ const AddBookActions = ({ book, variant = 'icon', onStatusChange }: AddBookActio
     }
   };
 
-  const renderButtonVariant = () => {
-    if (!isLoggedIn) {
-      return (
-        <Button
-          alignSelf="start"
-          variant="plain"
-          paddingLeft={0}
-          color={{ _light: 'brown.800', _dark: 'light.200' }}
-          bg={{ _light: 'light.100', _dark: 'brown.900' }}
-          _hover={{ textDecoration: 'underline' }}
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsOpen(true);
-          }}
-        >
-          <GoPlusCircle />
-          {t('book:library.addBookToLibrary')}
-        </Button>
-      );
-    }
-
-    if (!book?.status) {
-      return (
-        <VStack align="start">
-          <Text fontSize="sm">{t('book:library.addBookCTA')}</Text>
-
-          <Button
-            variant="plain"
-            paddingLeft={0}
-            color={{ _light: 'brown.800', _dark: 'light.200' }}
-            bg={{ _light: 'light.100', _dark: 'brown.900' }}
-            _hover={{ textDecoration: 'underline' }}
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsOpen(true);
-            }}
-          >
-            <GoPlusCircle />
-            {t('book:library.addBookAction')}
-          </Button>
-        </VStack>
-      );
-    }
-  };
-
   const Content = () => {
     if (!isLoggedIn) {
       return (
@@ -171,7 +126,18 @@ const AddBookActions = ({ book, variant = 'icon', onStatusChange }: AddBookActio
 
   const Trigger =
     variant === 'button' ? (
-      renderButtonVariant()
+      <Button
+        alignSelf="start"
+        variant="category"
+        width="full"
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsOpen(true);
+        }}
+      >
+        <GoPlusCircle />
+        {t('book:library.addBookToLibrary')}
+      </Button>
     ) : (
       <IconButton
         aria-label={t('bookCard.addBook')}

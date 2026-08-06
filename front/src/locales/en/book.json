@@ -62,5 +62,13 @@
   },
   "categories": {
     "subtitle": "Step into worlds that inspire you"
+  },
+  "rating": {
+    "rate": "Rate",
+    "rateBook": "How would you rate this book?",
+    "communityRating": "Community rating",
+    "noRatingsYet": "No ratings yet",
+    "myRating": "My rating",
+    "ratings": "ratings"
   }
 }

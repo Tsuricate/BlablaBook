@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 
 import type { Book } from '../types/book';
 import LibraryPopoverShell from './LibraryPopoverShell';
-import LibraryDrawerShell from './LibraryDrawerShell';
+import LibraryDrawerShell from './DrawerShell';
 import useLibraryActions from '../hooks/useLibraryActions';
 import { toaster } from './ui/toaster';
 

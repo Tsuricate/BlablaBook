@@ -5,7 +5,7 @@ import axios from 'axios';
 import { searchBooks } from '../services/googleBooks.service';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import { formatBook } from '../services/library.service';
-import { ensureBookExists, getUserBookStatus } from '../services/book.service';
+import { ensureBookExists, getUserBook } from '../services/book.service';
 
 const searchQuerySchema = z.object({
   q: z.string().min(1, 'Le paramètre q est requis'),
@@ -50,15 +50,12 @@ export const getById = async (req: AuthRequest, res: Response): Promise<void> =>
 
     const baseBook = formatBook(book);
 
-    let status: string | null = null;
-
-    if (userId) {
-      status = await getUserBookStatus(userId, book.id);
-    }
+    const userBook = userId ? await getUserBook(userId, book.id) : null;
 
     res.status(200).json({
       ...baseBook,
-      status,
+      status: userBook?.status ?? null,
+      rating: userBook?.rating ?? null,
     });
   } catch (err) {
     if (axios.isAxiosError(err) && err.response?.status === 404) {

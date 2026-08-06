@@ -24,5 +24,6 @@
   "myLibrary": "Ma bibliothèque",
   "confirm": "Confirmer",
   "delete": "Supprimer",
-  "cancel": "Annuler"
+  "cancel": "Annuler",
+  "save": "Enregistrer"
 }
