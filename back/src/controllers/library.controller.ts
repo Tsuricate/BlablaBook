@@ -17,7 +17,7 @@ import {
   createBookSchema,
   getUserLibraryQuerySchema,
   searchQuerySchema,
-  statusSchema,
+  updateUserBookSchema,
   type LibraryQuerySchema,
   type SearchQuerySchema,
 } from '../schema/library.schema';
@@ -114,7 +114,7 @@ export const searchInLibrary = async (req: AuthRequest, res: Response): Promise<
   }
 };
 
-export const updateBookStatus = async (req: AuthRequest, res: Response): Promise<void> => {
+export const updateLibraryBook = async (req: AuthRequest, res: Response): Promise<void> => {
   const userId = req.userId as number;
   const bookId = await checkIdFromParams(req.params.id as string);
   const userBookId = { userId, bookId };
@@ -125,7 +125,7 @@ export const updateBookStatus = async (req: AuthRequest, res: Response): Promise
     return;
   }
 
-  const parsed = statusSchema.safeParse(req.body);
+  const parsed = updateUserBookSchema.safeParse(req.body);
 
   if (!parsed.success) {
     res.status(400).json({ success: false, error: z.flattenError(parsed.error).fieldErrors });
@@ -133,7 +133,7 @@ export const updateBookStatus = async (req: AuthRequest, res: Response): Promise
   }
 
   try {
-    const data = await updateUserBook(userBookId, parsed.data?.status);
+    const data = await updateUserBook(userBookId, parsed.data?.status, parsed.data?.rating);
 
     res.status(200).json({
       success: true,
