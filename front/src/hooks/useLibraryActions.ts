@@ -5,7 +5,8 @@ import { useLibrary } from '../context/LibraryContext';
 type Status = 'wishlist' | 'read';
 
 const useLibraryActions = () => {
-  const { updateBookInCollections, removeBookFromCollections } = useLibrary();
+  const { updateBookInCollections, removeBookFromCollections, updateBookRatingInCollections } =
+    useLibrary();
 
   const addBook = async (book: AddBookPayload) => {
     const res = await axiosAuth.post('/library', {
@@ -31,6 +32,16 @@ const useLibraryActions = () => {
     return res.data;
   };
 
+  const updateBookRating = async (bookId: string, rating: number) => {
+    const res = await axiosAuth.patch(`/library/${bookId}`, {
+      rating,
+    });
+
+    updateBookRatingInCollections(bookId, rating);
+
+    return res.data;
+  };
+
   const removeBook = async (bookId: string, fromKey: string) => {
     try {
       await axiosAuth.delete(`/library/${bookId}`);
@@ -44,6 +55,7 @@ const useLibraryActions = () => {
   return {
     addBook,
     updateBookStatus,
+    updateBookRating,
     removeBook,
   };
 };

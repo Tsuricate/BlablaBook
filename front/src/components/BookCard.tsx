@@ -1,11 +1,12 @@
-import { Box, Text, Image, Heading, Flex, Show, useBreakpointValue } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router';
+
+import { Box, Text, Image, Heading, Flex, Show, useBreakpointValue } from '@chakra-ui/react';
+import BookLibraryActions from './BookLibraryActions';
+
 import { slugify } from '../utils/stringUtils';
 import noBookCover from '../assets/noBookCover.jpg';
-import type { Book } from '../types/book';
-
-import BookCardActions from './BookCardActions';
-import EditBookActions from './EditBookActions';
+import type { Book, Status } from '../types/book';
+import { useState } from 'react';
 
 interface BookCardProps {
   book: Book;
@@ -16,6 +17,7 @@ const BookCard = ({ book }: BookCardProps) => {
   const { pathname } = useLocation();
 
   const { title, authors, imageLinks, categories } = book;
+  const [updatedBook, setUpdatedBook] = useState(book);
 
   const firstCategory = categories?.[0] ?? 'uncategorized';
   const rootCategory = firstCategory.split('/')[0].trim();
@@ -23,10 +25,14 @@ const BookCard = ({ book }: BookCardProps) => {
 
   const isLibraryPage = pathname.startsWith('/library');
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const mode = isLibraryPage ? (isMobile ? 'libraryMobile' : 'libraryDesktop') : 'default';
+  const isLibraryMobile = isLibraryPage && isMobile;
 
   const handleClick = () => {
     navigate(`/books/${slugCategory}/${book.googleBookId}`);
+  };
+
+  const updateBookStatusLocally = (status: Status) => {
+    setUpdatedBook((prev) => (prev ? { ...prev, status } : prev));
   };
 
   return (
@@ -84,7 +90,14 @@ const BookCard = ({ book }: BookCardProps) => {
           }}
         />
 
-        <BookCardActions mode={mode} book={book} />
+        <Show when={!isLibraryMobile}>
+          <BookLibraryActions
+            book={updatedBook}
+            variant="icon"
+            onStatusChange={updateBookStatusLocally}
+            // onRatingChange={handleRatingChange}
+          />
+        </Show>
       </Box>
 
       <Box textAlign="left" position="relative" flex="1">
@@ -98,9 +111,14 @@ const BookCard = ({ book }: BookCardProps) => {
           </Text>
         </Show>
       </Box>
-      {isLibraryPage && isMobile && (
+
+      {isLibraryMobile && (
         <Box position="absolute" top={0} right={0}>
-          <EditBookActions book={book} />
+          <BookLibraryActions
+            book={updatedBook}
+            variant="icon"
+            onStatusChange={updateBookStatusLocally}
+          />
         </Box>
       )}
     </Flex>

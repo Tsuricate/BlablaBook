@@ -29,6 +29,7 @@ type LibraryContextType = {
     toKey: string,
     newStatus: Status
   ) => void;
+  updateBookRatingInCollections: (bookId: string, rating: number) => void;
   removeBookFromCollections: (bookId: string, fromKey: string) => void;
 };
 
@@ -174,6 +175,24 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
     });
   };
 
+  const updateBookRatingInCollections = (bookId: string, rating: number) => {
+    setCollections((prev) => {
+      const updatedCollections = { ...prev };
+
+      Object.entries(updatedCollections).forEach(([key, collection]) => {
+        updatedCollections[key] = {
+          ...collection,
+
+          items: collection.items.map((userBook) =>
+            userBook.book.id === bookId ? { ...userBook, rating } : userBook
+          ),
+        };
+      });
+
+      return updatedCollections;
+    });
+  };
+
   const removeBookFromCollections = (bookId: string, fromKey: string) => {
     setCollections((prev) => {
       const from = prev[fromKey] ?? DEFAULT_COLLECTION_STATE;
@@ -204,6 +223,7 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
         fetchFirstPage,
         fetchNextPage,
         updateBookInCollections,
+        updateBookRatingInCollections,
         removeBookFromCollections,
       }}
     >

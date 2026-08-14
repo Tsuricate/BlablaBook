@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import type { Book, Status } from '../types/book';
 import {
   Box,
-  Button,
   Collapsible,
   Flex,
   Grid,
@@ -15,35 +15,31 @@ import {
   Tag,
   Text,
 } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
+
 import { PageLayout } from './layouts/PageLayout';
 import MobileMenu from './MobileMenu';
-import bookDetail from '../assets/bookDetail.webp';
 import AppBreadcrumb from './AppBreadcrumb';
-import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
-import { getBookImageByScreen } from '../utils/bookUtils';
-import { useTruncatedTitle } from '../utils/stringUtils';
-import { useTranslation } from 'react-i18next';
-import noBookCover from '../assets/noBookCover.jpg';
-import type { Book, Status } from '../types/book';
-import { axiosAuth } from '../utils/axiosAuth';
-import AddBookActions from './AddBookActions';
-import EditBookActions from './EditBookActions';
-import { useCurrentUser } from '../context/UserContext';
 import ExpandableDescription from './ui/EnableDescrition';
-import BookRating from './BookRating';
-import { CiStar } from 'react-icons/ci';
+
+import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
+import noBookCover from '../assets/noBookCover.jpg';
+import bookDetail from '../assets/bookDetail.webp';
+
+import { getBookImageByScreen } from '../utils/bookUtils';
+import { axiosAuth } from '../utils/axiosAuth';
+import { useTruncatedTitle } from '../utils/stringUtils';
+import BookLibraryActions from './BookLibraryActions';
 
 const BookDetails = () => {
   const { id } = useParams();
   const [book, setBook] = useState<Book | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const [isRatingOpen, setIsRatingOpen] = useState(false);
   const [bookLoading, setBookLoading] = useState(true);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showAllCategories, setShowAllCategories] = useState(false);
 
   const { t } = useTranslation(['book', 'common']);
-  const { isLoggedIn } = useCurrentUser();
 
   const imageSrc = book ? getBookImageByScreen(book.imageLinks) : null;
   const hasRealImage = !!imageSrc;
@@ -68,6 +64,9 @@ const BookDetails = () => {
 
   const updateBookStatusLocally = (status: Status) => {
     setBook((prev) => (prev ? { ...prev, status } : prev));
+  };
+  const updateBookRatingLocally = (rating: number) => {
+    setBook((prev) => (prev ? { ...prev, rating } : prev));
   };
 
   return (
@@ -134,34 +133,11 @@ const BookDetails = () => {
             </HStack>
 
             {book && (
-              <AddBookActions
+              <BookLibraryActions
                 book={book}
                 onStatusChange={updateBookStatusLocally}
-                variant="button"
+                onRatingChange={updateBookRatingLocally}
               />
-            )}
-
-            {book && isLoggedIn && book.status && (
-              <EditBookActions book={book} onStatusChange={updateBookStatusLocally} />
-            )}
-
-            {isLoggedIn && (
-              <>
-                <Button
-                  alignSelf="start"
-                  variant="category"
-                  width="full"
-                  onClick={() => setIsRatingOpen(true)}
-                >
-                  <CiStar />
-                  {t('book:rating.rate')}
-                </Button>
-                <BookRating
-                  open={isRatingOpen}
-                  onOpenChange={(details) => setIsRatingOpen(details.open)}
-                  bookId={book?.id}
-                />
-              </>
             )}
 
             <HStack mt={2} flexWrap="wrap" fontWeight="semibold">

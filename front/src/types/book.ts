@@ -6,6 +6,7 @@ export interface Book {
   description?: string;
   authors: string[];
   status: Status;
+  rating?: number;
   imageLinks?: {
     smallThumbnail?: string;
     thumbnail?: string;
@@ -26,6 +27,7 @@ export interface UserBook {
   userId: number;
   bookId: number;
   status: Status;
+  rating: number;
   book: Book;
 }
 
@@ -39,3 +41,4 @@ export interface AddBookPayload {
 }
 
 export type Status = 'wishlist' | 'read';
+export type LibraryAction = 'add' | 'edit' | 'rate';

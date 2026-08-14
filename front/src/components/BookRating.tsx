@@ -2,23 +2,25 @@ import { useState } from 'react';
 import { RatingGroup, Stack, Text, HStack, Drawer, Portal, Button } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import DrawerShell from './DrawerShell';
-// import { axiosAuth } from '../utils/axiosAuth';
+import useLibraryActions from '../hooks/useLibraryActions';
 
 export interface BookRatingProps {
   open: boolean;
   onOpenChange: Drawer.RootProps['onOpenChange'];
-  bookId?: string;
+  bookId: string;
 }
 
 const BookRating = ({ open, onOpenChange, bookId }: BookRatingProps) => {
   const { t } = useTranslation(['book', 'common']);
   const [userRating, setUserRating] = useState(0);
+  const { updateBookRating } = useLibraryActions();
 
   const handleSaveRating = async () => {
     try {
-      console.log('userRating :', userRating);
-      // const res = await axiosAuth.post('/');
-    } catch (error) {}
+      await updateBookRating(bookId, userRating);
+    } catch (error) {
+      console.error('Failed to update book rating', error);
+    }
   };
 
   return (
@@ -48,14 +50,15 @@ const BookRating = ({ open, onOpenChange, bookId }: BookRatingProps) => {
                       {userRating > 0 && <Text fontWeight="medium">{userRating}/5</Text>}
                     </HStack>
                   </Stack>
-                  <Button onClick={handleSaveRating}>{t('common:save')}</Button>
+                  <Button disabled={!userRating} onClick={handleSaveRating}>
+                    {t('common:save')}
+                  </Button>
                 </Stack>
               }
             />
           </Drawer.Positioner>
         </Portal>
       </Drawer.Root>
-      {/* )} */}
     </>
   );
 };
