@@ -84,20 +84,3 @@ export const ensureBookExists = async (googleBookId: string) => {
 
   return book;
 };
-
-export const getUserBook = async (userId: number, bookId: number) => {
-  const userBook = await prisma.userBook.findUnique({
-    where: {
-      userId_bookId: {
-        userId,
-        bookId,
-      },
-    },
-    select: {
-      status: true,
-      rating: true,
-    },
-  });
-
-  return userBook;
-};

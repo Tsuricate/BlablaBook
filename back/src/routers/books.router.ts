@@ -5,7 +5,7 @@ import { checkSelf } from '../middlewares/checkSelf.middleware';
 
 const booksRouter = Router();
 
-booksRouter.get('/topFeaturedThemes', getTopFeaturedThemes);
+booksRouter.get('/topFeaturedThemes', checkSelf(), getTopFeaturedThemes);
 
 // GET /api/books/search?q=fondation&maxResults=20
 booksRouter.get('/search', search);
