@@ -5,6 +5,5 @@ node_modules
 
 # Prisma
 generated/prisma
-prisma/migrations
 
 .pnpm-store/

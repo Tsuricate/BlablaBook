@@ -96,6 +96,8 @@ model UserBook {
   bookId Int           @map("book_id")
   status ReadingStatus @default(wishlist)
   rating Float?
+  startedAt DateTime?  @map("started_at")
+  finishedAt DateTime? @map("finished_at")
   book   Book          @relation(fields: [bookId], references: [id])
   user   User          @relation(fields: [userId], references: [id])
 
