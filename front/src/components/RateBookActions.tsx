@@ -22,8 +22,6 @@ const RateBookActions = ({ book, onRatingChange, onCloseAction }: RateBookAction
 
     try {
       setIsSubmitting(true);
-      console.log('passing in RateBookActions !');
-      console.log('bookId', book.id, 'userRating :', rating);
       const res = await updateBookRating(book.id, rating);
 
       if (res?.success) onRatingChange?.(rating);

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dialog, Drawer, Portal, useBreakpointValue } from '@chakra-ui/react';
+import { Button, Dialog, Drawer, Portal, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
 
 import type { Book, LibraryAction, Status } from '../types/book';
 import AddBookActions from './AddBookActions';
@@ -10,6 +10,7 @@ import DrawerShell from './DrawerShell';
 import { useCurrentUser } from '../context/UserContext';
 import BookActionTrigger from './BookActionTrigger';
 import DialogShell from './DialogShell';
+import { useNavigate } from 'react-router';
 
 interface BookLibraryActionsProps {
   book: Book;
@@ -27,11 +28,10 @@ const BookLibraryActions = ({
   const { t } = useTranslation(['book', 'common']);
   const isMobile = useBreakpointValue({ base: true, md: false });
   const { isLoggedIn } = useCurrentUser();
+  const navigate = useNavigate();
 
   const [actionContent, setActionContent] = useState<LibraryAction | null>(null);
   const [isOpen, setIsOpen] = useState(false);
-
-  if (!isLoggedIn) return null;
 
   const currentAction = book.status ? 'edit' : 'add';
 
@@ -45,6 +45,19 @@ const BookLibraryActions = ({
   };
 
   const Content = (() => {
+    if (!isLoggedIn) {
+      return (
+        <VStack gap={4} align="stretch">
+          <Text fontSize="sm" color={{ _light: 'brown.600', _dark: 'light.400' }}>
+            {t('book:library.loginRequired')}
+          </Text>
+
+          <Button w="100%" onClick={() => navigate('/login')}>
+            {t('common:nav.login')}
+          </Button>
+        </VStack>
+      );
+    }
     switch (actionContent) {
       case 'add':
         return (

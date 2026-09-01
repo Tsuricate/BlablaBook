@@ -5,7 +5,8 @@ import axios from 'axios';
 import { searchBooks } from '../services/googleBooks.service';
 import { AuthRequest } from '../middlewares/auth.middleware';
 import { formatBook } from '../services/library.service';
-import { ensureBookExists, getUserBook } from '../services/book.service';
+import { ensureBookExists } from '../services/book.service';
+import { getUserBook } from '../services/userBook.service';
 
 const searchQuerySchema = z.object({
   q: z.string().min(1, 'Le paramètre q est requis'),

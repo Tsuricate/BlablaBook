@@ -30,9 +30,11 @@ const EditBookActions = ({ book, onStatusChange, onCloseAction }: EditBookAction
 
   const closeAll = () => setMode(null);
 
+  const bookIdToUpdate = book.bookId ?? book.id;
+
   const handleUpdateStatus = async (status: Status) => {
     try {
-      await updateBookStatus(book.id, book.status, status, status);
+      await updateBookStatus(bookIdToUpdate, book.status, status, status);
 
       onStatusChange?.(status);
       onCloseAction();

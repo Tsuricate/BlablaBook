@@ -29,8 +29,6 @@ const BookActionTrigger = ({
   const isMobile = useBreakpointValue({ base: true, md: false });
   const isLibraryMobile = isLibraryPage && isMobile;
 
-  console.log('rating :', rating);
-
   const mainTrigger = (() => {
     switch (currentAction) {
       case 'add':

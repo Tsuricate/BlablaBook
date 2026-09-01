@@ -71,17 +71,21 @@ export const enrichFeaturedThemesWithUserLibrary = async (
   const booksInUserLibrary = await getUserBooksByGoogleBookIds(userId, googleBookIds);
 
   const libraryStatusByGoogleBookId = new Map(
-    booksInUserLibrary.map((userBook) => [userBook.book.googleBookId, userBook])
+    booksInUserLibrary.map((userBook) => [userBook.googleBookId, userBook])
   );
 
   return Object.fromEntries(
     Object.entries(responseData).map(([theme, books]) => [
       theme,
-      books.map((book) => ({
-        ...book,
-        status: libraryStatusByGoogleBookId.get(book.googleBookId)?.status ?? null,
-        rating: libraryStatusByGoogleBookId.get(book.googleBookId)?.rating ?? null,
-      })),
+      books.map((book) => {
+        const libraryData = libraryStatusByGoogleBookId.get(book.googleBookId);
+        return {
+          ...book,
+          bookId: libraryData?.bookId ?? null,
+          status: libraryData?.status ?? null,
+          rating: libraryData?.rating ?? null,
+        };
+      }),
     ])
   );
 };

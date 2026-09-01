@@ -1,7 +1,7 @@
 export interface Book {
   id: string;
+  bookId?: string;
   googleBookId: string;
-  googleId: string;
   title: string;
   description?: string;
   authors: string[];
