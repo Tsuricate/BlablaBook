@@ -52,7 +52,11 @@ const BookDetails = () => {
     const fetchBook = async () => {
       try {
         const res = await axiosAuth.get(`/books/${id}`);
-        setBook(res.data);
+        setBook({
+          ...res.data,
+          startedAt: res.data.startedAt ? new Date(res.data.startedAt) : undefined,
+          finishedAt: res.data.finishedAt ? new Date(res.data.finishedAt) : undefined,
+        });
       } catch (error) {
         console.error('Error fetching book:', error);
       } finally {
@@ -67,6 +71,9 @@ const BookDetails = () => {
   };
   const updateBookRatingLocally = (rating: number) => {
     setBook((prev) => (prev ? { ...prev, rating } : prev));
+  };
+  const updateBookReadingDatesLocally = (startedAt?: Date, finishedAt?: Date) => {
+    setBook((prev) => (prev ? { ...prev, startedAt, finishedAt } : prev));
   };
 
   return (
@@ -137,6 +144,7 @@ const BookDetails = () => {
                 book={book}
                 onStatusChange={updateBookStatusLocally}
                 onRatingChange={updateBookRatingLocally}
+                onReadingDatesChange={updateBookReadingDatesLocally}
               />
             )}
 

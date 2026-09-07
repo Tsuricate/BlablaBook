@@ -57,6 +57,8 @@ export const getById = async (req: AuthRequest, res: Response): Promise<void> =>
       ...baseBook,
       status: userBook?.status ?? null,
       rating: userBook?.rating ?? null,
+      startedAt: userBook?.startedAt ?? null,
+      finishedAt: userBook?.finishedAt ?? null,
     });
   } catch (err) {
     if (axios.isAxiosError(err) && err.response?.status === 404) {

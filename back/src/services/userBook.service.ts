@@ -11,6 +11,8 @@ export const getUserBook = async (userId: number, bookId: number) => {
     select: {
       status: true,
       rating: true,
+      startedAt: true,
+      finishedAt: true,
     },
   });
 

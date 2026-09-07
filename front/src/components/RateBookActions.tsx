@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import useLibraryActions from '../hooks/useLibraryActions';
-import { Button, HStack, RatingGroup, Stack, Text, type DateValue } from '@chakra-ui/react';
+import {
+  Button,
+  HStack,
+  parseDate,
+  RatingGroup,
+  Stack,
+  Text,
+  type DateValue,
+} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import type { Book } from '@/types/book';
 import ReadingDateRange from './ReadingDateRange';
@@ -8,32 +16,50 @@ import ReadingDateRange from './ReadingDateRange';
 type RateBookActionsProps = {
   book: Book;
   onRatingChange?: (rating: number) => void;
+  onReadingDatesChange?: (startedAt?: Date, finishedAt?: Date) => void;
   onCloseAction: () => void;
 };
 
-const RateBookActions = ({ book, onRatingChange, onCloseAction }: RateBookActionsProps) => {
+const RateBookActions = ({
+  book,
+  onRatingChange,
+  onReadingDatesChange,
+  onCloseAction,
+}: RateBookActionsProps) => {
   const { t } = useTranslation(['common', 'book']);
   const { updateBookRating } = useLibraryActions();
 
   const [rating, setRating] = useState<number>(book.rating ?? 0);
-  const [readingDateRange, setReadingDateRange] = useState<DateValue[]>([]);
+  const [readingDateRange, setReadingDateRange] = useState<DateValue[]>([
+    ...(book.startedAt ? [parseDate(book.startedAt.toISOString().slice(0, 10))] : []),
+    ...(book.finishedAt ? [parseDate(book.finishedAt.toISOString().slice(0, 10))] : []),
+  ]);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [startedAt, finishedAt] = readingDateRange;
 
+  const bookIdToUpdate = book.bookId ?? book.id;
+
   const handleRatingBook = async () => {
-    if (isSubmitting || !book.bookId) return;
+    if (isSubmitting || !bookIdToUpdate) return;
 
     try {
       setIsSubmitting(true);
       const res = await updateBookRating({
-        bookId: book.bookId,
+        bookId: bookIdToUpdate,
         rating,
         startedAt: startedAt?.toString(),
         finishedAt: finishedAt?.toString(),
       });
 
-      if (res?.success) onRatingChange?.(rating);
+      if (res?.success) {
+        onRatingChange?.(rating);
+        onReadingDatesChange?.(
+          startedAt ? new Date(startedAt.toString()) : undefined,
+          finishedAt ? new Date(finishedAt.toString()) : undefined
+        );
+      }
     } catch (err: any) {
       console.log('Error updating book rating:', err);
     } finally {

@@ -18,6 +18,7 @@ interface BookLibraryActionsProps {
   onBookAdded?: (bookId: number) => void;
   onStatusChange: (status: Status) => void;
   onRatingChange?: (rating: number) => void;
+  onReadingDatesChange?: (startedAt?: Date, finishedAt?: Date) => void;
 }
 
 const BookLibraryActions = ({
@@ -26,6 +27,7 @@ const BookLibraryActions = ({
   onBookAdded,
   onStatusChange,
   onRatingChange,
+  onReadingDatesChange,
 }: BookLibraryActionsProps) => {
   const { t } = useTranslation(['book', 'common']);
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -87,6 +89,7 @@ const BookLibraryActions = ({
           <RateBookActions
             book={book}
             onRatingChange={onRatingChange}
+            onReadingDatesChange={onReadingDatesChange}
             onCloseAction={handleCloseAction}
           />
         );
