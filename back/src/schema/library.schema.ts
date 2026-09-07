@@ -22,6 +22,8 @@ export type SearchQuerySchema = z.infer<typeof searchQuerySchema>;
 export const updateUserBookSchema = z.object({
   status: z.enum(['read', 'wishlist']).optional(),
   rating: z.number().min(0).max(5).optional(),
+  startedAt: z.string().optional(),
+  finishedAt: z.string().optional(),
 });
 
 export const bookSchema = z.object({

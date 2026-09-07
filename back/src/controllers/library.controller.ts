@@ -115,26 +115,30 @@ export const searchInLibrary = async (req: AuthRequest, res: Response): Promise<
 };
 
 export const updateLibraryBook = async (req: AuthRequest, res: Response): Promise<void> => {
-  const userId = req.userId as number;
-  const bookId = await checkIdFromParams(req.params.id as string);
-  const userBookId = { userId, bookId };
-
-  const userBook = await findBookInLibrary(userBookId);
-  if (!userBook) {
-    res.status(404).json({ error: "Book doesn't exist in library" });
-    return;
-  }
-
-  const parsed = updateUserBookSchema.safeParse(req.body);
-
-  if (!parsed.success) {
-    res.status(400).json({ success: false, error: z.flattenError(parsed.error).fieldErrors });
-    return;
-  }
-
   try {
-    const data = await updateUserBook(userBookId, parsed.data?.status, parsed.data?.rating);
+    const userId = req.userId as number;
+    const bookId = await checkIdFromParams(req.params.id as string);
+    const userBookId = { userId, bookId };
 
+    const userBook = await findBookInLibrary(userBookId);
+    if (!userBook) {
+      res.status(404).json({ error: "Book doesn't exist in library" });
+      return;
+    }
+
+    const parsed = updateUserBookSchema.safeParse(req.body);
+
+    if (!parsed.success) {
+      res.status(400).json({ success: false, error: z.flattenError(parsed.error).fieldErrors });
+      return;
+    }
+
+    const { status, rating, startedAt, finishedAt } = parsed.data;
+
+    const startedAtDate = startedAt ? new Date(startedAt) : undefined;
+    const finishedAtDate = finishedAt ? new Date(finishedAt) : undefined;
+
+    const data = await updateUserBook(userBookId, status, rating, startedAtDate, finishedAtDate);
     res.status(200).json({
       success: true,
       data,

@@ -601,7 +601,9 @@ export const createBook = async (googleBookData: GoogleBook) => {
 export const updateUserBook = async (
   userIdBookId: UserBookPk,
   status: ReadingStatus | undefined,
-  rating: number | undefined
+  rating: number | undefined,
+  startedAt: Date | undefined,
+  finishedAt: Date | undefined
 ): Promise<UserBook> => {
   return await prisma.userBook.update({
     where: {
@@ -610,6 +612,8 @@ export const updateUserBook = async (
     data: {
       status,
       rating,
+      startedAt,
+      finishedAt,
     },
   });
 };
