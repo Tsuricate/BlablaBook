@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
-import type { Book } from '../types/book';
+import type { GoogleBook } from '../types/book';
 import { Button, Stack, Box } from '@chakra-ui/react';
 import { PageLayout } from '../components/layouts/PageLayout';
 import MobileMenu from '../components/MobileMenu';
@@ -36,7 +36,7 @@ const HomePage = () => {
     activeQuery,
   } = useBookSearch();
 
-  const [featuredBooks, setFeaturedBooks] = useState<Record<string, Book[]>>({});
+  const [featuredBooks, setFeaturedBooks] = useState<Record<string, GoogleBook[]>>({});
   const hasFeaturedBooks = Object.keys(featuredBooks).length > 0;
 
   useEffect(() => {

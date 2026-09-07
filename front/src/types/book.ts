@@ -1,12 +1,8 @@
-export interface Book {
-  id: string;
-  bookId?: string;
+interface BookData {
   googleBookId: string;
   title: string;
   description?: string;
   authors: string[];
-  status: Status;
-  rating?: number;
   imageLinks?: {
     smallThumbnail?: string;
     thumbnail?: string;
@@ -21,6 +17,18 @@ export interface Book {
   publisher?: string;
   isbn13?: string;
   isbn10?: string;
+}
+
+export interface GoogleBook extends BookData {
+  id: string;
+}
+
+export interface Book extends BookData {
+  id: number;
+  status: Status;
+  rating?: number;
+  startedAt?: Date;
+  finishedAt?: Date;
 }
 
 export interface UserBook {

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import useLibraryActions from '../hooks/useLibraryActions';
-import { Button, HStack, RatingGroup, Stack, Text } from '@chakra-ui/react';
+import { Button, HStack, RatingGroup, Stack, Text, type DateValue } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import type { Book } from '@/types/book';
+import ReadingDateRange from './ReadingDateRange';
 
 type RateBookActionsProps = {
   book: Book;
@@ -15,14 +16,22 @@ const RateBookActions = ({ book, onRatingChange, onCloseAction }: RateBookAction
   const { updateBookRating } = useLibraryActions();
 
   const [rating, setRating] = useState<number>(book.rating ?? 0);
+  const [readingDateRange, setReadingDateRange] = useState<DateValue[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [startedAt, finishedAt] = readingDateRange;
+
   const handleRatingBook = async () => {
-    if (isSubmitting || !rating) return;
+    if (isSubmitting || !book.bookId) return;
 
     try {
       setIsSubmitting(true);
-      const res = await updateBookRating(book.id, rating);
+      const res = await updateBookRating({
+        bookId: book.bookId,
+        rating,
+        startedAt: startedAt?.toString(),
+        finishedAt: finishedAt?.toString(),
+      });
 
       if (res?.success) onRatingChange?.(rating);
     } catch (err: any) {
@@ -51,6 +60,10 @@ const RateBookActions = ({ book, onRatingChange, onCloseAction }: RateBookAction
           {rating > 0 && <Text fontWeight="medium">{rating}/5</Text>}
         </HStack>
       </Stack>
+      <ReadingDateRange
+        readingDateRange={readingDateRange}
+        setReadingDateRange={setReadingDateRange}
+      />
       <Button disabled={!rating} onClick={handleRatingBook}>
         {t('common:save')}
       </Button>

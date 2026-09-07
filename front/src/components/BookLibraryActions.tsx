@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, Dialog, Drawer, Portal, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
 
-import type { Book, LibraryAction, Status } from '../types/book';
+import type { Book, GoogleBook, LibraryAction, Status } from '../types/book';
 import AddBookActions from './AddBookActions';
 import EditBookActions from './EditBookActions';
 import RateBookActions from './RateBookActions';
@@ -13,8 +13,9 @@ import DialogShell from './DialogShell';
 import { useNavigate } from 'react-router';
 
 interface BookLibraryActionsProps {
-  book: Book;
+  book: Book | GoogleBook;
   variant?: 'icon' | 'button';
+  onBookAdded?: (bookId: number) => void;
   onStatusChange: (status: Status) => void;
   onRatingChange?: (rating: number) => void;
 }
@@ -22,6 +23,7 @@ interface BookLibraryActionsProps {
 const BookLibraryActions = ({
   book,
   variant = 'button',
+  onBookAdded,
   onStatusChange,
   onRatingChange,
 }: BookLibraryActionsProps) => {
@@ -63,8 +65,9 @@ const BookLibraryActions = ({
         return (
           <AddBookActions
             book={book}
+            onBookAdded={onBookAdded}
             onStatusChange={onStatusChange}
-            onActionChange={setActionContent}
+            onActionChange={handleOpenAction}
             onCloseAction={handleCloseAction}
           />
         );
@@ -93,12 +96,20 @@ const BookLibraryActions = ({
     }
   })();
 
-  const title =
-    actionContent === 'add'
-      ? t('book:library.addToLibrary')
-      : currentAction === 'edit'
-        ? t('book:library.actions.editCollection')
-        : t('book:rating.rate');
+  const getActionTitle = (action: LibraryAction | null) => {
+    switch (action) {
+      case 'add':
+        return t('book:library.addToLibrary');
+      case 'edit':
+        return t('book:library.actions.editCollection');
+      case 'rate':
+        return t('book:rating.rate');
+      default:
+        return '';
+    }
+  };
+
+  const title = getActionTitle(actionContent);
 
   if (isMobile) {
     return (

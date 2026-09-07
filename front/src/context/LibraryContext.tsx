@@ -24,13 +24,13 @@ type LibraryContextType = {
   fetchFirstPage: (key: string, status?: string) => Promise<void>;
   fetchNextPage: (key: string, status?: string) => Promise<void>;
   updateBookInCollections: (
-    bookId: string,
+    bookId: number,
     fromKey: string,
     toKey: string,
     newStatus: Status
   ) => void;
-  updateBookRatingInCollections: (bookId: string, rating: number) => void;
-  removeBookFromCollections: (bookId: string, fromKey: string) => void;
+  updateBookRatingInCollections: (bookId: number, rating: number) => void;
+  removeBookFromCollections: (bookId: number, fromKey: string) => void;
 };
 
 const LibraryContext = createContext<LibraryContextType | undefined>(undefined);
@@ -127,7 +127,7 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
   };
 
   const updateBookInCollections = (
-    bookId: string,
+    bookId: number,
     fromKey: string,
     toKey: string,
     newStatus: Status
@@ -175,7 +175,7 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
     });
   };
 
-  const updateBookRatingInCollections = (bookId: string, rating: number) => {
+  const updateBookRatingInCollections = (bookId: number, rating: number) => {
     setCollections((prev) => {
       const updatedCollections = { ...prev };
 
@@ -184,7 +184,7 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
           ...collection,
 
           items: collection.items.map((userBook) =>
-            userBook.book.id === bookId ? { ...userBook, rating } : userBook
+            userBook.bookId === bookId ? { ...userBook, rating } : userBook
           ),
         };
       });
@@ -193,7 +193,7 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
     });
   };
 
-  const removeBookFromCollections = (bookId: string, fromKey: string) => {
+  const removeBookFromCollections = (bookId: number, fromKey: string) => {
     setCollections((prev) => {
       const from = prev[fromKey] ?? DEFAULT_COLLECTION_STATE;
       const all = prev.all ?? DEFAULT_COLLECTION_STATE;

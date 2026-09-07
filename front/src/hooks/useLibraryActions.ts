@@ -18,7 +18,7 @@ const useLibraryActions = () => {
   };
 
   const updateBookStatus = async (
-    bookId: string,
+    bookId: number,
     fromKey: string,
     toKey: string,
     status: Status
@@ -32,17 +32,25 @@ const useLibraryActions = () => {
     return res.data;
   };
 
-  const updateBookRating = async (bookId: string, rating: number) => {
-    const res = await axiosAuth.patch(`/library/${bookId}`, {
-      rating,
-    });
+  const updateBookRating = async ({
+    bookId,
+    rating,
+    startedAt,
+    finishedAt,
+  }: {
+    bookId: number;
+    rating: number;
+    startedAt?: string;
+    finishedAt?: string;
+  }) => {
+    const res = await axiosAuth.patch(`/library/${bookId}`, { rating, startedAt, finishedAt });
 
     updateBookRatingInCollections(bookId, rating);
 
     return res.data;
   };
 
-  const removeBook = async (bookId: string, fromKey: string) => {
+  const removeBook = async (bookId: number, fromKey: string) => {
     try {
       await axiosAuth.delete(`/library/${bookId}`);
       removeBookFromCollections(bookId, fromKey);

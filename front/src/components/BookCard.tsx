@@ -5,11 +5,11 @@ import BookLibraryActions from './BookLibraryActions';
 
 import { slugify } from '../utils/stringUtils';
 import noBookCover from '../assets/noBookCover.jpg';
-import type { Book, Status } from '../types/book';
+import type { Book, GoogleBook, Status } from '../types/book';
 import { useState } from 'react';
 
 interface BookCardProps {
-  book: Book;
+  book: Book | GoogleBook;
 }
 
 const BookCard = ({ book }: BookCardProps) => {
@@ -33,6 +33,13 @@ const BookCard = ({ book }: BookCardProps) => {
 
   const updateBookStatusLocally = (status: Status) => {
     setUpdatedBook((prev) => (prev ? { ...prev, status } : prev));
+  };
+
+  const updateBookLocally = (bookId: number) => {
+    setUpdatedBook((prev) => ({
+      ...prev,
+      bookId,
+    }));
   };
 
   return (
@@ -95,7 +102,7 @@ const BookCard = ({ book }: BookCardProps) => {
             book={updatedBook}
             variant="icon"
             onStatusChange={updateBookStatusLocally}
-            // onRatingChange={handleRatingChange}
+            onBookAdded={updateBookLocally}
           />
         </Show>
       </Box>

@@ -4,14 +4,15 @@ import { Button, VStack, RadioCard, HStack } from '@chakra-ui/react';
 import { LuBookCheck } from 'react-icons/lu';
 import { CiStar } from 'react-icons/ci';
 
-import type { Book, LibraryAction, Status } from '../types/book';
+import type { Book, GoogleBook, LibraryAction, Status } from '../types/book';
 import useLibraryActions from '../hooks/useLibraryActions';
 import { toaster } from './ui/toaster';
 
 interface AddBookActionsProps {
-  book: Book;
+  book: Book | GoogleBook;
   variant?: 'icon' | 'button';
   onStatusChange?: (status: Status) => void;
+  onBookAdded?: (bookId: number) => void;
   onActionChange: (action: LibraryAction) => void;
   onCloseAction: () => void;
 }
@@ -30,6 +31,7 @@ const getErrorKey = (errorCode?: string) => {
 const AddBookActions = ({
   book,
   onStatusChange,
+  onBookAdded,
   onActionChange,
   onCloseAction,
 }: AddBookActionsProps) => {
@@ -73,6 +75,7 @@ const AddBookActions = ({
       });
 
       onStatusChange?.(status);
+      onBookAdded?.(res.bookId);
 
       if (shouldRate) {
         onActionChange('rate');
