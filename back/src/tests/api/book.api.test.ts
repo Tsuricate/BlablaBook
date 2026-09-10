@@ -4,9 +4,11 @@ import axios from 'axios';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 import * as booksService from '../../services/book.service';
+import * as userBooksService from '../../services/userBook.service';
 import { randomUUID } from 'crypto';
 
 vi.mock('../../services/book.service');
+vi.mock('../../services/userBook.service');
 vi.mock('axios');
 
 const mockedAxios = axios as unknown as {
@@ -55,7 +57,7 @@ describe('GET /api/books/search', () => {
 describe('GET /api/books/:id', () => {
   it('should return book without authentication', async () => {
     const mockedEnsureBookExists = vi.mocked(booksService.ensureBookExists);
-    const mockedGetUserBookStatus = vi.mocked(booksService.getUserBookStatus);
+    const mockedGetUserBookStatus = vi.mocked(userBooksService.getUserBook);
 
     mockedEnsureBookExists.mockResolvedValue({ id: 1, googleBookId: 'abc123' } as any);
     mockedGetUserBookStatus.mockResolvedValue(null);
@@ -89,7 +91,12 @@ describe('GET /api/books/:id', () => {
       googleBookId: 'abc123',
     } as any);
 
-    vi.mocked(booksService.getUserBookStatus).mockResolvedValue('read');
+    vi.mocked(userBooksService.getUserBook).mockResolvedValue({
+      status: 'read',
+      rating: null,
+      startedAt: null,
+      finishedAt: null,
+    });
 
     const res = await request(app).get('/api/books/abc123').set('Cookie', cookies);
 
