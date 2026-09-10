@@ -1,12 +1,14 @@
 import { useTranslation } from 'react-i18next';
 
 import type { Book, LibraryAction } from '../types/book';
-import { Button, IconButton, VStack, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Button, IconButton, Box, Text, useBreakpointValue, Stack, VStack } from '@chakra-ui/react';
 
 import { GoPlusCircle } from 'react-icons/go';
 import { TiPlus } from 'react-icons/ti';
-import { HiPencil, HiDotsHorizontal } from 'react-icons/hi';
-import { SlStar } from 'react-icons/sl';
+import { LuBookCheck, LuStar } from 'react-icons/lu';
+import { FaStar } from 'react-icons/fa';
+import { HiDotsHorizontal } from 'react-icons/hi';
+import { HiOutlineBookmark } from 'react-icons/hi2';
 import { useLocation } from 'react-router';
 
 interface BookActionTriggerProps {
@@ -66,14 +68,16 @@ const BookActionTrigger = ({
         return variant === 'button' ? (
           <VStack align="start">
             <Button
-              variant="category"
-              width="full"
+              variant="action"
               onClick={(e) => {
                 e.stopPropagation();
                 onOpenAction('edit');
               }}
             >
-              <HiPencil />
+              <Box className="action-icon">
+                {status === 'wishlist' ? <HiOutlineBookmark /> : <LuBookCheck />}
+              </Box>
+              <Box className="action-divider" />
               <Text fontSize="sm">{t(`book:library.collections.${status}`)}</Text>
             </Button>
           </VStack>
@@ -100,16 +104,17 @@ const BookActionTrigger = ({
   })();
 
   return (
-    <>
+    <Stack direction="row" align="center" gap={2} width="full">
       {mainTrigger}
 
       {status && !isLibraryMobile && (
-        <Button onClick={() => onOpenAction('rate')}>
-          <SlStar />
-          {rating ? <Text fontWeight="medium">{rating}/5</Text> : t('book:rating.rate')}
+        <Button variant="rating" onClick={() => onOpenAction('rate')}>
+          {rating ? <FaStar /> : <LuStar />}
+
+          <Text>{rating ? `${rating}/5` : t('book:rating.rate')}</Text>
         </Button>
       )}
-    </>
+    </Stack>
   );
 };
 

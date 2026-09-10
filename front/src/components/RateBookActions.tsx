@@ -1,17 +1,10 @@
 import { useState } from 'react';
 import useLibraryActions from '../hooks/useLibraryActions';
-import {
-  Button,
-  HStack,
-  parseDate,
-  RatingGroup,
-  Stack,
-  Text,
-  type DateValue,
-} from '@chakra-ui/react';
+import { Button, parseDate, Stack, Text, type DateValue } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import type { Book } from '@/types/book';
 import ReadingDateRange from './ReadingDateRange';
+import BookRating from './BookRating';
 
 type RateBookActionsProps = {
   book: Book;
@@ -69,29 +62,50 @@ const RateBookActions = ({
   };
 
   return (
-    <Stack gap={4}>
-      <Stack>
-        <HStack>
-          <RatingGroup.Root
-            allowHalf
-            colorPalette="yellow"
-            count={5}
-            value={rating}
-            onValueChange={(event) => setRating(event.value)}
-            size="lg"
-          >
-            <RatingGroup.HiddenInput />
-            <RatingGroup.Control />
-          </RatingGroup.Root>
-          {rating > 0 && <Text fontWeight="medium">{rating}/5</Text>}
-        </HStack>
+    <Stack gap={8}>
+      <Stack
+        align="center"
+        gap={4}
+        py={8}
+        borderRadius="3xl"
+        bg={{ _light: 'light.50', _dark: '#282825' }}
+      >
+        <Text
+          fontFamily="heading"
+          fontSize="md"
+          fontWeight="medium"
+          letterSpacing="wide"
+          color={{ _light: 'brown.700', _dark: '#E8DFD6' }}
+        >
+          {rating ? t('book:rating.myRating') : t('book:rating.rateBook')}
+        </Text>
+
+        <BookRating value={rating} onChange={(value) => setRating(value)} />
+
+        <Text
+          fontSize="lg"
+          fontWeight="bold"
+          fontFamily="heading"
+          color={{ _light: 'brown.700', _dark: '#F2EDE4' }}
+        >
+          {rating > 0 ? `${rating} / 5` : '—'}
+        </Text>
       </Stack>
-      <ReadingDateRange
-        readingDateRange={readingDateRange}
-        setReadingDateRange={setReadingDateRange}
-      />
-      <Button disabled={!rating} onClick={handleRatingBook}>
-        {t('common:save')}
+
+      <Stack
+        gap={5}
+        pt={7}
+        borderTop="1px solid"
+        borderColor={{ _light: 'brown.200', _dark: 'rgba(255,255,255,0.08)' }}
+      >
+        <ReadingDateRange
+          readingDateRange={readingDateRange}
+          setReadingDateRange={setReadingDateRange}
+        />
+      </Stack>
+
+      <Button variant="primary" disabled={!rating} onClick={handleRatingBook}>
+        <Text>{t('common:save')}</Text>
       </Button>
     </Stack>
   );

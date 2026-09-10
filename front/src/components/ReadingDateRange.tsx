@@ -1,4 +1,4 @@
-import { DatePicker, Portal, parseDate, type DateValue } from '@chakra-ui/react';
+import { DatePicker, Flex, Portal, Stack, Text, parseDate, type DateValue } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { LuCalendar } from 'react-icons/lu';
 
@@ -16,24 +16,39 @@ const ReadingDateRange = ({ readingDateRange, setReadingDateRange }: ReadingDate
 
   return (
     <DatePicker.Root
+      variant="editorial"
       selectionMode="range"
-      maxWidth="20rem"
       placeholder="dd/mm/yy"
       locale={locale}
       max={maxDate}
       value={readingDateRange}
       onValueChange={(e) => setReadingDateRange(e.value)}
     >
-      <DatePicker.Label>{t('book:rating.readingDate')}</DatePicker.Label>
-      <DatePicker.Control>
-        <DatePicker.Input index={0} />
-        <DatePicker.Input index={1} />
-        <DatePicker.IndicatorGroup>
-          <DatePicker.Trigger>
-            <LuCalendar />
-          </DatePicker.Trigger>
-        </DatePicker.IndicatorGroup>
-      </DatePicker.Control>
+      <DatePicker.Label>
+        <Flex align="center" gap={1}>
+          <Text>{t('book:rating.readingDate')}</Text>
+
+          <Text
+            fontSize="small"
+            fontWeight="400"
+            color={{ _light: 'brown.600', _dark: 'light.600' }}
+          >
+            · {t('common:optional')}
+          </Text>
+        </Flex>
+      </DatePicker.Label>
+
+      <Flex gap={2} align="center" w="100%">
+        <DatePicker.Control>
+          <DatePicker.Input index={0} />
+          <DatePicker.Input index={1} />
+        </DatePicker.Control>
+
+        <DatePicker.Trigger>
+          <LuCalendar size={18} />
+        </DatePicker.Trigger>
+      </Flex>
+
       <Portal>
         <DatePicker.Positioner>
           <DatePicker.Content>

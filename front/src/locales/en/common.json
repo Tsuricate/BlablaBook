@@ -25,5 +25,6 @@
   "confirm": "Confirm",
   "delete": "Delete",
   "cancel": "Cancel",
-  "save": "Save"
+  "save": "Save",
+  "optional": "optional"
 }

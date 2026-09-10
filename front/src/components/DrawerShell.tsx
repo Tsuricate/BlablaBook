@@ -8,44 +8,53 @@ interface DrawerShellProps {
 
 const DrawerShell = ({ title, subtitle, children }: DrawerShellProps) => (
   <Drawer.Content
-    py={4}
-    bg={{ _light: 'light.100', _dark: 'rgba(26,22,18,0.92)' }}
-    backdropFilter="blur(12px)"
+    maxW="100%"
     borderTopRadius="2xl"
-    borderWidth="1px"
+    bg={{ _light: 'light.100', _dark: '#20201E' }}
+    border="1px solid"
     borderColor={{ _light: 'light.300', _dark: 'rgba(255,255,255,0.06)' }}
+    boxShadow={{
+      _light: '0 -18px 50px rgba(61,51,40,0.12)',
+      _dark: '0 -18px 50px rgba(0,0,0,0.35)',
+    }}
+    overflow="hidden"
   >
     <Box
       w="40px"
       h="4px"
-      borderRadius="full"
+      mt={3}
+      mb={3}
       mx="auto"
-      mb={2}
+      borderRadius="full"
       bg={{ _light: 'light.400', _dark: 'rgba(255,255,255,0.10)' }}
     />
 
-    <Drawer.Header
-      letterSpacing="tight"
-      fontFamily="heading"
-      fontSize="lg"
-      fontWeight="semibold"
-      pb={4}
-    >
-      {title}
+    <Drawer.Header px={8} pt={3} pb={2}>
+      <Drawer.Title
+        fontFamily="heading"
+        fontSize="2xl"
+        fontWeight="medium"
+        letterSpacing="tight"
+        color={{ _light: 'brown.700', _dark: 'light.200' }}
+      >
+        {title}
+      </Drawer.Title>
     </Drawer.Header>
 
     {subtitle && (
       <Drawer.Description
-        px={6}
-        pb={3}
+        px={8}
+        pb={5}
         fontSize="sm"
-        color={{ _light: 'brown.700', _dark: 'light.400' }}
+        color={{ _light: 'brown.600', _dark: 'light.400' }}
       >
         {subtitle}
       </Drawer.Description>
     )}
 
-    <Drawer.Body>{children}</Drawer.Body>
+    <Drawer.Body px={8} pb={8}>
+      {children}
+    </Drawer.Body>
   </Drawer.Content>
 );
 
