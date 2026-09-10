@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import type { Book, Status } from '../types/book';
 import {
   Box,
   Collapsible,
@@ -14,21 +15,21 @@ import {
   Tag,
   Text,
 } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
+
 import { PageLayout } from './layouts/PageLayout';
 import MobileMenu from './MobileMenu';
-import bookDetail from '../assets/bookDetail.webp';
 import AppBreadcrumb from './AppBreadcrumb';
-import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
-import { getBookImageByScreen } from '../utils/bookUtils';
-import { useTruncatedTitle } from '../utils/stringUtils';
-import { useTranslation } from 'react-i18next';
-import noBookCover from '../assets/noBookCover.jpg';
-import type { Book, Status } from '../types/book';
-import { axiosAuth } from '../utils/axiosAuth';
-import AddBookActions from './AddBookActions';
-import EditBookActions from './EditBookActions';
-import { useCurrentUser } from '../context/UserContext';
 import ExpandableDescription from './ui/EnableDescrition';
+
+import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
+import noBookCover from '../assets/noBookCover.jpg';
+import bookDetail from '../assets/bookDetail.webp';
+
+import { getBookImageByScreen } from '../utils/bookUtils';
+import { axiosAuth } from '../utils/axiosAuth';
+import { useTruncatedTitle } from '../utils/stringUtils';
+import BookLibraryActions from './BookLibraryActions';
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -39,7 +40,6 @@ const BookDetails = () => {
   const [showAllCategories, setShowAllCategories] = useState(false);
 
   const { t } = useTranslation(['book', 'common']);
-  const { isLoggedIn } = useCurrentUser();
 
   const imageSrc = book ? getBookImageByScreen(book.imageLinks) : null;
   const hasRealImage = !!imageSrc;
@@ -52,7 +52,11 @@ const BookDetails = () => {
     const fetchBook = async () => {
       try {
         const res = await axiosAuth.get(`/books/${id}`);
-        setBook(res.data);
+        setBook({
+          ...res.data,
+          startedAt: res.data.startedAt ? new Date(res.data.startedAt) : undefined,
+          finishedAt: res.data.finishedAt ? new Date(res.data.finishedAt) : undefined,
+        });
       } catch (error) {
         console.error('Error fetching book:', error);
       } finally {
@@ -64,6 +68,12 @@ const BookDetails = () => {
 
   const updateBookStatusLocally = (status: Status) => {
     setBook((prev) => (prev ? { ...prev, status } : prev));
+  };
+  const updateBookRatingLocally = (rating: number) => {
+    setBook((prev) => (prev ? { ...prev, rating } : prev));
+  };
+  const updateBookReadingDatesLocally = (startedAt?: Date, finishedAt?: Date) => {
+    setBook((prev) => (prev ? { ...prev, startedAt, finishedAt } : prev));
   };
 
   return (
@@ -129,21 +139,12 @@ const BookDetails = () => {
               </Text>
             </HStack>
 
-            {book && !isLoggedIn && <AddBookActions book={book} variant="button" />}
-
-            {book && isLoggedIn && !book.status && (
-              <AddBookActions
+            {book && (
+              <BookLibraryActions
                 book={book}
-                variant="button"
                 onStatusChange={updateBookStatusLocally}
-              />
-            )}
-
-            {book && isLoggedIn && book.status && (
-              <EditBookActions
-                book={book}
-                variant="button"
-                onStatusChange={updateBookStatusLocally}
+                onRatingChange={updateBookRatingLocally}
+                onReadingDatesChange={updateBookReadingDatesLocally}
               />
             )}
 

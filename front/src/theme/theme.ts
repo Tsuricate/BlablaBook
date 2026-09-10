@@ -1,5 +1,5 @@
 import { createSystem, defaultConfig, defineConfig, defineTokens } from '@chakra-ui/react';
-import { inputRecipe, buttonRecipe } from './recipes';
+import { inputRecipe, buttonRecipe, datePickerRecipe } from './recipes';
 
 const fonts = defineTokens.fonts({
   heading: { value: 'Lora' },
@@ -70,6 +70,9 @@ const config = defineConfig({
     recipes: {
       button: buttonRecipe,
       input: inputRecipe,
+    },
+    slotRecipes: {
+      datePicker: datePickerRecipe,
     },
   },
 });

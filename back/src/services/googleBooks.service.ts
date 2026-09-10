@@ -24,8 +24,6 @@ export interface GoogleBook {
   isbn13?: string;
   pageCount?: number;
   categories?: string[];
-  averageRating?: number;
-  ratingCount?: number;
   imageLinks?: ImageLinks;
   language?: string;
 }
@@ -50,8 +48,6 @@ const mapVolumeToBook = (volume: Record<string, unknown>): GoogleBook => {
     isbn13: identifiers.find((i) => i.type === 'ISBN_13')?.identifier,
     pageCount: info.pageCount as number | undefined,
     categories: info.categories as string[] | undefined,
-    averageRating: info.averageRating as number | undefined,
-    ratingCount: info.ratingCount as number | undefined,
     imageLinks: info.imageLinks ?? {},
     language: info.language as string | undefined,
   };

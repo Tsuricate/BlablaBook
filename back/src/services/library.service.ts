@@ -1,4 +1,11 @@
-import { Author, Category, prisma, type ReadingStatus, type UserBook } from '../utils/prisma.utils';
+import {
+  Author,
+  Category,
+  Prisma,
+  prisma,
+  type ReadingStatus,
+  type UserBook,
+} from '../utils/prisma.utils';
 import type { UserBookWithDetails, UserBookPk, BookWithRelations } from '../types/userBook.types';
 import { cleanImageLinks, cleanOtherBookData } from '../utils/cleanSanitizedData.utils';
 import { GoogleBook } from './googleBooks.service';
@@ -491,7 +498,8 @@ export const findBookInLibrary = async (userIdBookId: UserBookPk) =>
 export const checkIsBookExist = async (gooleBookId: string) =>
   await prisma.book.findUnique({ where: { googleBookId: gooleBookId } });
 
-export const addBookToLibrary = async (data: UserBook) => await prisma.userBook.create({ data });
+export const addBookToLibrary = async (data: Prisma.UserBookUncheckedCreateInput) =>
+  await prisma.userBook.create({ data });
 
 export const createAndGetAuthors = async (authors: string[]): Promise<Author[]> => {
   return await prisma
@@ -546,8 +554,6 @@ export const createBook = async (googleBookData: GoogleBook) => {
     },
     data: {
       title: googleBookData.title,
-      averageRating: googleBookData.averageRating,
-      ratingCount: googleBookData.ratingCount,
       imageLinks: cleanImageLinks(googleBookData.imageLinks),
       language: googleBookData.language,
       description: googleBookData.description,
@@ -594,7 +600,10 @@ export const createBook = async (googleBookData: GoogleBook) => {
 
 export const updateUserBook = async (
   userIdBookId: UserBookPk,
-  status: ReadingStatus | undefined
+  status: ReadingStatus | undefined,
+  rating: number | undefined,
+  startedAt: Date | undefined,
+  finishedAt: Date | undefined
 ): Promise<UserBook> => {
   return await prisma.userBook.update({
     where: {
@@ -602,6 +611,9 @@ export const updateUserBook = async (
     },
     data: {
       status,
+      rating,
+      startedAt,
+      finishedAt,
     },
   });
 };

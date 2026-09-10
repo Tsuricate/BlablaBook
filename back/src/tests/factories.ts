@@ -17,8 +17,6 @@ type BookOverrides = Partial<{
   description: string | null;
   authors: string[];
   categories: string[];
-  averageRating: number | null;
-  ratingCount: number;
   publishedDate: Date | null;
   isbn10: string | null;
   isbn13: string | null;
@@ -90,8 +88,6 @@ export const createTestBook = async (publisherId: number, overrides: BookOverrid
     data: {
       title: overrides.title ?? 'test book',
       googleBookId: overrides.googleBookId ?? `google_${randomUUID()}`,
-      averageRating: overrides.averageRating ?? null,
-      ratingCount: overrides.ratingCount ?? 0,
       language: overrides.language ?? null,
       description: overrides.description ?? null,
       publishedDate: overrides.publishedDate ?? null,

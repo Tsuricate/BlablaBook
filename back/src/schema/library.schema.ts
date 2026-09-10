@@ -19,15 +19,16 @@ export const searchQuerySchema = z.object({
 
 export type SearchQuerySchema = z.infer<typeof searchQuerySchema>;
 
-export const statusSchema = z.object({
-  status: z.literal(['read', 'wishlist']),
+export const updateUserBookSchema = z.object({
+  status: z.enum(['read', 'wishlist']).optional(),
+  rating: z.number().min(0).max(5).optional(),
+  startedAt: z.string().optional(),
+  finishedAt: z.string().optional(),
 });
 
 export const bookSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
-  averageRating: z.number().optional().nullable(),
-  ratingCount: z.number().optional().default(0),
   imageLinks: z
     .object({
       smallThumbnail: z.string().optional().nullable(),

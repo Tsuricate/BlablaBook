@@ -1,21 +1,23 @@
-import { Box, Text, Image, Heading, Flex, Show, useBreakpointValue } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router';
+
+import { Box, Text, Image, Heading, Flex, Show, useBreakpointValue } from '@chakra-ui/react';
+import BookLibraryActions from './BookLibraryActions';
+
 import { slugify } from '../utils/stringUtils';
 import noBookCover from '../assets/noBookCover.jpg';
-import type { Book } from '../types/book';
-
-import BookCardActions from './BookCardActions';
-import EditBookActions from './EditBookActions';
+import type { Book, GoogleBook, Status } from '../types/book';
+import { useState } from 'react';
 
 interface BookCardProps {
-  book: Book;
+  book: Book | GoogleBook;
 }
 
 const BookCard = ({ book }: BookCardProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const { title, authors, averageRating, imageLinks, categories } = book;
+  const { title, authors, imageLinks, categories } = book;
+  const [updatedBook, setUpdatedBook] = useState(book);
 
   const firstCategory = categories?.[0] ?? 'uncategorized';
   const rootCategory = firstCategory.split('/')[0].trim();
@@ -23,10 +25,21 @@ const BookCard = ({ book }: BookCardProps) => {
 
   const isLibraryPage = pathname.startsWith('/library');
   const isMobile = useBreakpointValue({ base: true, md: false });
-  const mode = isLibraryPage ? (isMobile ? 'libraryMobile' : 'libraryDesktop') : 'default';
+  const isLibraryMobile = isLibraryPage && isMobile;
 
   const handleClick = () => {
     navigate(`/books/${slugCategory}/${book.googleBookId}`);
+  };
+
+  const updateBookStatusLocally = (status: Status) => {
+    setUpdatedBook((prev) => (prev ? { ...prev, status } : prev));
+  };
+
+  const updateBookLocally = (bookId: number) => {
+    setUpdatedBook((prev) => ({
+      ...prev,
+      bookId,
+    }));
   };
 
   return (
@@ -84,27 +97,14 @@ const BookCard = ({ book }: BookCardProps) => {
           }}
         />
 
-        {averageRating && (
-          <Box
-            position="absolute"
-            top={2}
-            left={2}
-            bg={{ _light: 'rgba(255,255,255,0.88)', _dark: 'rgba(0,0,0,0.60)' }}
-            color={{ _light: 'black', _dark: 'white' }}
-            backdropFilter="blur(8px)"
-            px={2}
-            py={1}
-            borderRadius="md"
-            fontSize="xs"
-            fontWeight="semibold"
-            borderWidth="1px"
-            borderColor={{ _light: 'rgba(0,0,0,0.06)', _dark: 'rgba(255,255,255,0.10)' }}
-          >
-            ⭐ {averageRating}
-          </Box>
-        )}
-
-        <BookCardActions mode={mode} book={book} />
+        <Show when={!isLibraryMobile}>
+          <BookLibraryActions
+            book={updatedBook}
+            variant="icon"
+            onStatusChange={updateBookStatusLocally}
+            onBookAdded={updateBookLocally}
+          />
+        </Show>
       </Box>
 
       <Box textAlign="left" position="relative" flex="1">
@@ -118,9 +118,14 @@ const BookCard = ({ book }: BookCardProps) => {
           </Text>
         </Show>
       </Box>
-      {isLibraryPage && isMobile && (
+
+      {isLibraryMobile && (
         <Box position="absolute" top={0} right={0}>
-          <EditBookActions book={book} />
+          <BookLibraryActions
+            book={updatedBook}
+            variant="icon"
+            onStatusChange={updateBookStatusLocally}
+          />
         </Box>
       )}
     </Flex>

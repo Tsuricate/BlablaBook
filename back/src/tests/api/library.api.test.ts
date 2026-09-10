@@ -35,8 +35,6 @@ const mockGoogleBook: GoogleBook = {
   isbn13: '9791021055148',
   pageCount: 109,
   categories: ['Biography & Autobiography'],
-  averageRating: undefined,
-  ratingCount: undefined,
   imageLinks: {
     smallThumbnail: 'http://img',
     thumbnail: 'http://img',

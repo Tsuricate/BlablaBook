@@ -17,14 +17,24 @@ export const buttonRecipe = defineRecipe({
   variants: {
     variant: {
       primary: {
+        h: '44px',
+        px: 4,
         borderRadius: 'xl',
-        bg: { _light: 'light.800', _dark: 'brown.700' },
-        color: { _light: 'light.50', _dark: 'light.100' },
-        fontWeight: 'semibold',
-        boxShadow: { _light: '0 2px 6px rgba(0,0,0,0.1)', _dark: '0 2px 6px rgba(0,0,0,0.4)' },
+        bg: { _light: 'light.200', _dark: 'gray.850' },
+        color: { _light: 'brown.800', _dark: 'light.100' },
+        fontWeight: '600',
+        border: '1px solid',
+        borderColor: {
+          _light: 'light.400',
+          _dark: 'rgba(255,255,255,0.12)',
+        },
+
         _hover: {
-          transform: 'translateY(-2px)',
-          boxShadow: { _light: '0 4px 10px rgba(0,0,0,0.15)', _dark: '0 4px 10px rgba(0,0,0,0.5)' },
+          bg: { _light: 'light.300', _dark: 'gray.800' },
+        },
+
+        _disabled: {
+          opacity: 0.4,
         },
       },
       category: {
@@ -70,6 +80,81 @@ export const buttonRecipe = defineRecipe({
         px: 5,
         _hover: {
           opacity: 0.9,
+        },
+      },
+      action: {
+        h: '46px',
+        px: 3,
+        gap: 2.5,
+        justifyContent: 'flex-start',
+        borderRadius: 'xl',
+        bg: { _light: 'light.200', _dark: 'gray.850' },
+        border: '1px solid',
+        borderColor: {
+          _light: 'light.400',
+          _dark: 'rgba(255,255,255,0.12)',
+        },
+        color: { _light: 'brown.800', _dark: 'light.100' },
+
+        '& .action-icon': {
+          w: '30px',
+
+          h: '30px',
+
+          display: 'flex',
+
+          alignItems: 'center',
+
+          justifyContent: 'center',
+
+          borderRadius: 'full',
+
+          bg: { _light: 'light.400', _dark: 'gray.700' },
+
+          color: { _light: 'brown.800', _dark: 'light.100' },
+
+          border: '1px solid',
+
+          borderColor: {
+            _light: 'light.500',
+
+            _dark: 'rgba(255,255,255,0.16)',
+          },
+
+          flexShrink: 0,
+        },
+
+        '& .action-divider': {
+          w: '1px',
+          h: '20px',
+          bg: { _light: 'light.500', _dark: 'rgba(255,255,255,0.16)' },
+          flexShrink: 0,
+        },
+      },
+      rating: {
+        h: '46px',
+        px: 3.5,
+        gap: 2,
+        borderRadius: 'xl',
+        bg: { _light: 'light.200', _dark: 'gray.850' },
+        border: '1px solid',
+        borderColor: {
+          _light: 'light.400',
+          _dark: 'rgba(255,255,255,0.12)',
+        },
+        borderBottomWidth: '2px',
+        borderBottomColor: {
+          _light: 'light.500',
+          _dark: 'rgba(139,115,85,0.55)',
+        },
+        color: { _light: 'brown.800', _dark: 'light.100' },
+
+        '& svg': {
+          fontSize: '18px',
+
+          color: { _light: 'brown.700', _dark: 'brown.300' },
+
+          transition: 'fill 0.15s ease',
         },
       },
     },

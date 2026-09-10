@@ -17,7 +17,7 @@ import {
   createBookSchema,
   getUserLibraryQuerySchema,
   searchQuerySchema,
-  statusSchema,
+  updateUserBookSchema,
   type LibraryQuerySchema,
   type SearchQuerySchema,
 } from '../schema/library.schema';
@@ -114,27 +114,31 @@ export const searchInLibrary = async (req: AuthRequest, res: Response): Promise<
   }
 };
 
-export const updateBookStatus = async (req: AuthRequest, res: Response): Promise<void> => {
-  const userId = req.userId as number;
-  const bookId = await checkIdFromParams(req.params.id as string);
-  const userBookId = { userId, bookId };
-
-  const userBook = await findBookInLibrary(userBookId);
-  if (!userBook) {
-    res.status(404).json({ error: "Book doesn't exist in library" });
-    return;
-  }
-
-  const parsed = statusSchema.safeParse(req.body);
-
-  if (!parsed.success) {
-    res.status(400).json({ success: false, error: z.flattenError(parsed.error).fieldErrors });
-    return;
-  }
-
+export const updateLibraryBook = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const data = await updateUserBook(userBookId, parsed.data?.status);
+    const userId = req.userId as number;
+    const bookId = await checkIdFromParams(req.params.id as string);
+    const userBookId = { userId, bookId };
 
+    const userBook = await findBookInLibrary(userBookId);
+    if (!userBook) {
+      res.status(404).json({ error: "Book doesn't exist in library" });
+      return;
+    }
+
+    const parsed = updateUserBookSchema.safeParse(req.body);
+
+    if (!parsed.success) {
+      res.status(400).json({ success: false, error: z.flattenError(parsed.error).fieldErrors });
+      return;
+    }
+
+    const { status, rating, startedAt, finishedAt } = parsed.data;
+
+    const startedAtDate = startedAt ? new Date(startedAt) : undefined;
+    const finishedAtDate = finishedAt ? new Date(finishedAt) : undefined;
+
+    const data = await updateUserBook(userBookId, status, rating, startedAtDate, finishedAtDate);
     res.status(200).json({
       success: true,
       data,
@@ -179,8 +183,10 @@ export const createAndAddBookToLibrary = async (req: AuthRequest, res: Response)
     const { book, status } = createBookSchema.parse(req.body);
 
     const foundBook = await checkIsBookExist(book.id);
+    let bookId: number;
 
     if (foundBook) {
+      bookId = foundBook.id;
       const userBookId = {
         userId: userId,
         bookId: foundBook.id,
@@ -206,6 +212,8 @@ export const createAndAddBookToLibrary = async (req: AuthRequest, res: Response)
       const googleBook = await getBookById(book.id);
       book.categories = googleBook.categories ? googleBook.categories : [];
       const createdBook = await createBook(googleBook);
+      bookId = createdBook.id;
+
       await addBookToLibrary({
         userId,
         bookId: createdBook.id,
@@ -213,7 +221,7 @@ export const createAndAddBookToLibrary = async (req: AuthRequest, res: Response)
       });
     }
 
-    res.status(201).json({ success: true });
+    res.status(201).json({ success: true, bookId });
   } catch (error) {
     console.error(error);
     res.status(500).json({

@@ -8,11 +8,11 @@ import {
 } from '@chakra-ui/react';
 import BookCard from './BookCard';
 import BookCardSkeleton from './BookCardSkeleton';
-import type { Book } from '../types/book';
+import type { Book, GoogleBook } from '../types/book';
 
 interface BookCardListProps {
   title?: string;
-  books: Book[];
+  books: (Book | GoogleBook)[];
   wrap?: boolean;
   isLoading?: boolean;
   singleColumnMobile?: boolean;

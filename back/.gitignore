@@ -5,3 +5,5 @@ node_modules
 
 # Prisma
 generated/prisma
+
+.pnpm-store/

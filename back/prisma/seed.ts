@@ -508,8 +508,6 @@ async function seedBook(entry: {
     isbn13: googleBook?.isbn13 ?? null,
     pageCount: googleBook?.pageCount ?? null,
     publishedDate: googleBook?.publishedDate ? new Date(googleBook.publishedDate) : null,
-    averageRating: googleBook?.averageRating ?? null,
-    ratingCount: googleBook?.ratingCount ?? 0,
     publisherId: publisher.id,
   };
 

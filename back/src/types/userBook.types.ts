@@ -7,8 +7,6 @@ export type PublisherRelation = { name: string | null };
 export type BookWithRelations = {
   id: number;
   title: string;
-  averageRating: number | null;
-  ratingCount: number | null;
   imageLinks: any | null;
   language: string | null;
   description: string | null;

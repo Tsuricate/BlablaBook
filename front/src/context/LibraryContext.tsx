@@ -24,12 +24,13 @@ type LibraryContextType = {
   fetchFirstPage: (key: string, status?: string) => Promise<void>;
   fetchNextPage: (key: string, status?: string) => Promise<void>;
   updateBookInCollections: (
-    bookId: string,
+    bookId: number,
     fromKey: string,
     toKey: string,
     newStatus: Status
   ) => void;
-  removeBookFromCollections: (bookId: string, fromKey: string) => void;
+  updateBookRatingInCollections: (bookId: number, rating: number) => void;
+  removeBookFromCollections: (bookId: number, fromKey: string) => void;
 };
 
 const LibraryContext = createContext<LibraryContextType | undefined>(undefined);
@@ -126,7 +127,7 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
   };
 
   const updateBookInCollections = (
-    bookId: string,
+    bookId: number,
     fromKey: string,
     toKey: string,
     newStatus: Status
@@ -174,7 +175,25 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
     });
   };
 
-  const removeBookFromCollections = (bookId: string, fromKey: string) => {
+  const updateBookRatingInCollections = (bookId: number, rating: number) => {
+    setCollections((prev) => {
+      const updatedCollections = { ...prev };
+
+      Object.entries(updatedCollections).forEach(([key, collection]) => {
+        updatedCollections[key] = {
+          ...collection,
+
+          items: collection.items.map((userBook) =>
+            userBook.bookId === bookId ? { ...userBook, rating } : userBook
+          ),
+        };
+      });
+
+      return updatedCollections;
+    });
+  };
+
+  const removeBookFromCollections = (bookId: number, fromKey: string) => {
     setCollections((prev) => {
       const from = prev[fromKey] ?? DEFAULT_COLLECTION_STATE;
       const all = prev.all ?? DEFAULT_COLLECTION_STATE;
@@ -204,6 +223,7 @@ export const LibraryProvider = ({ children }: { children: React.ReactNode }) => 
         fetchFirstPage,
         fetchNextPage,
         updateBookInCollections,
+        updateBookRatingInCollections,
         removeBookFromCollections,
       }}
     >
