@@ -291,7 +291,7 @@ const AccountPage = () => {
 
   return (
     <PageLayout imageSrc={homeImage} imagePosition="left">
-      <Flex justify="center" align="center" height="100%">
+      <Flex justify="center" align="center" height="100%" pb={16}>
         <Box
           as="form"
           borderWidth={{ base: 0, md: 4 }}

@@ -53,7 +53,7 @@ export const createTestUser = async (overrides: UserOverrides = {}) => {
     data: {
       username: `user_${randomUUID()}`,
       email: `test_${randomUUID()}@mail.com`,
-      password: 'test',
+      password: 'Password123!AA',
       ...overrides,
     },
   });
