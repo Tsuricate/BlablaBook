@@ -8,6 +8,7 @@ import { createTestBook, createTestPublisher, createTestUser } from '../factorie
 
 import { getBookById, GoogleBook } from '../../services/googleBooks.service';
 import { createAuthCookie } from '../helpers/auth';
+import { createAuthenticatedClient } from '../helpers/testClient';
 
 /* ---------------- MOCK GOOGLE BOOKS ---------------- */
 
@@ -116,43 +117,36 @@ describe('POST /library', () => {
     const user = await createTestUser();
     const publisher = await createTestPublisher();
     const book = await createTestBook(publisher.id);
+    const client = createAuthenticatedClient(app, user.id);
 
-    const token = generateTestToken(user.id);
-
-    const response = await request(app)
-      .post('/api/library')
-      .set('Cookie', createAuthCookie(token))
-      .send({
-        book: {
-          id: book.googleBookId,
-          title: book.title,
-          authors: ['John'],
-          categories: ['Tech'],
-        },
-        status: 'read',
-      });
+    const response = await client.post('/api/library').send({
+      book: {
+        id: book.googleBookId,
+        title: book.title,
+        authors: ['John'],
+        categories: ['Tech'],
+      },
+      status: 'read',
+    });
 
     expect(response.status).toBe(201);
+
     expect(response.body.success).toBe(true);
   });
 
   it('should return 400 if book already in library', async () => {
     const { user, book } = await createLibraryScenario();
+    const client = createAuthenticatedClient(app, user.id);
 
-    const token = generateTestToken(user.id);
-
-    const response = await request(app)
-      .post('/api/library')
-      .set('Cookie', createAuthCookie(token))
-      .send({
-        book: {
-          id: book.googleBookId,
-          title: book.title,
-          authors: ['John'],
-          categories: ['Tech'],
-        },
-        status: 'read',
-      });
+    const response = await client.post('/api/library').send({
+      book: {
+        id: book.googleBookId,
+        title: book.title,
+        authors: ['John'],
+        categories: ['Tech'],
+      },
+      status: 'read',
+    });
 
     expect(response.status).toBe(400);
     expect(response.body.error).toBe('BOOK_ALREADY_IN_LIBRARY');
@@ -160,20 +154,34 @@ describe('POST /library', () => {
 
   it('should create and add new book from google api', async () => {
     const user = await createTestUser();
-    const token = generateTestToken(user.id);
-
     (getBookById as any).mockResolvedValue(mockGoogleBook);
+    const client = createAuthenticatedClient(app, user.id);
 
-    const response = await request(app)
-      .post('/api/library')
-      .set('Cookie', createAuthCookie(token))
-      .send({
-        book: makeBookPayload(),
-        status: 'read',
-      });
+    const response = await client.post('/api/library').send({
+      book: makeBookPayload(),
+      status: 'read',
+    });
 
     expect(response.status).toBe(201);
     expect(response.body.success).toBe(true);
+  });
+
+  it('should reject request without csrf token', async () => {
+    const user = await createTestUser();
+    const client = createAuthenticatedClient(app, user.id);
+    client.setCsrf('');
+
+    const response = await client.post('/api/library').send({
+      book: {
+        id: 'test',
+        title: 'test',
+        authors: ['John'],
+        categories: ['Tech'],
+      },
+      status: 'read',
+    });
+
+    expect(response.status).toBe(403);
   });
 });
 
@@ -182,13 +190,9 @@ describe('POST /library', () => {
 describe('PATCH /library', () => {
   it('should update book status', async () => {
     const { user, book } = await createLibraryScenario({ status: 'read' });
+    const client = createAuthenticatedClient(app, user.id);
 
-    const token = generateTestToken(user.id);
-
-    const res = await request(app)
-      .patch(`/api/library/${book.id}`)
-      .set('Cookie', createAuthCookie(token))
-      .send({ status: 'wishlist' });
+    const res = await client.patch(`/api/library/${book.id}`).send({ status: 'wishlist' });
 
     expect(res.status).toBe(200);
     expect(res.body.success).toBe(true);
@@ -200,25 +204,18 @@ describe('PATCH /library', () => {
     const publisher = await createTestPublisher();
     const book = await createTestBook(publisher.id);
 
-    const token = generateTestToken(user.id);
+    const client = createAuthenticatedClient(app, user.id);
 
-    const res = await request(app)
-      .patch(`/api/library/${book.id}`)
-      .set('Cookie', createAuthCookie(token))
-      .send({ status: 'read' });
+    const res = await client.patch(`/api/library/${book.id}`).send({ status: 'read' });
 
     expect(res.status).toBe(404);
   });
 
   it('should return 400 for invalid status', async () => {
     const { user, book } = await createLibraryScenario();
+    const client = createAuthenticatedClient(app, user.id);
 
-    const token = generateTestToken(user.id);
-
-    const res = await request(app)
-      .patch(`/api/library/${book.id}`)
-      .set('Cookie', createAuthCookie(token))
-      .send({ status: 'invalid' });
+    const res = await client.patch(`/api/library/${book.id}`).send({ status: 'invalid' });
 
     expect(res.status).toBe(400);
     expect(res.body).toEqual(expect.objectContaining({ success: false, error: expect.anything() }));
@@ -229,6 +226,16 @@ describe('PATCH /library', () => {
 
     expect(res.status).toBe(401);
   });
+
+  it('should reject request without csrf token', async () => {
+    const { user, book } = await createLibraryScenario();
+    const client = createAuthenticatedClient(app, user.id);
+    client.setCsrf('');
+
+    const res = await client.patch(`/api/library/${book.id}`).send({ status: 'wishlist' });
+
+    expect(res.status).toBe(403);
+  });
 });
 
 /* ---------------- DELETE /library ---------------- */
@@ -236,12 +243,9 @@ describe('PATCH /library', () => {
 describe('DELETE /library', () => {
   it('should delete book from library', async () => {
     const { user, book } = await createLibraryScenario();
+    const client = createAuthenticatedClient(app, user.id);
 
-    const token = generateTestToken(user.id);
-
-    const res = await request(app)
-      .delete(`/api/library/${book.id}`)
-      .set('Cookie', createAuthCookie(token));
+    const res = await client.delete(`/api/library/${book.id}`);
 
     expect(res.status).toBe(204);
   });
@@ -250,12 +254,9 @@ describe('DELETE /library', () => {
     const user = await createTestUser();
     const publisher = await createTestPublisher();
     const book = await createTestBook(publisher.id);
+    const client = createAuthenticatedClient(app, user.id);
 
-    const token = generateTestToken(user.id);
-
-    const res = await request(app)
-      .delete(`/api/library/${book.id}`)
-      .set('Cookie', createAuthCookie(token));
+    const res = await client.delete(`/api/library/${book.id}`);
 
     expect(res.status).toBe(404);
     expect(res.body.error).toBe("Book doesn't exist in library");
@@ -265,5 +266,14 @@ describe('DELETE /library', () => {
     const res = await request(app).delete('/api/library/1');
 
     expect(res.status).toBe(401);
+  });
+
+  it('should reject request without csrf token', async () => {
+    const { user, book } = await createLibraryScenario();
+    const client = createAuthenticatedClient(app, user.id);
+    client.setCsrf('');
+    const res = await client.delete(`/api/library/${book.id}`);
+
+    expect(res.status).toBe(403);
   });
 });
