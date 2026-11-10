@@ -43,6 +43,31 @@ const seedCollections = async (): Promise<Map<string, number>> => {
   return collectionIdByKey;
 };
 
+const seedLinks = async (
+  bookIdByGoogleId: Map<string, number>,
+  collectionIdByKey: Map<string, number>
+) => {
+  for (const [key, books] of Object.entries(collections)) {
+    const collectionId = collectionIdByKey.get(key);
+    if (collectionId === undefined) continue;
+
+    const links: { bookId: number; collectionId: number }[] = [];
+
+    for (const { en, fr } of books) {
+      for (const googleBookId of [en, fr]) {
+        const bookId = bookIdByGoogleId.get(googleBookId);
+        if (bookId !== undefined) links.push({ bookId, collectionId });
+      }
+    }
+
+    const result = await prisma.bookCollection.createMany({
+      data: links,
+      skipDuplicates: true,
+    });
+    console.log(`🔗 ${key} : ${result.count} liaisons créées`);
+  }
+};
+
 const main = async () => {
   console.log('Seeding database...');
   const bookIdByGoogleId = await seedBooks();
@@ -50,6 +75,8 @@ const main = async () => {
 
   const collectionIdByKey = await seedCollections();
   console.log(`${collectionIdByKey.size} collections OK`);
+
+  await seedLinks(bookIdByGoogleId, collectionIdByKey);
 };
 
 main()
