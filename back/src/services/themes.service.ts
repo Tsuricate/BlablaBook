@@ -1,50 +1,36 @@
-import { searchBooks } from './googleBooks.service';
 import { getUserBooksByGoogleBookIds } from './userBook.service';
-import {
-  buildGoogleBooksQuery,
-  getRandomThemes,
-  getThemeData,
-} from '../utils/topFeaturedThemes.utils';
+import { pickRandom } from '../utils/topFeaturedThemes.utils';
+import { prisma } from '../utils/prisma.utils';
+
+export const getRandomCollections = async (count = 5) => {
+  const allCollections = await prisma.collection.findMany({
+    select: { id: true, key: true },
+  });
+
+  return pickRandom(allCollections, count);
+};
+
+const getCollectionBooks = async (collectionId: number, limit: number, lang: 'en' | 'fr') => {
+  return prisma.book.findMany({
+    where: {
+      language: lang,
+      collections: { some: { collectionId } },
+    },
+    take: limit,
+  });
+};
 
 export const getFeaturedThemesBooks = async (limit: number, lang: 'en' | 'fr') => {
-  const randomThemes = getRandomThemes(3);
+  const randomCollections = await getRandomCollections(5);
 
-  const topThemesBooks = await Promise.all(
-    randomThemes.map(async (themeKey) => {
-      const theme = getThemeData(themeKey, lang);
-
-      // CASE 1: simple search-based theme
-      if (theme.type === 'search') {
-        const books = await searchBooks(theme.query, limit);
-        return [themeKey, books];
-      }
-
-      // CASE 2: curated collection theme
-      const searchPromises = theme.data.queries.map((book) => {
-        const googleQuery = buildGoogleBooksQuery(book.title, book.author);
-
-        return searchBooks(googleQuery, 1);
-      });
-
-      const searchResults = await Promise.all(searchPromises);
-
-      const flatResults = searchResults.flat();
-
-      const seenIds = new Set();
-
-      const uniqueBooks = flatResults.filter((book) => {
-        if (seenIds.has(book.id)) return false;
-        seenIds.add(book.id);
-        return true;
-      });
-
-      const selectedBooks = uniqueBooks.slice(0, limit);
-
-      return [themeKey, selectedBooks];
+  const themesBooks = await Promise.all(
+    randomCollections.map(async ({ id, key }) => {
+      const books = await getCollectionBooks(id, limit, lang);
+      return [key, books] as const;
     })
   );
 
-  return Object.fromEntries(topThemesBooks);
+  return Object.fromEntries(themesBooks);
 };
 
 export const enrichFeaturedThemesWithUserLibrary = async (
