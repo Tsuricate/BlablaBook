@@ -34,8 +34,8 @@ export const getTopFeaturedThemes = async (req: AuthRequest, res: Response): Pro
     res.json(featuredBooksWithLibraryData);
   } catch (error) {
     console.error(error);
-    res.status(502).json({
-      error: 'Something wrong with Google Books API',
+    res.status(500).json({
+      error: 'Unable to load featured themes',
     });
   }
 };

@@ -12,20 +12,29 @@ export const getRandomCollections = async (count = 5) => {
 };
 
 const getCollectionBooks = async (collectionId: number, limit: number, lang: 'en' | 'fr') => {
-  const books = await prisma.book.findMany({
+  const candidates = await prisma.book.findMany({
     where: {
       language: lang,
       collections: { some: { collectionId } },
     },
+    select: { id: true },
+  });
+
+  const pickedIds = pickRandom(
+    candidates.map(({ id }) => id),
+    limit
+  );
+
+  const books = await prisma.book.findMany({
+    where: { id: { in: pickedIds } },
     include: {
       publisher: true,
       authors: { include: { author: true } },
       categories: { include: { category: true } },
     },
-    take: limit,
   });
 
-  return books.map(formatBook);
+  return pickRandom(books, books.length).map(formatBook);
 };
 
 export const getFeaturedThemesBooks = async (limit: number, lang: 'en' | 'fr') => {
