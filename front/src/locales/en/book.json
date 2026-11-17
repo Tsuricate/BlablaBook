@@ -12,17 +12,12 @@
     "coverAlt": "Book cover"
   },
   "themes": {
-    "adapted": "Screen adaptations",
     "dystopian": "Dystopian worlds",
-    "recommended": "Everyone’s talking about it",
-
-    "harryPotter": "⚡ Harry Potter",
-    "starWars": "Star Wars",
-    "lotr": "The Lord of the Rings",
-    "stephenKing": "Stephen King",
-    "sherlockHolmes": "Sherlock Holmes",
-    "hungerGames": "Hunger Games",
-    "gameOfThrones": "Game of Thrones"
+    "postApocalyptic": "Post-apocalyptic worlds",
+    "timeTravel": "Time travel",
+    "parallelWorlds": "Parallel worlds",
+    "impossibleLove": "Impossible love",
+    "screenAdaptations": "Screen adaptations"
   },
   "library": {
     "allBooks": "All books",

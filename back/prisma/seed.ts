@@ -16,8 +16,10 @@ const seedBooks = async (): Promise<Map<string, number>> => {
   for (const googleBookId of uniqueBookIds) {
     try {
       const book = await ensureBookExists(googleBookId);
+      if (!book.imageLinks || Object.keys(book.imageLinks as object).length === 0) {
+        console.warn(`🖼️ No images : ${book.title} (${googleBookId})`);
+      }
       bookIdByGoogleId.set(googleBookId, book.id);
-      console.log(`✅ ${book.title} (${book.language})`);
     } catch (error) {
       console.error(`❌ ${googleBookId}`, error);
     }
