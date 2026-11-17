@@ -1,6 +1,7 @@
 import { getUserBooksByGoogleBookIds } from './userBook.service';
 import { pickRandom } from '../utils/topFeaturedThemes.utils';
 import { prisma } from '../utils/prisma.utils';
+import { formatBook } from './library.service';
 
 export const getRandomCollections = async (count = 5) => {
   const allCollections = await prisma.collection.findMany({
@@ -11,13 +12,20 @@ export const getRandomCollections = async (count = 5) => {
 };
 
 const getCollectionBooks = async (collectionId: number, limit: number, lang: 'en' | 'fr') => {
-  return prisma.book.findMany({
+  const books = await prisma.book.findMany({
     where: {
       language: lang,
       collections: { some: { collectionId } },
     },
+    include: {
+      publisher: true,
+      authors: { include: { author: true } },
+      categories: { include: { category: true } },
+    },
     take: limit,
   });
+
+  return books.map(formatBook);
 };
 
 export const getFeaturedThemesBooks = async (limit: number, lang: 'en' | 'fr') => {
