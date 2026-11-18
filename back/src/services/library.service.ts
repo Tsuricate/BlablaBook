@@ -7,8 +7,9 @@ import {
   type UserBook,
 } from '../utils/prisma.utils';
 import type { UserBookWithDetails, UserBookPk, BookWithRelations } from '../types/userBook.types';
-import { cleanImageLinks, cleanOtherBookData } from '../utils/cleanSanitizedData.utils';
 import { GoogleBook } from './googleBooks.service';
+import { cleanImageLinks, cleanOtherBookData } from '../utils/cleanSanitizedData.utils';
+import { simplifyCategories } from '../utils/book.utils';
 
 /**
  * Formats an array of user books by extracting and transforming book details.
@@ -40,7 +41,9 @@ export const formatBooks = (userBooks: UserBookWithDetails[]) => {
         imageLinks,
         authors: bookData.authors?.map((author) => author.author.name) || [],
         publisher: bookData.publisher?.name || null,
-        categories: bookData.categories?.map((category) => category.category.name) || [],
+        categories: simplifyCategories(
+          bookData.categories?.map((category) => category.category.name) || []
+        ),
       },
     };
   });
@@ -62,7 +65,9 @@ export const formatBook = (book: BookWithRelations) => {
     imageLinks,
     authors: book.authors?.map((author) => author.author.name) || [],
     publisher: book.publisher?.name || null,
-    categories: book.categories?.map((category) => category.category.name) || [],
+    categories: simplifyCategories(
+      book.categories?.map((category) => category.category.name) || []
+    ),
   };
 };
 

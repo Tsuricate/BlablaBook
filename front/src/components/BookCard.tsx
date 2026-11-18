@@ -4,9 +4,9 @@ import { Box, Text, Image, Heading, Flex, Show, useBreakpointValue } from '@chak
 import BookLibraryActions from './BookLibraryActions';
 
 import { slugify } from '../utils/stringUtils';
-import noBookCover from '../assets/noBookCover.jpg';
 import type { Book, GoogleBook, Status } from '../types/book';
 import { useState } from 'react';
+import { BookCoverPlaceholder } from './BookCoverPlaceholder';
 
 interface BookCardProps {
   book: Book | GoogleBook;
@@ -75,14 +75,18 @@ const BookCard = ({ book }: BookCardProps) => {
           },
         }}
       >
-        <Image
-          src={imageLinks?.thumbnail || noBookCover}
-          alt={title}
-          objectFit="fill"
-          w="100%"
-          h="100%"
-          onClick={handleClick}
-        />
+        {imageLinks?.thumbnail ? (
+          <Image
+            src={imageLinks.thumbnail}
+            alt={title}
+            objectFit="fill"
+            w="100%"
+            h="100%"
+            onClick={handleClick}
+          />
+        ) : (
+          <BookCoverPlaceholder title={title} onClick={handleClick} />
+        )}
 
         <Box
           position="absolute"

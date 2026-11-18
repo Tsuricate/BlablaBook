@@ -56,7 +56,7 @@ model Book {
   users         UserBook[]
   authors       BookAuthor[]
   categories    BookCategory[]
- 
+  collections   BookCollection[]
 
   @@map("book")
 }
@@ -89,6 +89,14 @@ model Category {
   books     BookCategory[]
 
   @@map("category")
+}
+
+model Collection {
+  id        Int            @id @default(autoincrement())
+  key       String         @unique
+  books     BookCollection[]
+
+  @@map("collection")
 }
 
 model UserBook {
@@ -124,3 +132,15 @@ model BookCategory {
   @@id([bookId, categoryId])
   @@map("book_has_category")
 }
+
+model BookCollection {
+  bookId        Int      @map("book_id")
+  collectionId  Int      @map("collection_id")
+  book          Book     @relation(fields: [bookId], references: [id])
+  collection    Collection @relation(fields: [collectionId], references: [id])
+
+  @@id([bookId, collectionId])
+  @@map("book_has_collection")
+}
+
+

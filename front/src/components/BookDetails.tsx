@@ -23,7 +23,7 @@ import AppBreadcrumb from './AppBreadcrumb';
 import ExpandableDescription from './ui/EnableDescrition';
 
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
-import noBookCover from '../assets/noBookCover.jpg';
+import { BookCoverPlaceholder } from './BookCoverPlaceholder';
 import bookDetail from '../assets/bookDetail.webp';
 
 import { getBookImageByScreen } from '../utils/bookUtils';
@@ -110,14 +110,15 @@ const BookDetails = () => {
           )}
 
           {!hasRealImage && book && (
-            <Image
-              src={noBookCover}
-              alt="no cover"
-              borderRadius="md"
-              boxShadow="xl"
+            <Box
               width={{ base: '180px', sm: '200px', md: '100%' }}
-              height="auto"
-            />
+              aspectRatio={2 / 3}
+              boxShadow="xl"
+              borderRadius="md"
+              overflow="hidden"
+            >
+              <BookCoverPlaceholder title={book.title} />
+            </Box>
           )}
         </Box>
 
