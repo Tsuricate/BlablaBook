@@ -18,22 +18,21 @@ export const inputRecipe = defineRecipe({
         bg: { _light: 'light.50', _dark: 'brown.800' },
       },
       searchBar: {
+        bg: 'ui.surface',
+        color: 'ui.text',
         paddingInline: 6,
         paddingY: 7,
         border: '1px solid',
-        borderColor: { _light: '#f8f8f8', _dark: 'rgb(255 255 255 / 10%);' },
-        boxShadow: {
-          _light:
-            'inset 3px 3px 8px rgba(122, 111, 93, 0.18), inset -3px -3px 10px rgba(255, 255, 255, 0.65)',
-          _dark: '0 6px 20px rgba(0,0,0,0.5)',
-        },
-        transition: 'all 0.2s ease',
+        borderColor: 'ui.border',
+        boxShadow: { _light: '0 1px 2px rgba(0,0,0,0.04)', _dark: 'none' },
+        _placeholder: { color: 'ui.muted' },
+        transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
         _focus: {
           outline: 'none',
+          borderColor: { _light: 'rgba(201,138,46,0.6)', _dark: 'rgba(224,164,88,0.6)' },
           boxShadow: {
-            _light:
-              'inset 4px 4px 10px rgba(122, 111, 93, 0.22), inset -4px -4px 12px rgba(255, 255, 255, 0.75)',
-            _dark: '0 0 0 3px rgba(200,180,150,0.2)',
+            _light: '0 0 0 3px rgba(201,138,46,0.15)',
+            _dark: '0 0 0 3px rgba(224,164,88,0.15)',
           },
         },
       },

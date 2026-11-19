@@ -51,7 +51,7 @@ const config = defineConfig({
     body: {
       minHeight: '100%',
       margin: 0,
-      bg: { _light: 'light.100', _dark: 'brown.900' },
+      bg: { _light: 'light.100', _dark: 'ui.page' },
       color: { _light: 'brown.800', _dark: 'light.200' },
     },
   },
@@ -64,6 +64,19 @@ const config = defineConfig({
       colors: {
         brand: {
           solid: { value: '{colors.brand.500}' },
+        },
+        ui: {
+          page: { value: { _light: '{colors.light.100}', _dark: '#131312' } },
+          surface: { value: { _light: '{colors.light.50}', _dark: '#1C1C1A' } },
+          raised: { value: { _light: '{colors.light.200}', _dark: '#262624' } },
+          border: { value: { _light: 'rgba(0,0,0,0.08)', _dark: 'rgba(255,255,255,0.08)' } },
+          text: { value: { _light: '{colors.brown.800}', _dark: '#ECEAE6' } },
+          muted: { value: { _light: '{colors.brown.600}', _dark: '#A8A49C' } },
+          accent: { value: { _light: '#C98A2E', _dark: '#E0A458' } },
+          accentSoft: {
+            value: { _light: 'rgba(201,138,46,0.18)', _dark: 'rgba(224,164,88,0.10)' },
+          },
+          accentText: { value: { _light: '#9A6416', _dark: '#E0A458' } },
         },
       },
     },

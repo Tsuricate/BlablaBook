@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Category } from '@/types/category';
 import { Button, Heading, Box, HStack, Wrap, WrapItem, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
+import { getCategoryIcon } from '../utils/categoryUtils';
 
 export interface CategoriesListProps {
   categories: Category[];
@@ -40,8 +41,10 @@ const CategoriesList = ({ categories, onSelectCategory }: CategoriesListProps) =
         gap={3}
       >
         {visibleCategories.map((category) => {
+          const Icon = getCategoryIcon(category.key);
           const button = (
             <Button size="sm" variant="category" onClick={() => onSelectCategory(category.name)}>
+              <Icon />
               {category.name}
             </Button>
           );

@@ -42,10 +42,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
         flex="1"
         mt={{ base: '-24px', md: imagePosition === 'top' ? '-32px' : 0 }}
         ml={{ md: imagePosition === 'left' ? '-32px' : 0 }}
-        borderColor={{
-          _light: 'brown.400',
-          _dark: 'rgb(239 239 239 / 14%)',
-        }}
+        borderColor="ui.border"
         borderTopWidth={{ base: '1px', md: imagePosition === 'top' ? '1px' : 0 }}
         borderTopLeftRadius="3xl"
         borderTopRightRadius={{ base: '3xl', md: imagePosition === 'top' ? '3xl' : 0 }}
@@ -53,7 +50,7 @@ export const PageLayout: React.FC<PageLayoutProps> = ({
         borderBottomLeftRadius={{ base: 0, md: imagePosition === 'left' ? '3xl' : 0 }}
         paddingX={{ base: 5, md: 10 }}
         paddingY={{ base: 5, md: 8 }}
-        bg={{ _light: 'light.100', _dark: 'brown.900' }}
+        bg="ui.page"
         zIndex={1}
       >
         {children}
