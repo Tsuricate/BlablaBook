@@ -8,7 +8,8 @@
     "errorEmail": "This email is already in use.",
     "defaultError": "An error occurred while modifying your account.",
     "errorsDeleteAccount": "An error occurred while deleting your account.",
-    "passwordMismatch": "Passwords do not match."
+    "passwordMismatch": "Passwords do not match.",
+    "generic": "Something went wrong. Please try again."
   },
   "success": {
     "modificationSuccess": "Modification successful.",
@@ -20,7 +21,7 @@
     "title": "Disconnection",
     "description": "You have been successfully disconnected."
   },
-  "generale": {
+  "general": {
     "logout": "Log out",
     "deleteAccount": "Delete account",
     "modification": "Edit your information",
@@ -30,9 +31,12 @@
     "modificationConfirme": "Confirm changes",
     "modificationCancel": "Cancel all changes",
     "account": "My account",
+    "subtitle": "Manage your details and preferences",
     "confirmPassword": "Confirm password",
     "password": "Password",
     "email": "Email",
-    "username": "Username"
+    "username": "Username",
+    "preferences": "Preferences",
+    "session": "Session"
   }
 }

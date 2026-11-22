@@ -16,25 +16,61 @@ export const buttonRecipe = defineRecipe({
   },
   variants: {
     variant: {
+      base: {
+        borderRadius: 'xl',
+        fontSize: 'sm',
+        fontFamily: 'var(--chakra-fonts-body)',
+        color: 'ui.text',
+        boxShadow: 'none',
+        _placeholder: { color: 'ui.muted' },
+        bg: 'ui.page',
+        border: '1px solid',
+        borderColor: 'ui.border',
+        transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+        _focus: {
+          outline: 'none',
+          borderColor: { _light: 'rgba(201,138,46,0.6)', _dark: 'rgba(224,164,88,0.6)' },
+          boxShadow: {
+            _light: '0 0 0 3px rgba(201,138,46,0.15)',
+            _dark: '0 0 0 3px rgba(224,164,88,0.15)',
+          },
+        },
+        _disabled: { opacity: 0.7, cursor: 'not-allowed' },
+      },
       primary: {
         h: '44px',
-        px: 4,
+        px: 5,
         borderRadius: 'xl',
-        bg: { _light: 'light.200', _dark: 'gray.850' },
-        color: { _light: 'brown.800', _dark: 'light.100' },
+        bg: { _light: '#8E5F1E', _dark: 'ui.accent' },
+        color: { _light: '#FFF8EC', _dark: '#1A1612' },
+        fontWeight: '600',
+        border: 'none',
+        _hover: { filter: 'brightness(1.08)' },
+        _disabled: { opacity: 0.4 },
+      },
+      secondary: {
+        h: '44px',
+        px: 5,
+        gap: 2,
+        borderRadius: 'xl',
+        bg: 'ui.raised',
+        color: 'ui.text',
         fontWeight: '600',
         border: '1px solid',
-        borderColor: {
-          _light: 'light.400',
-          _dark: 'rgba(255,255,255,0.12)',
-        },
-
+        borderColor: { _light: 'rgba(61,51,40,0.25)', _dark: 'rgba(255,255,255,0.18)' },
+        _hover: { borderColor: 'ui.accent' },
+      },
+      danger: {
+        h: '44px',
+        px: 5,
+        borderRadius: 'xl',
+        bg: 'transparent',
+        color: { _light: '#B3382C', _dark: '#F08A7E' },
+        fontWeight: '600',
+        border: '1px solid transparent',
         _hover: {
-          bg: { _light: 'light.300', _dark: 'gray.800' },
-        },
-
-        _disabled: {
-          opacity: 0.4,
+          borderColor: { _light: 'rgba(179,56,44,0.5)', _dark: 'rgba(240,138,126,0.5)' },
+          bg: { _light: 'rgba(179,56,44,0.06)', _dark: 'rgba(240,138,126,0.08)' },
         },
       },
       category: {

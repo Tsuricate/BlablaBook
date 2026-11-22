@@ -8,7 +8,8 @@
     "errorEmail": "Cet email est deja utilisé",
     "defaultError": "Une erreur est survenue lors de la modification de votre compte.",
     "errorsDeleteAccount": "Une erreur est survenue lors de la suppression de votre compte.",
-    "passwordMismatch": "Les mots de passe ne correspondent pas"
+    "passwordMismatch": "Les mots de passe ne correspondent pas",
+    "generic": "Une erreur est survenue. Veuillez réessayer."
   },
   "success": {
     "modificationSuccess": "Modification effectuée.",
@@ -20,7 +21,7 @@
     "title": "Deconnexion",
     "description": "Vous etes bien deconnecté."
   },
-  "generale": {
+  "general": {
     "logout": "Se déconnecter",
     "deleteAccount": " Supprimer le compte",
     "modification": " Modifier vos informations",
@@ -30,9 +31,12 @@
     "modificationConfirme": "Valider les modifications",
     "modificationCancel": "Annuler toutes modifications",
     "account": "Mon compte",
+    "subtitle": "Gérez vos informations et vos préférences",
     "confirmPassword": "Confirmer le mot de passe",
     "password": "Mot de passe",
     "email": "Email",
-    "username": "Nom d'utilisateur"
+    "username": "Nom d'utilisateur",
+    "preferences": "Préferences",
+    "session": "Session"
   }
 }

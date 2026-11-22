@@ -10,3 +10,6 @@ export type User = {
   email: string;
   username: string;
 };
+
+export type FieldName = keyof RegisterFormValues;
+export type FormErrors = Record<FieldName, string>;
