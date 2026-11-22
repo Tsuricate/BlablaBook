@@ -20,6 +20,12 @@ export const inputRecipe = defineRecipe({
         _dark: '0 0 0 3px rgba(224,164,88,0.15)',
       },
     },
+    _autofill: {
+      WebkitTextFillColor: 'var(--chakra-colors-ui-text)',
+      caretColor: 'var(--chakra-colors-ui-text)',
+      boxShadow: '0 0 0 1000px var(--chakra-colors-ui-page) inset',
+      transition: 'background-color 9999s ease-out 0s',
+    },
     _disabled: { opacity: 0.7, cursor: 'not-allowed' },
   },
   variants: {

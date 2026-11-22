@@ -66,12 +66,11 @@ const AddBookActions = ({
 
       if (!res?.success) return;
 
-      toaster.create({
+      toaster.success({
         title: t('book:library.addSuccess', {
           title: book.title,
           status: t(`book:library.collections.${status}`),
         }),
-        type: 'success',
       });
 
       onStatusChange?.(status);

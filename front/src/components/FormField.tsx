@@ -8,6 +8,7 @@ type FormFieldProps = {
   placeholder?: string;
   error?: string;
   type?: 'text' | 'email' | 'password';
+  required?: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
 };
@@ -19,12 +20,16 @@ const FormField = ({
   placeholder,
   error,
   type = 'text',
+  required = false,
   onChange,
   onBlur,
 }: FormFieldProps) => {
   return (
     <Field.Root invalid={!!error}>
-      <Field.Label>{label}</Field.Label>
+      <Field.Label>
+        {label}
+        {required && <Field.RequiredIndicator />}
+      </Field.Label>
 
       {type === 'password' ? (
         <PasswordInput

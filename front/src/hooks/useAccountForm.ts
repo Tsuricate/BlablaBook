@@ -129,32 +129,6 @@ export const useAccountForm = () => {
       }));
     }
   };
-  //   const { value } = event.target;
-  //   const name = event.target.name as FieldName;
-  //   const isModifiedOrFilled =
-  //     (name === 'username' && value !== initialFormData.username) ||
-  //     (name === 'email' && value !== initialFormData.email) ||
-  //     (name === 'password' && value) ||
-  //     (name === 'confirmPassword' && value);
-
-  //   if (!isModifiedOrFilled) {
-  //     return;
-  //   }
-
-  //   const miniSchema = z.object({ [name]: RegisterSchema.shape[name] });
-  //   const result = miniSchema.safeParse({ [name]: value });
-
-  //   setErrors((prev) => {
-  //     if (!result.success) {
-  //       const error = z.flattenError(result.error).fieldErrors[name]?.[0] || '';
-  //       return { ...prev, [name]: error && value ? error : '' };
-  //     }
-  //     if (name === 'confirmPassword') {
-  //       return { ...prev, confirmPassword: getPasswordError(formData.password, value) };
-  //     }
-  //     return { ...prev, [name]: '' };
-  //   });
-  // };
 
   const validateField = (name: FieldName, value: string): string => {
     const result = RegisterSchema.shape[name].safeParse(value);
