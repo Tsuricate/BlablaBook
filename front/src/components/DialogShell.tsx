@@ -1,13 +1,14 @@
 import { CloseButton, Dialog, Text } from '@chakra-ui/react';
 
-interface LibraryPopoverShellProps {
+interface DialogShellProps {
   title?: string;
   subtitle?: string;
   width?: string;
   children: React.ReactNode;
+  footer?: React.ReactNode;
 }
 
-const DialogShell = ({ title, subtitle, children, width = '300' }: LibraryPopoverShellProps) => {
+const DialogShell = ({ title, subtitle, children, footer, width = '300' }: DialogShellProps) => {
   return (
     <Dialog.Content
       maxW={width}
@@ -21,17 +22,19 @@ const DialogShell = ({ title, subtitle, children, width = '300' }: LibraryPopove
       }}
       overflow="hidden"
     >
-      <Dialog.Header px={8} pt={8} pb={2}>
-        <Dialog.Title
-          fontFamily="heading"
-          fontSize="2xl"
-          fontWeight="medium"
-          letterSpacing="tight"
-          color={{ _light: 'brown.700', _dark: 'light.200' }}
-        >
-          {title}
-        </Dialog.Title>
-      </Dialog.Header>
+      {title && (
+        <Dialog.Header px={8} pt={8} pb={2}>
+          <Dialog.Title
+            fontFamily="heading"
+            fontSize="2xl"
+            fontWeight="medium"
+            letterSpacing="tight"
+            color={{ _light: 'brown.700', _dark: 'light.200' }}
+          >
+            {title}
+          </Dialog.Title>
+        </Dialog.Header>
+      )}
 
       {subtitle && (
         <Text px={8} pb={5} fontSize="sm" color={{ _light: 'brown.600', _dark: 'light.400' }}>
@@ -39,9 +42,15 @@ const DialogShell = ({ title, subtitle, children, width = '300' }: LibraryPopove
         </Text>
       )}
 
-      <Dialog.Body px={8} pb={8}>
+      <Dialog.Body px={8} pb={footer ? 4 : 8}>
         {children}
       </Dialog.Body>
+
+      {footer && (
+        <Dialog.Footer px={8} pt={0} pb={8}>
+          {footer}
+        </Dialog.Footer>
+      )}
 
       <Dialog.CloseTrigger asChild>
         <CloseButton
@@ -56,4 +65,5 @@ const DialogShell = ({ title, subtitle, children, width = '300' }: LibraryPopove
     </Dialog.Content>
   );
 };
+
 export default DialogShell;

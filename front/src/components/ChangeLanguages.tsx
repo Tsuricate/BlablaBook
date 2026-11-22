@@ -1,27 +1,31 @@
 import { Box, HStack, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
+const options = [
+  { lang: 'fr', label: '🇫🇷 Français' },
+  { lang: 'en', label: '🇬🇧 English' },
+] as const;
+
 const ChangeLanguages = () => {
   const { i18n } = useTranslation();
   const current = i18n.language === 'fr' ? 'fr' : 'en';
+  const isEN = current === 'en';
 
   const changeLanguage = (lang: 'en' | 'fr') => {
     i18n.changeLanguage(lang);
-    // Enregistrer la langue choisie dans le localStorage
     localStorage.setItem('userLanguage', lang);
   };
-
-  const isEN = current === 'en';
 
   return (
     <Box
       position="relative"
       w="100%"
-      bg={{ _light: 'light.200', _dark: 'brown.800' }}
-      borderRadius="full"
+      bg="ui.raised"
+      borderRadius="xl"
       p="4px"
       borderWidth="1px"
-      borderColor={{ _light: 'light.300', _dark: 'brown.600' }}
+      borderColor="ui.border"
+      role="radiogroup"
     >
       <Box
         position="absolute"
@@ -29,55 +33,40 @@ const ChangeLanguages = () => {
         left="4px"
         h="calc(100% - 8px)"
         w="calc(50% - 4px)"
-        bg={{ _light: 'white', _dark: 'brown.600' }}
-        borderRadius="full"
-        transition="all 0.25s ease"
+        bg="ui.accentSoft"
+        borderWidth="1px"
+        borderColor={{ _light: 'rgba(201,138,46,0.45)', _dark: 'rgba(224,164,88,0.4)' }}
+        borderRadius="lg"
+        transition="transform 0.25s ease"
         transform={isEN ? 'translateX(100%)' : 'translateX(0%)'}
-        boxShadow="sm"
       />
 
-      <HStack position="relative" zIndex={1}>
-        <Box
-          flex={1}
-          textAlign="center"
-          py={2}
-          cursor="pointer"
-          onClick={() => changeLanguage('fr')}
-        >
-          <Text
-            fontSize="sm"
-            fontWeight="medium"
-            color={
-              !isEN
-                ? { _light: 'gray.800', _dark: 'light.100' }
-                : { _light: 'gray.600', _dark: 'light.400' }
-            }
-            transition="color 0.2s"
-          >
-            🇫🇷 Français
-          </Text>
-        </Box>
-
-        <Box
-          flex={1}
-          textAlign="center"
-          py={2}
-          cursor="pointer"
-          onClick={() => changeLanguage('en')}
-        >
-          <Text
-            fontSize="sm"
-            fontWeight="medium"
-            color={
-              isEN
-                ? { _light: 'gray.800', _dark: 'light.100' }
-                : { _light: 'gray.600', _dark: 'light.400' }
-            }
-            transition="color 0.2s"
-          >
-            🇬🇧 English
-          </Text>
-        </Box>
+      <HStack position="relative" zIndex={1} gap={0}>
+        {options.map(({ lang, label }) => {
+          const active = current === lang;
+          return (
+            <Box
+              key={lang}
+              as="button"
+              role="radio"
+              aria-checked={active}
+              flex={1}
+              textAlign="center"
+              py={2}
+              cursor="pointer"
+              onClick={() => changeLanguage(lang)}
+            >
+              <Text
+                fontSize="sm"
+                fontWeight={active ? 'semibold' : 'medium'}
+                color={active ? 'ui.accentText' : 'ui.muted'}
+                transition="color 0.2s"
+              >
+                {label}
+              </Text>
+            </Box>
+          );
+        })}
       </HStack>
     </Box>
   );
