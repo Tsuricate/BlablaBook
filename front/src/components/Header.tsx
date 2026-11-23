@@ -1,4 +1,4 @@
-import { Show, Box, Flex, HStack, Text, Heading, Separator } from '@chakra-ui/react';
+import { Show, Box, Flex, HStack, Heading } from '@chakra-ui/react';
 import { useBreakpointValue } from '@chakra-ui/react';
 import { LiaCompass } from 'react-icons/lia';
 import { TbBookFilled } from 'react-icons/tb';
@@ -23,16 +23,7 @@ const Header = ({ imagePosition }: HeaderProps) => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
 
   const isDarkTextMode = imagePosition === 'left' && colorMode === 'light' && isDesktop;
-  const darkHeaderColor = isDarkTextMode ? '#26231F' : 'white';
-
-  const NavSeparator = () => (
-    <Separator
-      orientation="vertical"
-      height="5"
-      borderColor={darkHeaderColor}
-      borderWidth="1.5px"
-    />
-  );
+  const darkHeaderColor = isDarkTextMode ? 'ui.text' : 'white';
 
   return (
     <>
@@ -53,30 +44,29 @@ const Header = ({ imagePosition }: HeaderProps) => {
         <HStack flex="1" justify="flex-end" gap={4}>
           <ThemeToggle />
 
-          <HStack gap={6} display={{ base: 'none', md: 'flex' }}>
-            <NavLink to="/" icon={LiaCompass} iconColor={darkHeaderColor}>
-              <Text color={darkHeaderColor} whiteSpace="nowrap">
-                {t('nav.discover')}
-              </Text>
+          <HStack
+            gap={1}
+            p={1}
+            borderRadius="full"
+            display={{ base: 'none', md: 'flex' }}
+            borderWidth="1px"
+            borderColor={isDarkTextMode ? 'ui.border' : 'whiteAlpha.300'}
+            bg={isDarkTextMode ? 'ui.surface' : 'blackAlpha.300'}
+            backdropFilter={isDarkTextMode ? undefined : 'blur(10px)'}
+          >
+            <NavLink to="/" icon={LiaCompass} onImage={!isDarkTextMode}>
+              {t('nav.discover')}
             </NavLink>
-            <NavSeparator />
-            <NavLink to="/library" icon={TbBookFilled} iconColor={darkHeaderColor}>
-              <Text whiteSpace="nowrap" color={darkHeaderColor}>
-                {t('nav.library')}
-              </Text>
+            <NavLink to="/library" icon={TbBookFilled} onImage={!isDarkTextMode}>
+              {t('nav.library')}
             </NavLink>
-            <NavSeparator />
             {isLoggedIn ? (
-              <NavLink to="/account" icon={BsPersonCircle} iconColor={darkHeaderColor}>
-                <Text whiteSpace="nowrap" color={darkHeaderColor}>
-                  {user?.username}
-                </Text>
+              <NavLink to="/account" icon={BsPersonCircle} onImage={!isDarkTextMode}>
+                {user?.username}
               </NavLink>
             ) : (
-              <NavLink to="/login" icon={BsPersonCircle} iconColor={darkHeaderColor}>
-                <Text whiteSpace="nowrap" color={darkHeaderColor}>
-                  {t('nav.login')}
-                </Text>
+              <NavLink to="/login" icon={BsPersonCircle} onImage={!isDarkTextMode}>
+                {t('nav.login')}
               </NavLink>
             )}
           </HStack>

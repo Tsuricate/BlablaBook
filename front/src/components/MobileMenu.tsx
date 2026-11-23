@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import NavLink from './NavLink';
 import { LiaCompass } from 'react-icons/lia';
 import { TbBookFilled } from 'react-icons/tb';
@@ -15,16 +15,21 @@ const MobileMenu = () => {
       as="nav"
       display={{ base: 'flex', md: 'none' }}
       position="fixed"
-      bottom={0}
       left={0}
       right={0}
-      bg={{ _light: 'brown.400', _dark: 'brown.800' }}
-      borderTop={{
-        _light: '1px solid var(--chakra-colors-light-200)',
-        _dark: '1px solid var(--chakra-colors-brown-600)',
+      zIndex={10}
+      bg={{ _light: 'light.200', _dark: 'ui.surface' }}
+      borderTopWidth="1px"
+      borderColor={{ _light: 'light.400', _dark: 'rgba(255,255,255,0.12)' }}
+      boxShadow={{
+        _light: '0 -8px 24px rgba(61,51,40,0.12)',
+        _dark: '0 -6px 20px rgba(0,0,0,0.5)',
       }}
       justify="space-around"
-      py={3}
+      px={2}
+      pt={2}
+      bottom="-1px"
+      pb="calc(9px + env(safe-area-inset-bottom))"
     >
       <NavLink to="/" icon={LiaCompass} vertical>
         {t('nav.discover')}
@@ -35,10 +40,8 @@ const MobileMenu = () => {
       </NavLink>
 
       {isLoggedIn ? (
-        <NavLink to="/account" vertical icon={BsPersonCircle}>
-          <Text whiteSpace="nowrap" fontWeight="bold">
-            {user?.username}
-          </Text>
+        <NavLink to="/account" icon={BsPersonCircle} vertical>
+          {user?.username}
         </NavLink>
       ) : (
         <NavLink to="/login" icon={BsPersonCircle} vertical>
