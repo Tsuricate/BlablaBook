@@ -4,22 +4,26 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
 import type { GoogleBook } from '../types/book';
-import { Button, Stack, Box } from '@chakra-ui/react';
+import { Button, Stack } from '@chakra-ui/react';
 import { PageLayout } from '../components/layouts/PageLayout';
 import MobileMenu from '../components/MobileMenu';
 import SearchBar from './SearchBar';
 import CategoriesList from './CategoriesList';
 import BookCardList from './BookCardList';
 
-import homeImage from '../assets/homePageImage.jpg';
+import homePageImageDark from '../assets/homePageImageDark.jpg';
+import homePageImageLight from '../assets/homePageImageLight.jpg';
 import { genresMock } from '../mocks/mockData';
 import { slugify } from '../utils/stringUtils';
 import { getThemeLabel } from '../utils/themeUtils';
 import { useBookSearch } from '../hooks/useBookSearch';
+import CollectionSection from './CollectionSection';
+import { useColorMode } from './ui/color-mode';
 
 const HomePage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation('common');
+  const { colorMode } = useColorMode();
 
   const {
     searchValue,
@@ -60,8 +64,11 @@ const HomePage = () => {
   };
 
   return (
-    <PageLayout imageSrc={homeImage} imagePosition="top">
-      <Stack gap={5} pb={{ base: 20, md: 2 }}>
+    <PageLayout
+      imageSrc={colorMode === 'dark' ? homePageImageDark : homePageImageLight}
+      imagePosition="top"
+    >
+      <Stack gap={6} pb={{ base: 20, md: 2 }}>
         <SearchBar
           searchValue={searchValue}
           onChange={handleSearchChange}
@@ -91,10 +98,14 @@ const HomePage = () => {
             <BookCardList books={[]} isLoading wrap={false} />
           </>
         ) : (
-          Object.entries(featuredBooks).map(([themeKey, books]) => (
-            <Box key={themeKey}>
-              <BookCardList title={getThemeLabel(themeKey)} books={books} wrap={false} />
-            </Box>
+          Object.entries(featuredBooks).map(([themeKey, books], index) => (
+            <CollectionSection
+              key={themeKey}
+              themeKey={themeKey}
+              title={getThemeLabel(themeKey)}
+              books={books}
+              index={index}
+            />
           ))
         )}
       </Stack>
