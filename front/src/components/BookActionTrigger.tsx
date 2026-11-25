@@ -37,8 +37,9 @@ const BookActionTrigger = ({
         return variant === 'button' ? (
           <Button
             alignSelf="start"
-            variant="category"
-            width="full"
+            variant="primary"
+            width={{ base: 'full', md: 'auto' }}
+            px={8}
             onClick={(e) => {
               e.stopPropagation();
               onOpenAction('add');

@@ -6,12 +6,10 @@ import {
   Collapsible,
   Flex,
   Grid,
-  GridItem,
+  Heading,
   HStack,
   Icon,
   Image,
-  Skeleton,
-  Stack,
   Tag,
   Text,
 } from '@chakra-ui/react';
@@ -20,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { PageLayout } from './layouts/PageLayout';
 import MobileMenu from './MobileMenu';
 import AppBreadcrumb from './AppBreadcrumb';
-import ExpandableDescription from './ui/EnableDescrition';
+import ExpandableDescription from './ExpandableDescription';
 
 import { IoChevronDown, IoChevronUp } from 'react-icons/io5';
 import { BookCoverPlaceholder } from './BookCoverPlaceholder';
@@ -83,166 +81,222 @@ const BookDetails = () => {
         align="center"
         height="100%"
         mt={{ base: '-100px', md: '40px' }}
-        gap={8}
         transform={{ base: 'translateY(0)', md: `translateX(-${25 * 0.5}vw)` }}
         pb={{ base: 20, md: 2 }}
       >
-        <Box flexShrink={0} width={{ sm: 'calc(10vw * 0.5)', md: 'calc(55vw * 0.4)' }}>
-          {showSkeleton && (
-            <Skeleton
-              width={{ base: '180px', sm: '200px', md: '100%' }}
-              h={{ base: '220px', md: 'auto' }}
-            />
-          )}
-
-          {hasRealImage && (
-            <Image
-              src={imageSrc}
-              alt={t('details.coverAlt')}
-              borderRadius="md"
-              boxShadow="xl"
-              width={{ base: '180px', sm: '200px', md: '100%' }}
-              height="auto"
-              opacity={imageLoaded ? 1 : 0}
-              transition="opacity 0.3s ease"
-              onLoad={() => setImageLoaded(true)}
-            />
-          )}
-
-          {!hasRealImage && book && (
-            <Box
-              width={{ base: '180px', sm: '200px', md: '100%' }}
-              aspectRatio={2 / 3}
-              boxShadow="xl"
-              borderRadius="md"
-              overflow="hidden"
-            >
-              <BookCoverPlaceholder title={book.title} />
-            </Box>
-          )}
-        </Box>
-
-        <Box flex="1" pt={{ base: 4, md: 0 }} alignContent={{ md: 'center' }} height="100%">
-          <Stack gap={2}>
-            <AppBreadcrumb
-              items={[
-                { label: t('breadcrumb.home'), to: '/' },
-                { label: t('breadcrumb.category'), to: '/books' },
-                { label: useTruncatedTitle(book?.title) },
-              ]}
-            />
-            <Text fontSize="3xl" fontWeight="bold">
-              {book?.title}
-            </Text>
-            <HStack>
-              <Text fontSize="xl" color={{ _light: 'brown.800', _dark: 'light.500' }}>
-                {book?.authors?.join(', ')}
-              </Text>
-            </HStack>
-
-            {book && (
-              <BookLibraryActions
-                book={book}
-                onStatusChange={updateBookStatusLocally}
-                onRatingChange={updateBookRatingLocally}
-                onReadingDatesChange={updateBookReadingDatesLocally}
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          align={{ base: 'center', md: 'stretch' }}
+          w="100%"
+          flex={{ md: 1 }}
+          minW={0}
+          minH={{ md: '30rem' }}
+          gap={8}
+        >
+          <Box
+            flexShrink={0}
+            alignSelf={{ md: 'center' }}
+            width={{ sm: 'calc(10vw * 0.5)', md: 'calc(55vw * 0.4)' }}
+          >
+            {hasRealImage && (
+              <Image
+                src={imageSrc}
+                alt={t('details.coverAlt')}
+                borderRadius="md"
+                boxShadow="xl"
+                width={{ base: '180px', sm: '200px', md: '100%' }}
+                height="auto"
+                opacity={imageLoaded ? 1 : 0}
+                transition="opacity 0.3s ease"
+                onLoad={() => setImageLoaded(true)}
               />
             )}
 
-            <HStack mt={2} flexWrap="wrap" fontWeight="semibold">
-              {visibleCategories?.map((category) => (
-                <Tag.Root
-                  key={category}
-                  px={3}
-                  py={1}
-                  variant="subtle"
-                  borderRadius="xl"
-                  color={{ _light: 'light.50', _dark: 'light.100' }}
-                  bg={{ _light: 'light.600', _dark: 'gray.850' }}
-                  backgroundImage={{
-                    _light: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(0,0,0,0.03))',
-                    _dark: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.18))',
-                  }}
-                  border="1px solid"
-                  borderColor={{
-                    _light: 'white',
-                    _dark: 'rgba(255,255,255,0.08)',
-                  }}
-                >
-                  <Tag.Label>{category}</Tag.Label>
-                </Tag.Root>
-              ))}
-
-              {book?.categories && book.categories.length > 3 && (
-                <Tag.Root
-                  variant="solid"
-                  bg={{ _light: 'light.600', _dark: 'gray.850' }}
-                  color={{ _light: 'light.50', _dark: 'light.100' }}
-                  borderRadius="xl"
-                  cursor="pointer"
-                  backgroundImage={{
-                    _light: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(0,0,0,0.03))',
-                    _dark: 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(0,0,0,0.18))',
-                  }}
-                  px={3}
-                  py={1}
-                  onClick={() => setShowAllCategories((prev) => !prev)}
-                >
-                  <Tag.Label>
-                    {' '}
-                    {showAllCategories
-                      ? t('common:categories.showLess')
-                      : t('common:categories.showAll')}
-                  </Tag.Label>
-                </Tag.Root>
-              )}
-            </HStack>
-            <Stack mt={4}>
-              <Text fontWeight="bold">{t('details.description')}</Text>
-              <ExpandableDescription html={book?.description} />
-
-              <Collapsible.Root
-                open={isDetailsOpen}
-                onOpenChange={(event) => setIsDetailsOpen(event.open)}
+            {!hasRealImage && book && (
+              <Box
+                width={{ base: '180px', sm: '200px', md: '100%' }}
+                aspectRatio={2 / 3}
+                boxShadow="xl"
+                borderRadius="md"
+                overflow="hidden"
               >
-                <Collapsible.Trigger asChild>
-                  <Flex align="center" justify="space-between" cursor="pointer" py={3}>
-                    <Text fontWeight="bold">{t('details.technicalDetails')}</Text>
-                    <Icon>{isDetailsOpen ? <IoChevronUp /> : <IoChevronDown />}</Icon>
-                  </Flex>
-                </Collapsible.Trigger>
+                <BookCoverPlaceholder title={book.title} />
+              </Box>
+            )}
+          </Box>
 
-                <Collapsible.Content>
-                  <Grid
-                    templateColumns={{ base: 'repeat(2, auto)', md: 'repeat(4, auto)' }}
-                    gap={4}
+          <Box
+            position="relative"
+            flex="1"
+            minW={0}
+            w={{ base: '100%', md: 'auto' }}
+            pt={{ base: 4, md: 0 }}
+          >
+            <Flex
+              direction="column"
+              gap={2}
+              position={{ base: 'static', md: 'absolute' }}
+              inset={{ md: 0 }}
+              overflowY={{ md: 'auto' }}
+              css={{ scrollbarWidth: 'thin' }}
+            >
+              <AppBreadcrumb
+                items={[
+                  { label: t('breadcrumb.home'), to: '/' },
+                  { label: t('breadcrumb.category'), to: '/books' },
+                  { label: useTruncatedTitle(book?.title) },
+                ]}
+              />
+              <Heading
+                as="h1"
+                fontSize={{ base: '3xl', md: '4xl' }}
+                fontWeight="semibold"
+                letterSpacing="-0.02em"
+                lineHeight="1.15"
+              >
+                {book?.title}
+              </Heading>
+              <HStack>
+                <Text fontSize={{ base: 'lg', md: 'xl' }} color="ui.muted">
+                  {book?.authors?.join(', ')}
+                </Text>
+              </HStack>
+
+              {book && (
+                <BookLibraryActions
+                  book={book}
+                  onStatusChange={updateBookStatusLocally}
+                  onRatingChange={updateBookRatingLocally}
+                  onReadingDatesChange={updateBookReadingDatesLocally}
+                />
+              )}
+
+              <HStack mt={2} flexWrap="wrap">
+                {visibleCategories?.map((category) => (
+                  <Tag.Root
+                    key={category}
+                    px={3.5}
+                    py={1.5}
+                    variant="subtle"
+                    borderRadius="full"
+                    bg="ui.accentSoft"
+                    color="ui.accentText"
+                    borderWidth="1px"
+                    borderColor={{ _light: 'rgba(201,138,46,0.45)', _dark: 'rgba(224,164,88,0.4)' }}
+                    fontWeight="semibold"
+                    fontSize="sm"
                   >
-                    <GridItem>
-                      <Text fontWeight="bold">{t('details.language')} :</Text>
-                      <Text>{book?.language ?? '–'}</Text>
-                    </GridItem>
-                    <GridItem>
-                      <Text fontWeight="bold">{t('details.pageCount')} :</Text>
-                      <Text>{book?.pageCount ?? '–'}</Text>
-                    </GridItem>
-                    <GridItem>
-                      <Text fontWeight="bold">{t('details.publisher')} :</Text>
-                      <Text>{book?.publisher ?? '–'}</Text>
-                    </GridItem>
-                    <GridItem>
-                      <Text fontWeight="bold">ISBN-13 :</Text>
-                      <Text>{book?.isbn10 ?? '–'}</Text>
-                    </GridItem>
-                    <GridItem>
-                      <Text fontWeight="bold">ISBN-10 :</Text>
-                      <Text>{book?.isbn13 ?? '–'}</Text>
-                    </GridItem>
-                  </Grid>
-                </Collapsible.Content>
-              </Collapsible.Root>
-            </Stack>
-          </Stack>
-        </Box>
+                    <Tag.Label>{category}</Tag.Label>
+                  </Tag.Root>
+                ))}
+
+                {book?.categories && book.categories.length > 3 && (
+                  <Tag.Root
+                    variant="subtle"
+                    px={3}
+                    py={1}
+                    borderRadius="full"
+                    bg="transparent"
+                    color="ui.accentText"
+                    borderWidth="1px"
+                    borderColor={{ _light: 'rgba(201,138,46,0.45)', _dark: 'rgba(224,164,88,0.4)' }}
+                    fontWeight="semibold"
+                    cursor="pointer"
+                    onClick={() => setShowAllCategories((prev) => !prev)}
+                  >
+                    <Tag.Label>
+                      {showAllCategories
+                        ? t('common:categories.showLess')
+                        : t('common:categories.showAll')}
+                    </Tag.Label>
+                  </Tag.Root>
+                )}
+              </HStack>
+
+              <Flex direction="column" flex={{ md: 1 }} minH={0} mt={4} gap={3}>
+                <Heading as="h2" fontSize="lg" fontWeight="semibold">
+                  {t('details.description')}
+                </Heading>
+
+                <ExpandableDescription html={book?.description} />
+
+                <Box flexShrink={0}>
+                  <Collapsible.Root
+                    open={isDetailsOpen}
+                    onOpenChange={(event) => setIsDetailsOpen(event.open)}
+                  >
+                    <Box
+                      bg="ui.raised"
+                      borderWidth="1px"
+                      borderColor="ui.border"
+                      borderRadius="xl"
+                      overflow="hidden"
+                    >
+                      <Collapsible.Trigger asChild>
+                        <Flex
+                          as="button"
+                          w="100%"
+                          align="center"
+                          justify="space-between"
+                          px={4}
+                          py={3}
+                          cursor="pointer"
+                          outline="none"
+                          transition="background-color 0.2s ease"
+                          _hover={{ bg: { _light: 'blackAlpha.50', _dark: 'whiteAlpha.50' } }}
+                          _focusVisible={{
+                            outline: '2px solid',
+                            outlineColor: 'ui.accent',
+                            outlineOffset: '-2px',
+                          }}
+                        >
+                          <Text fontWeight="semibold">{t('details.technicalDetails')}</Text>
+                          <Icon color="ui.muted">
+                            {isDetailsOpen ? <IoChevronUp /> : <IoChevronDown />}
+                          </Icon>
+                        </Flex>
+                      </Collapsible.Trigger>
+
+                      <Collapsible.Content>
+                        <Grid
+                          templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
+                          gap={4}
+                          px={4}
+                          pb={4}
+                          pt={3}
+                          borderTopWidth="1px"
+                          borderColor="ui.border"
+                        >
+                          {[
+                            { label: t('details.language'), value: book?.language },
+                            { label: t('details.pageCount'), value: book?.pageCount },
+                            { label: t('details.publisher'), value: book?.publisher },
+                            { label: 'ISBN-13', value: book?.isbn13 },
+                            { label: 'ISBN-10', value: book?.isbn10 },
+                          ].map(({ label, value }) => (
+                            <Box key={label} minW={0}>
+                              <Text
+                                fontSize="xs"
+                                color="ui.muted"
+                                textTransform="uppercase"
+                                letterSpacing="0.06em"
+                              >
+                                {label}
+                              </Text>
+                              <Text mt={0.5} wordBreak="break-word">
+                                {value ?? '–'}
+                              </Text>
+                            </Box>
+                          ))}
+                        </Grid>
+                      </Collapsible.Content>
+                    </Box>
+                  </Collapsible.Root>
+                </Box>
+              </Flex>
+            </Flex>
+          </Box>
+        </Flex>
       </Flex>
 
       <MobileMenu />

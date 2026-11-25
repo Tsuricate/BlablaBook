@@ -41,11 +41,11 @@ export const buttonRecipe = defineRecipe({
         h: '44px',
         px: 5,
         borderRadius: 'xl',
-        bg: { _light: '#8E5F1E', _dark: 'ui.accent' },
-        color: { _light: '#FFF8EC', _dark: '#1A1612' },
+        bg: { _light: '#D9A04A', _dark: 'ui.accent' },
+        color: { _light: '#2A1D0B', _dark: '#1A1612' },
         fontWeight: '600',
         border: 'none',
-        _hover: { filter: 'brightness(1.08)' },
+        _hover: { bg: { _light: '#D49A3F', _dark: '#EBB36A' } },
         _disabled: { opacity: 0.4 },
       },
       secondary: {
@@ -75,7 +75,6 @@ export const buttonRecipe = defineRecipe({
       },
       category: {
         borderRadius: 'full',
-
         fontWeight: '500',
         bg: { _light: 'ui.surface', _dark: 'ui.accentSoft' },
         borderColor: { _light: 'rgba(61,51,40,0.14)', _dark: 'rgba(224,164,88,0.22)' },
@@ -134,46 +133,30 @@ export const buttonRecipe = defineRecipe({
         gap: 2.5,
         justifyContent: 'flex-start',
         borderRadius: 'xl',
-        bg: { _light: 'light.200', _dark: 'gray.850' },
+        bg: 'ui.surface',
+        color: 'ui.text',
         border: '1px solid',
-        borderColor: {
-          _light: 'light.400',
-          _dark: 'rgba(255,255,255,0.12)',
+        borderColor: 'ui.border',
+        _hover: {
+          borderColor: { _light: 'rgba(201,138,46,0.55)', _dark: 'rgba(224,164,88,0.5)' },
         },
-        color: { _light: 'brown.800', _dark: 'light.100' },
 
         '& .action-icon': {
           w: '30px',
-
           h: '30px',
-
           display: 'flex',
-
           alignItems: 'center',
-
           justifyContent: 'center',
-
           borderRadius: 'full',
-
-          bg: { _light: 'light.400', _dark: 'gray.700' },
-
-          color: { _light: 'brown.800', _dark: 'light.100' },
-
-          border: '1px solid',
-
-          borderColor: {
-            _light: 'light.500',
-
-            _dark: 'rgba(255,255,255,0.16)',
-          },
-
+          bg: 'ui.accentSoft',
+          color: 'ui.accentText',
           flexShrink: 0,
         },
 
         '& .action-divider': {
           w: '1px',
           h: '20px',
-          bg: { _light: 'light.500', _dark: 'rgba(255,255,255,0.16)' },
+          bg: 'ui.border',
           flexShrink: 0,
         },
       },
@@ -182,24 +165,17 @@ export const buttonRecipe = defineRecipe({
         px: 3.5,
         gap: 2,
         borderRadius: 'xl',
-        bg: { _light: 'light.200', _dark: 'gray.850' },
+        bg: 'ui.surface',
+        color: 'ui.text',
         border: '1px solid',
-        borderColor: {
-          _light: 'light.400',
-          _dark: 'rgba(255,255,255,0.12)',
+        borderColor: 'ui.border',
+        _hover: {
+          borderColor: { _light: 'rgba(201,138,46,0.55)', _dark: 'rgba(224,164,88,0.5)' },
         },
-        borderBottomWidth: '2px',
-        borderBottomColor: {
-          _light: 'light.500',
-          _dark: 'rgba(139,115,85,0.55)',
-        },
-        color: { _light: 'brown.800', _dark: 'light.100' },
 
         '& svg': {
           fontSize: '18px',
-
-          color: { _light: 'brown.700', _dark: 'brown.300' },
-
+          color: 'ui.accentText',
           transition: 'fill 0.15s ease',
         },
       },
